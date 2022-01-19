@@ -1,0 +1,53 @@
+.advantages-badges {
+    margin: 0 -20px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.advantages-badges-item {
+    width: 140px;
+    margin: 0 20px 40px;
+    text-align: center;
+    font-family: "FuturaDemi",Arial,sans-serif;
+    line-height: 1.1em;
+}
+
+.badge-img {
+    display: block;
+    width: 100%;
+}
+
+.advantages-badges-item-name {
+    margin-top: 10px;
+    display: block;
+}
+
+.columns-badges {
+    width: 1200px;
+    max-width: 100%;
+}
+
+.year-column {
+    margin-left: auto;
+}
+
+@media (max-width: 1365px)  {
+    .columns-badges {
+        width: 720px;
+    }
+}
+
+@media (max-width: 991px)  {
+    .columns-badges {
+        display: none;
+    }
+
+    .year-column {
+        margin-left: 0;
+    }
+}
+
+.teasers-main {
+    display: flex;
+}

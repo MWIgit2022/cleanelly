@@ -1,0 +1,18 @@
+.title_contacts {
+    margin: 0 auto;
+    max-width: 1300px;
+    padding: 0 30px;
+}
+
+@media (max-width: 767px) {
+    .title_contacts {
+        padding: 0 15px;
+    }
+}
+
+.small-h1 {
+    padding-bottom: 0px !important;
+    font-family: 'FuturaBook', Arial, sans-serif !important;
+    font-size: 1.6em;
+    line-height: 24px;
+}

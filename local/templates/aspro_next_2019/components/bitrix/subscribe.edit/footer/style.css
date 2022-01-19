@@ -1,0 +1,11 @@
+form.subscribe-form .g-recaptcha {
+    display: block!important;
+    position: static;
+    margin-top: 20px;
+   
+}
+
+.grecaptcha-badge{
+    transform: scale(0.80)!important;
+    bottom: 0px!important;
+} 

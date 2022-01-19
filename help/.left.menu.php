@@ -1,0 +1,25 @@
+<?
+$aMenuLinks = Array(
+	Array(
+		"Доставка", 
+		"/help/delivery/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Оплата", 
+		"/help/payment/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Возврат", 
+		"/help/warranty/", 
+		Array(), 
+		Array(), 
+		"" 
+	)
+);
+?>

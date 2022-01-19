@@ -1,0 +1,34 @@
+.catalog_item_slider_arrow {
+	position: absolute;
+	top: 50%;
+	z-index: 1;
+	background: url('/local/templates/aspro_next_2019/images/arrows2.png') no-repeat;
+	cursor: pointer;
+	-webkit-transform: scale(1.55);
+	    -ms-transform: scale(1.55);
+	        transform: scale(1.55);
+}
+.catalog_item_slider_arrow--prev {
+	left: 0;
+	width: 29px;
+	height: 29px;
+	background-position: 3px -20px;
+}
+.catalog_item_slider_arrow--next {
+	right: 0;
+	width: 29px;
+	height: 29px;
+	background-position: -72px -20px;
+}
+.catalog_item_slider_arrow--next:hover {
+	background-position: -71px 4px;
+}
+.catalog_item_slider_arrow--prev:hover {
+	background-position: 3px 4px;
+}
+.slick-slide {
+	outline: none;
+}
+.slick-track {
+	overflow-x: hidden;
+}

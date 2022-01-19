@@ -1,0 +1,39 @@
+<?
+$aMenuLinks = Array(
+	Array(
+		"Дисконтная карта Cleanelly", 
+		"/diskontnaya-karta-cleanelly.php", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"diskontnaya-karta-cleanelly.php", 
+		"/diskontnaya-karta-cleanelly-php.php", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Скидки", 
+		"/skidki.php", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Сккидки", 
+		"/skkidki/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Скидки", 
+		"/skidki/", 
+		Array(), 
+		Array(), 
+		"" 
+	)
+);
+?>
