@@ -4,7 +4,7 @@ $APPLICATION->SetTitle("Корзина");
 $APPLICATION->SetPageProperty("viewed_show", "Y");
 ?><?$APPLICATION->IncludeComponent(
 	"bitrix:sale.basket.basket",
-	".default",
+	"not_default_1",
 	Array(
 		"ACTION_VARIABLE" => "action",
 		"AJAX_MODE_CUSTOM" => "Y",

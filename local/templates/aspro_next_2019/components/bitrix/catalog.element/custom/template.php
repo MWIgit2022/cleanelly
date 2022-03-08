@@ -985,6 +985,16 @@ $arViewedData = array(
 					<a href="#props" data-toggle="tab"><span><?=($arParams["TAB_CHAR_NAME"] ? $arParams["TAB_CHAR_NAME"] : GetMessage("PROPERTIES_TAB"));?></span></a>
 				</li>
 			<?endif;?>
+			<?if($arResult["DELIV_TAB_TEXT"]):?>
+				<li class="<?=(!($iTab++) ? ' active' : '')?>">
+					<a href="#deliv_tab_text" data-toggle="tab"><span>Доставка</span></a>
+				</li>
+			<?endif;?>
+			<?if($arResult["RETURN_TAB_TEXT"]):?>
+				<li class="<?=(!($iTab++) ? ' active' : '')?>">
+					<a href="#return_tab_text" data-toggle="tab"><span>Возврат товара</span></a>
+				</li>
+			<?endif;?>
 			<?if($arResult["UHOD"]):?>
 				<li class="<?=(!($iTab++) ? ' active' : '')?>">
 					<a href="#uhod" data-toggle="tab"><span>Уход</span></a>
@@ -1631,6 +1641,26 @@ $arViewedData = array(
 					</div>
 				</div>
 			<?endif;?>
+			<?if($arResult['DELIV_TAB_TEXT']){?>
+			
+				<div class="tab-pane product_uhod_tab<?=(!($iTab++) ? ' active' : '')?>" id="deliv_tab_text">
+				<div class="title-tab-heading visible-xs">Доставка</div>
+					<div>
+						<?=$arResult['DELIV_TAB_TEXT']?>
+					</div>
+				</div>
+				
+			<?}?>
+			<?if($arResult['RETURN_TAB_TEXT']){?>
+			
+				<div class="tab-pane product_uhod_tab<?=(!($iTab++) ? ' active' : '')?>" id="return_tab_text">
+				<div class="title-tab-heading visible-xs">Возврат товара</div>
+					<div>
+						<?=$arResult['RETURN_TAB_TEXT']?>
+					</div>
+				</div>
+				
+			<?}?>
 			<?if($arResult['UHOD']){?>
 			
 				<div class="tab-pane product_uhod_tab<?=(!($iTab++) ? ' active' : '')?>" id="uhod">

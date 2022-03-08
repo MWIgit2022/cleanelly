@@ -276,7 +276,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 		 * Refreshes order via json data from ajax request
 		 */
 		refreshOrder: function(result)
-		{			
+		{
 			if (result.error)
 			{
 				this.showError(this.mainErrorsNode, result.error);
@@ -298,40 +298,66 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 				if (this.activeSectionId !== this.deliveryBlockNode.id)
 				this.deliveryCachedInfo = [];
 			
- console.log(this.result);
-console.log(result.order); 
+/* console.log(this.result);*/
 
-		
-				 if(this.showPopupStart == false){
-					this.showPopupStart = true; 
-					
-					if(this.result.TOTAL.CUSTOM_PRICE_CHANGED == 'Y'){
-						setTimeout(function(){
-							if(result.order.TOTAL.ORDER_PRICE>=5000){
-								var priceBefore = result.order.TOTAL.ORDER_TOTAL_PRICE;
-								var priceAfter = priceBefore - priceBefore/100*5;
-								result.order.TOTAL.DISCOUNT_PRICE_FORMATED = result.order.TOTAL.BASKET_PRICE_DISCOUNT_DIFF = numberWithCommas(result.order.TOTAL.DISCOUNT_PRICE + priceBefore/100*5)+' руб';
-								result.order.TOTAL.ORDER_PRICE_FORMATED = result.order.TOTAL.ORDER_TOTAL_PRICE_FORMATED = numberWithCommas(priceAfter)+' руб'; 
-								result.order.TOTAL.DISCOUNT_PRICE = result.order.TOTAL.BASKET_PRICE_DISCOUNT_DIFF_VALUE = result.order.TOTAL.DISCOUNT_PRICE + priceBefore/100*5;
-								result.order.TOTAL.ORDER_PRICE = result.order.TOTAL.ORDER_TOTAL_PRICE = priceAfter; 
-						
-								BX.Sale.OrderAjaxComponent.showPopup(); 
-								BX.Sale.OrderAjaxComponent.editTotalBlock(); 
-							 }
-						  },100);  
-					} else {
-						this.showPopup();
+
+				var dop_discount_card = false;
+				var sale_number_ord = false;
+				for (var key in result.order.GRID.ROWS){
+					if(result.order.GRID.ROWS[key].data.PROPS[0]){
+						if(result.order.GRID.ROWS[key].data.PROPS[0].CODE == 'SALE_NUMBER' && result.order.GRID.ROWS[key].data.PROPS[0].VALUE == 'Доп.скидка к дисконтной карте'){
+								dop_discount_card = true;
+						}
+						if(result.order.GRID.ROWS[key].data.PROPS[0].CODE == 'SALE_NUMBER'){
+							sale_number_ord = true;
+						}
 					}
-				} else if(BX.Sale.OrderAjaxComponent.getSelectedPaySystem().ID == 3 && result.order.TOTAL.ORDER_PRICE>=5000 && this.result.TOTAL.CUSTOM_PRICE_CHANGED == 'Y'){
+				}
+				if(dop_discount_card){
+					if(result.order.COUPON_LIST[0]){
+						//result.order.COUPON_LIST[0].JS_CHECK_CODE = result.order.COUPON_LIST[0].COUPON+' - дисконтная карта применена с дополнительной скидкой';
+						setTimeout(function(){
+							$('.order-promocode-text').html('<strong>'+$('.order-promocode-text strong').first().text()+'</strong> - дисконтная карта применена с дополнительной скидкой');
+						},200);
+					}
+				}
+
+				if(this.showPopupStart == false && sale_number_ord ==true){
+					this.showPopupStart = true; 
+					setTimeout(function(){
+						 var priceBefore = result.order.TOTAL.ORDER_TOTAL_PRICE;
+						var priceAfter = priceBefore - priceBefore/100*5;
+						result.order.TOTAL.DISCOUNT_PRICE_FORMATED = result.order.TOTAL.BASKET_PRICE_DISCOUNT_DIFF = numberWithCommas(result.order.TOTAL.DISCOUNT_PRICE + priceBefore/100*5)+' руб';
+						result.order.TOTAL.ORDER_PRICE_FORMATED = result.order.TOTAL.ORDER_TOTAL_PRICE_FORMATED = numberWithCommas(priceAfter)+' руб'; 
+						result.order.TOTAL.DISCOUNT_PRICE = result.order.TOTAL.BASKET_PRICE_DISCOUNT_DIFF_VALUE = result.order.TOTAL.DISCOUNT_PRICE + priceBefore/100*5;
+						result.order.TOTAL.ORDER_PRICE = result.order.TOTAL.ORDER_TOTAL_PRICE = priceAfter; 
+						if(result.order.TOTAL.ORDER_PRICE>=5000){
+							BX.Sale.OrderAjaxComponent.showPopup(); 
+							BX.Sale.OrderAjaxComponent.editTotalBlock(); 
+						 } 
+					  },100);  
+				/* } else if(BX.Sale.OrderAjaxComponent.getSelectedPaySystem().ID == 3 && result.order.TOTAL.ORDER_PRICE>=5000 && sale_number_ord ==true){
 						var priceBefore = result.order.TOTAL.ORDER_TOTAL_PRICE;
 						var priceAfter = priceBefore - priceBefore/100*5;
 						result.order.TOTAL.DISCOUNT_PRICE_FORMATED = result.order.TOTAL.BASKET_PRICE_DISCOUNT_DIFF = numberWithCommas(result.order.TOTAL.DISCOUNT_PRICE + priceBefore/100*5)+' руб';
 						result.order.TOTAL.ORDER_PRICE_FORMATED = result.order.TOTAL.ORDER_TOTAL_PRICE_FORMATED = numberWithCommas(priceAfter)+' руб'; 
 						result.order.TOTAL.DISCOUNT_PRICE = result.order.TOTAL.BASKET_PRICE_DISCOUNT_DIFF_VALUE = result.order.TOTAL.DISCOUNT_PRICE + priceBefore/100*5;
 						result.order.TOTAL.ORDER_PRICE = result.order.TOTAL.ORDER_TOTAL_PRICE = priceAfter; 
-						BX.Sale.OrderAjaxComponent.editTotalBlock(); 
-				} 
-				result.order.TOTAL.CUSTOM_PRICE_CHANGED=this.result.TOTAL.CUSTOM_PRICE_CHANGED;
+						BX.Sale.OrderAjaxComponent.editTotalBlock(); */ 
+				} else if(BX.Sale.OrderAjaxComponent.getSelectedPaySystem().ID == 3 && result.order.TOTAL.ORDER_PRICE>=5000 && sale_number_ord ==true) {
+					BX.Sale.OrderAjaxComponent.showPopup(); 
+					var priceBefore = result.order.TOTAL.ORDER_TOTAL_PRICE;
+						var priceAfter = priceBefore - priceBefore/100*5;
+						result.order.TOTAL.DISCOUNT_PRICE_FORMATED = result.order.TOTAL.BASKET_PRICE_DISCOUNT_DIFF = numberWithCommas(result.order.TOTAL.DISCOUNT_PRICE + priceBefore/100*5)+' руб';
+						result.order.TOTAL.ORDER_PRICE_FORMATED = result.order.TOTAL.ORDER_TOTAL_PRICE_FORMATED = numberWithCommas(priceAfter)+' руб'; 
+						result.order.TOTAL.DISCOUNT_PRICE = result.order.TOTAL.BASKET_PRICE_DISCOUNT_DIFF_VALUE = result.order.TOTAL.DISCOUNT_PRICE + priceBefore/100*5;
+						result.order.TOTAL.ORDER_PRICE = result.order.TOTAL.ORDER_TOTAL_PRICE = priceAfter; 
+						BX.Sale.OrderAjaxComponent.editTotalBlock();
+				} else if(BX.Sale.OrderAjaxComponent.getSelectedPaySystem().ID == 3 && result.order.TOTAL.ORDER_PRICE>=5000 && this.showPopupStart == false){
+					BX.Sale.OrderAjaxComponent.showPopup();  
+					this.showPopupStart = true; 
+				}
+				
 				this.result = result.order;
 				this.prepareLocations(result.locations);
 				this.locationsInitialized = false;
@@ -343,7 +369,6 @@ console.log(result.order);
 				this.editOrder();
 				this.getSdekID(result.sdek);
 				this.initPhoneField();
-								
 				if(this.result.DELIVERY.length>0){
 					$('input[name=ORDER_PROP_35]').val('Y');
 				}else{
@@ -354,6 +379,7 @@ console.log(result.order);
 				BX.saleOrderAjax && BX.saleOrderAjax.initDeferredControl();
 				setTimeout(function(){
 					if(!!result.sdek){
+						
 						$('input[name=ORDER_PROP_5]').val(result.sdek.city);
 						var sdek_cityId = result.sdek.cityId;
 					}else{
@@ -1572,15 +1598,15 @@ console.log(result.order);
 					: this.result.TOTAL.ORDER_TOTAL_LEFT_TO_PAY,
 				priceAfter = result.order.TOTAL.ORDER_TOTAL_LEFT_TO_PAY === null ? result.order.TOTAL.ORDER_TOTAL_PRICE : result.order.TOTAL.ORDER_TOTAL_LEFT_TO_PAY;
 
-
+	
 			//кастомное применение скидки при оплате картой, если есть нестандартная акция, через кастомную цену.
-			 if(parseFloat(priceBefore) == parseFloat(priceAfter) && this.result.PAY_SYSTEM[0].CHECKED !='Y' && result.order.PAY_SYSTEM[0].CHECKED == 'Y'){
+			 if(parseFloat(priceBefore) == parseFloat(priceAfter) && this.result.PAY_SYSTEM[0].CHECKED !='Y'  && result.order.PAY_SYSTEM[0].CHECKED == 'Y'){
 				 var custom_disc = false;
 				 for (var key in this.result.GRID.ROWS){
 					 console.log(key);
 					if(this.result.GRID.ROWS[key].data.CUSTOM_PRICE == 'Y'){
-						if(this.result.GRID.ROWS[key].data.PROPS[0].CODE == 'SALE_NUMBER' && this.result.GRID.ROWS[key].data.PROPS[0].VALUE == '3=2'){
-							custom_disc = true;
+						if(this.result.GRID.ROWS[key].data.PROPS[0].CODE == 'SALE_NUMBER' && (this.result.GRID.ROWS[key].data.PROPS[0].VALUE == '3=2' || this.result.GRID.ROWS[key].data.PROPS[0].VALUE == '2=1')){
+							//custom_disc = true;
 						}
 					}
 				}
@@ -1592,7 +1618,7 @@ console.log(result.order);
 					result.order.TOTAL.ORDER_PRICE = result.order.TOTAL.ORDER_TOTAL_PRICE = priceAfter; 
 					
 				}
-			} 
+			}  
 			this.options.totalPriceChanged = parseFloat(priceBefore) != parseFloat(priceAfter);
 			
 			var $th = this;  // Сортировка платежной системы с онлайн оплатой - первый в списке платёжных систем, проверяем её изменение и выводим попап
@@ -1601,7 +1627,6 @@ console.log(result.order);
 					$th.showPopup();
 				},200);
 			}
-			console.log(result);
 			
 
 		},
@@ -1920,7 +1945,7 @@ console.log(result.order);
 				this.reachGoal('order');
 				var $city = $("input.bx-ui-sls-route").val().split(',')[0];
 				var $citySdek = $("input[name='ORDER_PROP_5']").val();
-				if ($citySdek != $city) {
+				if ($citySdek.replace(/[ёЁеЕ]/gi, '') != $city.replace(/[ёЁеЕ]/gi, '')) {
 					if ($('#citiesDontMatch').length == 0) {
 						$('[data-property-id-row = "5"]').append('<p id="citiesDontMatch" style="color: red">Города не совпадают</p>');
 					}
@@ -8031,7 +8056,8 @@ console.log(result.order);
 			}
 			else
 			{
-				priceHtml = total.ORDER_PRICE_FORMATED;
+				//priceHtml = total.ORDER_PRICE_FORMATED;
+				priceHtml = total.PRICE_WITHOUT_DISCOUNT;
 			}
 
 			if (this.options.showPriceWithoutDiscount)

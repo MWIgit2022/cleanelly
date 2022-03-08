@@ -6324,7 +6324,7 @@ class SaleOrderAjax extends \CBitrixComponent
 
 			if($setCustom==0 && $DeliveryTrue==1 && $order->getPrice()>=5000){
 				$new_price = $order->getPrice() - $order->getPrice()/100*5;
-				$order->setField('PRICE', $new_price);
+				$order->setField('PRICE', round($new_price));
 				$order->save();
 			}
 

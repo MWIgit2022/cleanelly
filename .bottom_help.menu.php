@@ -43,24 +43,10 @@ $aMenuLinks = Array(
 		"" 
 	),
 	Array(
-		"Оставить отзыв о товаре", 
+		"Отзывы", 
 		"/ostavit-otzyv/", 
 		Array(), 
 		Array(), 
-		"" 
-	),
-	Array(
-		"Оставить отзыв о Cleanelly на Яндекс.Маркет", 
-		"https://market.yandex.ru/shop/549178/reviews/add", 
-		Array(), 
-		Array("rel"=>"nofollow"), 
-		"" 
-	),
-	Array(
-		"Отзывы о Cleanelly на Отзовик.ру", 
-		"https://otzovik.com/?search_text=cleanelly&x=23&y=15", 
-		Array(), 
-		Array("rel"=>"nofollow"), 
 		"" 
 	)
 );

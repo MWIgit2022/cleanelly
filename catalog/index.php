@@ -1,7 +1,7 @@
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetPageProperty("description", "Полотенца махровые, вафельные, гладкотканные — в каталоге официального интернет-магазина Cleanelly (Клинелли). ✔️ Доступные цены на качественный текстиль для дома: полотенца, халаты, постельное белье. ✔️ Доставка по России. ⭐ Тел. 8-800-511-52-03. Звоните!");
 $APPLICATION->SetTitle("Каталог текстиля");
-$APPLICATION->SetPageProperty("title", "Подарочные пледы купить в Москве в интернет-магазине Cleanelly");
+$APPLICATION->SetPageProperty("title", "Каталог текстиля от интернет-магазина Cleanelly");
 $APPLICATION->IncludeComponent(
 	"bitrix:catalog", 
 	"main", 
