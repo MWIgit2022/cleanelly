@@ -19,7 +19,7 @@ $detailPictMode = array(
 	'MAGNIFIER' => true,
 	'GALLERY' => true
 );
-
+echo '<div style="display:none;">'.($arResult['DETAIL_TEXT']).'</div>';
 $arDefaultParams = array(
 	'TYPE_SKU' => 'Y',
 	'ADD_PICT_PROP' => '-',

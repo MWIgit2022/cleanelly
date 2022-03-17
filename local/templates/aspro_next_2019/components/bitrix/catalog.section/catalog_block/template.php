@@ -240,10 +240,10 @@ $APPLICATION->SetAdditionalCSS("//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slic
 									<a href="<?=$arItem["DETAIL_PAGE_URL"]?>" class="dark_link"><span><?=$elementName;?></span></a>
 								</div>
 								<?
-								if($arResult['SOSTAV_PLEDY']){?>
+								if($arItem['SOSTAV_PLEDY']){?>
 									<div style="font-size:14px;">
 											<b>Состав:</b>
-											<?=$arResult['SOSTAV_PLEDY']?>
+											<?=$arItem['SOSTAV_PLEDY']?>
 										</div>
 								<?}
 								if(($arResult['ORIGINAL_PARAMETERS']['SECTION_ID'] == 198) || ($arResult['ORIGINAL_PARAMETERS']['SECTION_CODE'] == 'komplekty_postelnogo_belya')){

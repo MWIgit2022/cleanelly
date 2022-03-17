@@ -4,3 +4,7 @@
 .sale_groups_container a{padding:0.25em 1em; border:1px solid;margin:0.5em;}
 .wrap_outer.title a span{font-size:1.5em;font-family:BODONIC_2} 
 .top_big_banners .wrap_tizer .preview{font-size:1.25em;}
+
+@media(min-width:992px){ .search_title_wrap{width:17%} }
+@media(min-width:1200px){ .search_title_wrap{width:20%} }
+@media(min-width:1500px){ .search_title_wrap{width:25%} }
