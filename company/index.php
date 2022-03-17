@@ -1,6 +1,6 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetPageProperty("HIDE_LEFT_BLOCK", "Y");
+// $APPLICATION->SetPageProperty("HIDE_LEFT_BLOCK", "Y");
 $APPLICATION->SetPageProperty("description", "Продукция Cleanelly – высококачественный домашний текстиль: махровые и вафельные халаты, полотенца, простыни, покрывала, пледы, столовое и постельное белье, текстильные товары для детей, продукция для спорта и отдыха.");
 $APPLICATION->SetPageProperty("title", "Под брендом Cleanelly выпускаются высококачественные махровые и вафельные полотенца и халаты");
 $APPLICATION->SetTitle("О компании ");
@@ -211,8 +211,11 @@ $APPLICATION->SetTitle("О компании ");
 		</div>
 	</div>
 </div>
-<h4><br>
- </h4>
+<div style="flex;flex-wrap:wrap;">
+	<a style="margin:0.25em 0;" class="btn btn-info" href="/company/o-brende-cleanelly/">О бренде Cleanelly</a> 
+	<a style="margin:0.25em;" class="btn btn-primary" href="/sertifikaty-i-nagrady/">Сертификаты и награды</a> 
+	<a style="margin:0.25em 0;" class="btn btn-success" href="/help/">Помощь</a> 
+</div>
 <hr>
 <h2>Реквизиты компании:</h2>
 <h3>ООО «Клинелли Онлайн»</h3>

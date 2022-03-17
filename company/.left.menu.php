@@ -1,43 +1,71 @@
 <?
 $aMenuLinks = Array(
 	Array(
-		"Новости", 
-		"/company/news/", 
+		"Международный сертификат качества", 
+		"/mezhdunarodnyy-sertifikat-kachestva/", 
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
-		"Сотрудники", 
-		"/company/staff/", 
+		"Производитель", 
+		"/proizvoditel/", 
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
-		"Вакансии", 
-		"/company/vacancy/", 
+		"Подарочные карты", 
+		"/podarochnye-karty/", 
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
-		"Лицензии", 
-		"/company/licenses/", 
-		Array(), 
-		Array(), 
-		"" 
-	),
-	Array(
-		"Политика", 
-		"/include/licenses_detail.php", 
+		"Дисконтная карта Cleanelly", 
+		"/diskontnaya-karta-cleanelly/", 
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
 		"О бренде Cleanelly", 
-		"/company/o-brende-cleanelly.php", 
+		"/company/o-brende-cleanelly/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Сертификаты и награды", 
+		"/sertifikaty-i-nagrady/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Помощь", 
+		"/help/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Реквизиты", 
+		"/rekvizity/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Публичная оферта", 
+		"/dogovor-publichnoy-oferty/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Политика конфиденциальности", 
+		"/info/more/", 
 		Array(), 
 		Array(), 
 		"" 

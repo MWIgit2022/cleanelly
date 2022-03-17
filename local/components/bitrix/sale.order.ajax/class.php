@@ -6315,18 +6315,43 @@ class SaleOrderAjax extends \CBitrixComponent
 			 }
 			}
 			$setCustom = 0;
-			$discountData = $order->getDiscount()->getApplyResult();
+			/* $discountData = $order->getDiscount()->getApplyResult();
 			foreach($discountData['DISCOUNT_LIST'] as $d){
 				if($d['REAL_DISCOUNT_ID'] == 122){
 					$setCustom = 1;
 				}
-			}
+			} */
 
-			if($setCustom==0 && $DeliveryTrue==1 && $order->getPrice()>=5000){
-				$new_price = $order->getPrice() - $order->getPrice()/100*5;
-				$order->setField('PRICE', $new_price);
+			if($DeliveryTrue==1 && $order->getPrice()>=5000){
+				$basket = Bitrix\Sale\Basket::loadItemsForOrder($order);
+				foreach ($basket as $basketItem){
+					$basketPropertyCollection = $basketItem->getPropertyCollection();
+					$props = $basketPropertyCollection->getPropertyValues();
+					if($props['SALE_NUMBER'] != false){
+						$new_price +=  ($basketItem->getField('PRICE')-$basketItem->getField('PRICE')/100*5)*$basketItem->getQuantity();;
+						$basketItem->markFieldCustom('PRICE');
+						$basketItem->setFields(
+							array(
+							'PRICE' => $basketItem->getField('PRICE')-$basketItem->getField('PRICE')/100*5,
+							'CUSTOM_PRICE'=>'Y'
+							)
+						);
+						//$new_price +=  $basketItem->getField('PRICE')-$basketItem->getField('PRICE')/100*5;
+					} else {
+						$new_price +=  $basketItem->getField('PRICE')*$basketItem->getQuantity();
+					}
+				} 
+				
+				
+				$basket->save();
 				$order->save();
-			}
+				
+				$order2 = Bitrix\Sale\Order::load($arResult["ORDER_ID"]); 
+				//$new_price = $order2->getPrice() - $order2->getPrice()/100*5;
+				$order2->setField('PRICE', $new_price);
+				
+				$order2->save();
+			} 
 
 			$arResult["ACCOUNT_NUMBER"] = $this->order->getField('ACCOUNT_NUMBER');
 

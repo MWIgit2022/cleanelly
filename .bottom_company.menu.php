@@ -15,22 +15,8 @@ $aMenuLinks = Array(
 		"" 
 	),
 	Array(
-		"О бренде Cleanelly", 
-		"/company/o-brende-cleanelly/", 
-		Array(), 
-		Array(), 
-		"" 
-	),
-	Array(
 		"Международный сертификат качества", 
 		"/mezhdunarodnyy-sertifikat-kachestva/", 
-		Array(), 
-		Array(), 
-		"" 
-	),
-	Array(
-		"Сертификаты и награды", 
-		"/sertifikaty-i-nagrady/", 
 		Array(), 
 		Array(), 
 		"" 
@@ -73,13 +59,6 @@ $aMenuLinks = Array(
 	Array(
 		"Политика конфиденциальности", 
 		"/info/more/", 
-		Array(), 
-		Array(), 
-		"" 
-	),
-	Array(
-		"Помощь", 
-		"/help/", 
 		Array(), 
 		Array(), 
 		"" 

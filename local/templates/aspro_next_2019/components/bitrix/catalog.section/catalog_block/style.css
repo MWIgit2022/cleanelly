@@ -32,3 +32,19 @@
 .slick-track {
 	overflow-x: hidden;
 }
+.item_block.big_banner{
+	padding:0;position:relative;width:100%;height:300px;
+}
+.item_block.big_banner a{
+	position:absolute;width:100%;height:100%;background-size:cover;
+}
+.item_block.banner{
+	padding:0;position:relative;
+	overflow:hidden;
+}
+.item_block.banner a{
+	position:absolute;width:100%;
+}
+.item_block.banner a img{
+	width:100%;
+}

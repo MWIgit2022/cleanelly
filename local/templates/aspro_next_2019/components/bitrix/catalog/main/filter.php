@@ -8,6 +8,7 @@
 			"AJAX_FILTER_FLAG" => $isAjaxFilter,
 			"SECTION_ID" => (isset($arSection["ID"]) ? $arSection["ID"] : ''),
 			"FILTER_NAME" => $arParams["FILTER_NAME"],
+			'PREFILTER_NAME'=>'prefilterCatalog', 
 			"PRICE_CODE" => ($arParams["USE_FILTER_PRICE"] == 'Y' ? $arParams["FILTER_PRICE_CODE"] : $arParams["PRICE_CODE"]),
 			"CACHE_TYPE" => $arParams["CACHE_TYPE"],
 			"CACHE_TIME" => $arParams["CACHE_TIME"],

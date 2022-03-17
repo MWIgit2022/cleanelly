@@ -19,7 +19,7 @@ class HBUtilsGeoIP
         if ($_COOKIE['current_region']) {
             $cityID = $_COOKIE['current_region'];
         } else {
-            $cityID = static::getRegionIDByIp();
+            $cityID = static::getRegionIDByIp() ? static::getRegionIDByIp() : false;
         }
 
         if (!is_numeric($cityID)) {
@@ -93,7 +93,12 @@ class HBUtilsGeoIP
            // $geoArray = static::getInfoAboutIP($ip);
 		   
 			$ipAddress = GeoIp\Manager::getRealIp();
-			$result = GeoIp\Manager::getDataResult($ipAddress, "ru")->getGeoData();
+			if($ipAddress){
+				$dataResult = GeoIp\Manager::getDataResult($ipAddress, "ru");
+				if($dataResult){
+					$result = $dataResult->getGeoData();
+				}
+			}
 			
             /* $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, 'http://ipgeobase.ru:7020/geo?ip=' . $ip);

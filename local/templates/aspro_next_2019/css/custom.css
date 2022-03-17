@@ -350,7 +350,7 @@ body #headerfixed .svg.svg-inline-basket.big
     left: 0;
     padding: 0;
     background: transparent;
-}
+}z
 .top_big_banners .top_big_banners_mini .item.normal_block:first-child .wrap_tizer .wrap_outer .outer_text
 {
     text-transform: none;
@@ -2328,8 +2328,7 @@ textarea
 }
 .info_item .middle_info .buy_block .table_sizes .link
 {
-    font-size: 16px;
-    border: 0;
+    font-size: 16px; 
 }
 
 
@@ -3725,4 +3724,32 @@ body .ajax_load.block .catalog_item.hover .footer_button, body .ajax_load.block 
 }
 .group_description_block div{
 width:100%;	
+}
+.sale_groups_container{display:flex;flex-wrap:wrap;margin:1em 0;}
+.sale_groups_container a{padding:0.25em 1em; border:1px solid;margin:0.5em;}
+
+@media screen and (max-width: 420px), 
+       screen and (max-height: 600px) {
+	.new_client_form_top_notice{
+		display:none;
+	}
+	form[name="NEW_CLIENT"] .form-control{
+		margin-bottom:0.5em;
+		font-size:0.5em;
+	}
+	form[name="NEW_CLIENT"] .licence_block label{
+		line-height: 13px; 
+		font-size: 0.8em;
+	}
+	form[name="NEW_CLIENT"] .popup .form-control label{
+		font-size:13px;
+	}
+	.NEW_CLIENT_frame{
+		width:100%;
+		left:0;
+		margin-left:0!important;
+	}
+}
+#title-search_fixed{
+	padding-left:2em;
 }

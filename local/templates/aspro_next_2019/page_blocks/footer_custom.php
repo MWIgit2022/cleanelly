@@ -12,9 +12,9 @@
 	<div class="bottom_wrapper">
 		<div class="maxwidth-theme items">
 			<div class="row bottom-middle">
-				<div class="col-md-8">
+				<div class="col-md-9">
 					<div class="row">
-						<div class="col-md-4 col-sm-3">
+						<div class="col-md-3 col-sm-3">
 							<?$APPLICATION->IncludeComponent("bitrix:menu", "bottom", array(
 								"ROOT_MENU_TYPE" => "bottom_company",
 								"MENU_CACHE_TYPE" => "A",
@@ -31,7 +31,31 @@
 								false
 							);?>
 						</div>
-						<div class="col-md-4 col-sm-3">
+						<div class="col-md-3 col-sm-3">
+							<?$APPLICATION->IncludeComponent(
+								"bitrix:menu", 
+								"bottom", 
+								array(
+									"ROOT_MENU_TYPE" => "bottom_catalog",
+									"MENU_CACHE_TYPE" => "A",
+									"MENU_CACHE_TIME" => "3600000",
+									"MENU_CACHE_USE_GROUPS" => "N",
+									"CACHE_SELECTED_ITEMS" => "N",
+									"MENU_CACHE_GET_VARS" => array(
+									),
+									"MAX_LEVEL" => "1",
+									"CHILD_MENU_TYPE" => "left",
+									"USE_EXT" => "Y",
+									"DELAY" => "N",
+									"ALLOW_MULTI_SELECT" => "Y",
+									"COMPONENT_TEMPLATE" => "bottom",
+									"COMPOSITE_FRAME_MODE" => "A",
+									"COMPOSITE_FRAME_TYPE" => "AUTO"
+								),
+								false
+							);?>
+						</div>
+						<div class="col-md-3 col-sm-3">
 							<?$APPLICATION->IncludeComponent(
 	"bitrix:menu", 
 	"bottom", 
@@ -55,7 +79,7 @@
 	false
 );?>
 						</div>
-						<div class="col-md-4 col-sm-3">
+						<div class="col-md-3 col-sm-3">
 							<?$APPLICATION->IncludeComponent("bitrix:menu", "bottom", array(
 								"ROOT_MENU_TYPE" => "bottom_help",
 								"MENU_CACHE_TYPE" => "A",
@@ -75,8 +99,8 @@
 						</div>
 					</div>
 	 			</div>
-				<div class="col-md-1">
-				</div>
+				<!--div class="col-md-1">
+				</div-->
 				<div class="col-md-3 contact-block">
 					<div class="row">
 						<div class="col-md-9 col-md-offset-2">
@@ -158,7 +182,12 @@
 								<div class="dev_wrapper">
 									<div class="dev">
 									   <?/* Разработка сайта&nbsp;&nbsp;—&nbsp;&nbsp;<a href="http://ruformat.ru/" rel="nofollow" target="_blank"><img class="lazy" data-src="/images/ruformat.png" alt="ruformat"></a>*/?>
-									  Техническая поддержка - <a href="https://mwi.me/" target="_blank"><img style="max-width:85px; margin-right:4em;" class="lazy" data-src="<?=SITE_TEMPLATE_PATH?>/images/logo_mwi.svg" alt="mwi"></a>
+									   <div>
+											Техническая поддержка - <a href="https://mwi.me/" target="_blank"><img style="max-width:85px; margin-right:4em;" class="lazy" data-src="<?=SITE_TEMPLATE_PATH?>/images/logo_mwi.svg" alt="mwi"></a>
+									  </div>
+									  <div>
+											Разработка сайта&nbsp;&nbsp;—&nbsp;&nbsp;<a href="http://ruformat.ru/" rel="nofollow" target="_blank"><img class="lazy" data-src="/images/ruformat.png" alt="ruformat"></a> 
+										</div>
 									</div>
 								</div>
 							</div>

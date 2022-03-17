@@ -44,3 +44,6 @@
 		<div class="scale_block_animate img_block" style="background-image:url('<?=($arItem["DETAIL_PICTURE"]["SRC"] ? $arItem["DETAIL_PICTURE"]["SRC"] : $arItem["PREVIEW_PICTURE"]["SRC"])?>')"></div>
 	</div>
 </div>
+<?if(count($arResult['ITEMS'][$arParams['BANNER_TYPE_THEME_CHILD']]['ITEMS'])=='1'){?>
+	<div class="item normal_block"></div>
+<?}?>

@@ -1,7 +1,42 @@
 <?
 $posSectionDescr="BOTTOM";
-?>
-<?if($arSeoItem):?>
+
+if($_GET['section_sale']){
+	$_SESSION['SECTION_SALE_PREFILTER'] = $_GET['section_sale'];
+}
+
+if($arSection['ID'] == 266){
+		  $arFilter = array('IBLOCK_ID' => $arParams['IBLOCK_ID'],'DEPTH_LEVEL' => 1, 'ACTIVE'=>'Y', 'UF_NOT_IN_SALE'=>false);
+		   $rsSect = CIBlockSection::GetList(array('left_margin' => 'asc'),$arFilter);
+		   while ($arSect = $rsSect->GetNext())
+		   {
+			  if($arSect['ID'] !=266){
+				$groups[$arSect['ID']] = $arSect['NAME'];
+			 }
+		    }
+}
+
+if($arSection['ID'] == 266 && intval($_SESSION['SECTION_SALE_PREFILTER'])){
+	global $prefilterCatalog;
+	   
+	   
+
+
+	   $rsParentSection = CIBlockSection::GetByID($_SESSION['SECTION_SALE_PREFILTER']);
+	   
+		if ($arParentSection = $rsParentSection->GetNext())
+		{
+		   $sections_code_sale_prefilter[] = $arParentSection['CODE'];
+		   $arFilter = array('IBLOCK_ID' => $arParentSection['IBLOCK_ID'],'>LEFT_MARGIN' => $arParentSection['LEFT_MARGIN'],'<RIGHT_MARGIN' => $arParentSection['RIGHT_MARGIN'],'>DEPTH_LEVEL' => $arParentSection['DEPTH_LEVEL']);
+		   $rsSect = CIBlockSection::GetList(array('left_margin' => 'asc'),$arFilter);
+		   while ($arSect = $rsSect->GetNext())
+		   {
+			 $sections_code_sale_prefilter[] = $arSect['CODE'];
+		   }
+		}
+	$prefilterCatalog=array('SECTION_CODE'=>$sections_code_sale_prefilter);
+}
+if($arSeoItem):?>
 	<div class="seo_block">
 		<?if($arSeoItem["DETAIL_PICTURE"]):?>
 			<img src="<?=CFile::GetPath($arSeoItem["DETAIL_PICTURE"]);?>" alt="" title="" class="img-responsive"/>
@@ -267,6 +302,16 @@ if($isAjaxFilter == "Y")
 				$frame = new \Bitrix\Main\Page\FrameHelper("viewtype-block");
 				$frame->begin();?>
 			<?}?>
+			
+			<?if($arSection['ID'] == 266){?>
+				<div class="sale_groups_container">
+					<a style="<?if(!intval($_SESSION['SECTION_SALE_PREFILTER'])){?>color:#fff;background:#000;<?}?>" href="?section_sale=all">Все разделы</a>
+					<?foreach($groups as $id=>$name){?>
+					<a style="<?if($_SESSION['SECTION_SALE_PREFILTER']==$id){?>color:#fff;background:#000;<?}?>" href="?section_sale=<?=$id?>"><?=$name?></a>
+					<?}?>
+				</div>
+			<?}?>
+			
 			<?include_once(__DIR__."/../sort_custom.php");?>
 
 			<?if($isAjax=="Y"){

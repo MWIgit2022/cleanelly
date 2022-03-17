@@ -669,5 +669,31 @@ if (!empty($arResult['ITEMS'])){
 		}
 	}
 
+	$arSelect = Array("ID", 'IBLOCK_ID', "PROPERTY_CATALOG_BANNER", "PROPERTY_CATALOG_BANNER_VIEW", "PROPERTY_URL_STRING");
+	$arFilter = Array("IBLOCK_ID"=>3, "PROPERTY_CATALOG_BANNER_SECTIONS"=>$arResult['ID'], "ACTIVE"=>"Y");
+	$res = CIBlockElement::GetList(Array(), $arFilter, false, false, $arSelect);
+	while($ob = $res->GetNextElement())
+	{
+	 $arFields = $ob->GetFields();
+	 if($arFields['PROPERTY_CATALOG_BANNER_VIEW_ENUM_ID'] == 31026){ 
+			$arPhotoSmall = CFile::ResizeImageGet(
+				   $arFields['PROPERTY_CATALOG_BANNER_VALUE'], 
+				   array(
+					  'width'=>280,
+					  'height'=>450
+				   ), 
+				   BX_RESIZE_IMAGE_EXACT,
+				   Array(
+					  "name" => "sharpen", 
+					  "precision" => 0
+				   )
+				);
+		$arFields['PICTURE'] = $arPhotoSmall['src'];
+	 } else {
+		 $arFields['PICTURE'] = CFile::getPath($arFields['PROPERTY_CATALOG_BANNER_VALUE']);
+	 }
+	 $arResult['SECTION_BANNERS'][] = $arFields;
+	}
+
 }
 ?>

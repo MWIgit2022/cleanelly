@@ -47,8 +47,38 @@ $APPLICATION->SetAdditionalCSS("//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slic
 		if($arParams["LINE_ELEMENT_COUNT"] > 5)
 			$col = 5;?>
 		<?
+		if($arResult['SECTION_BANNERS']){
+			if(count($arResult['SECTION_BANNERS'])==1){
+				$banner_pos_key = intval($arParams['PAGE_ELEMENT_COUNT']/(1+count($arResult['SECTION_BANNERS'])));
+			} else {
+				$banner_pos_key = intval($arParams['PAGE_ELEMENT_COUNT']/count($arResult['SECTION_BANNERS']));
+			}
+		}
+		$banner_pos = $banner_pos_key;
+		$i=1;
 		$itemCount = 0;
-		foreach($arResult["ITEMS"] as $arItem){?>
+		foreach($arResult["ITEMS"] as $arItem){
+			if($arResult['SECTION_BANNERS'] && !$_GET['PAGEN_1']){
+				$banner = current($arResult['SECTION_BANNERS']);
+				if($banner['PROPERTY_CATALOG_BANNER_VIEW_ENUM_ID'] !=31026 && $i%$col==1 && $i>=$banner_pos){
+					array_shift($arResult['SECTION_BANNERS']);
+					?>
+					<div class="item_block big_banner" data-pos="<?=$banner_pos?>">
+						<a href="<?=$banner['PROPERTY_URL_STRING_VALUE']?>" style="background-image:url('<?=$banner['PICTURE']?>');"></a>
+					</div>
+				<?
+					$banner_pos+=$banner_pos_key;
+				} else if($banner['PROPERTY_CATALOG_BANNER_VIEW_ENUM_ID'] ==31026 && $i>=$banner_pos){
+					array_shift($arResult['SECTION_BANNERS']);
+					$i++;?>
+					<div class="item_block banner col-<?=$col;?> col-md-<?=ceil(12/$col);?> col-sm-<?=ceil(12/round($col / 2))?> col-xs-6" data-pos="<?=$banner_pos?>">
+						<a href="<?=$banner['PROPERTY_URL_STRING_VALUE']?>"><img  src="<?=$banner['PICTURE']?>"></a>
+					</div>
+				<?
+					$banner_pos+=$banner_pos_key;
+				}
+			}
+			$i++?>
 			<div class="item_block col-<?=$col;?> col-md-<?=ceil(12/$col);?> col-sm-<?=ceil(12/round($col / 2))?> col-xs-6">
 				<div class="catalog_item_wrapp item">
 					<div class="basket_props_block" id="bx_basket_div_<?=$arItem["ID"];?>" style="display: none;">

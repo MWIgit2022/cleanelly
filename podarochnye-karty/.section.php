@@ -1,6 +1,7 @@
 <?
 $sSectionName = "Подарочные карты";
-$arDirProperties = array(
-   "description" => "Подарочные карты – интернет-магазин Cleanelly"
+$arDirProperties = Array(
+   "description" => "Подарочные карты – интернет-магазин Cleanelly",
+   "HIDE_LEFT_BLOCK" => "Y"
 );
 ?>

@@ -13,4 +13,21 @@ $(document).ready(function()
             });
         }
     });
+	
+});
+
+BX.ready(function(){
+	if($('.item_block.banner').length>0){
+		$('.item_block.banner').each(function(i,v){
+			$(this).css('height', $(this).prev().height()+59+'px');
+		});
+	}
+})
+
+BX.addCustomEvent('onAjaxSuccess', function(){
+     if($('.item_block.banner').length>0){
+		$('.item_block.banner').each(function(i,v){
+			$(this).css('height', $(this).prev().height()+59+'px');
+		});
+	}
 });

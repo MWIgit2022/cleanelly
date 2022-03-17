@@ -2,9 +2,24 @@
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Корзина");
 $APPLICATION->SetPageProperty("viewed_show", "Y");
+
+$basket = Bitrix\Sale\Basket::loadItemsForFUser(Bitrix\Sale\Fuser::getId(), Bitrix\Main\Context::getCurrent()->getSite());
+
+foreach ($basket as $basketItem) {
+	$pid = $basketItem->getField('PRODUCT_ID');
+	   if($basketItem->isDelay() == true){
+		   $inwished_arr[$pid] = $pid;
+	   } else {
+		 $basket_arr[$pid] = $pid; 
+	   }
+}
+if(count($basket_arr)>0){
+	OnBasketUpdateHandler();
+}
+
 ?><?$APPLICATION->IncludeComponent(
 	"bitrix:sale.basket.basket",
-	".default",
+	"not_default_1",
 	Array(
 		"ACTION_VARIABLE" => "action",
 		"AJAX_MODE_CUSTOM" => "Y",

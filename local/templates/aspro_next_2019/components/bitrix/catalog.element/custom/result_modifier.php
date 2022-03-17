@@ -1238,9 +1238,24 @@ foreach ($arResult['PROPERTIES']['VIDEO_YOUTUBE']['VALUE'] as $key => $videoCode
 	$videoData = curl_exec($curl);
 	$videoData = json_decode($videoData, true);
 	curl_close($curl);
-
-	$arResult['VIDEO_PREVIEWS'][$key]['URL'] = $videoData['thumbnail_url'];
+	$img_name = explode('/',$videoData['thumbnail_url']);
+	$last_part = array_pop($img_name);
+	if(!is_file($_SERVER['DOCUMENT_ROOT'].'/upload/youtube_thumbs/'.end($img_name).'_'.$last_part)){
+		file_put_contents($_SERVER['DOCUMENT_ROOT'].'/upload/youtube_thumbs/'.end($img_name).'_'.$last_part,file_get_contents($videoData['thumbnail_url']));
+	}
+	$arResult['VIDEO_PREVIEWS'][$key]['URL'] = '/upload/youtube_thumbs/'.end($img_name).'_'.$last_part;
+	//$arResult['VIDEO_PREVIEWS'][$key]['URL'] = $videoData['thumbnail_url'];
 	$arResult['VIDEO_PREVIEWS'][$key]['HEIGHT'] = $videoCode[1];
 	$arResult['VIDEO_PREVIEWS'][$key]['WIDTH'] = $videoCode[2];
 }
+
+$settings = HBUtils::GetSettings("settings");
+
+if($settings['DELIV_TAB_TEXT']['VALUE']){
+	$arResult['DELIV_TAB_TEXT'] = html_entity_decode($settings['DELIV_TAB_TEXT']['VALUE']['TEXT']);
+}
+if($settings['RETURN_TAB_TEXT']['VALUE']){
+	$arResult['RETURN_TAB_TEXT'] = html_entity_decode($settings['RETURN_TAB_TEXT']['VALUE']['TEXT']);
+} 
+
 ?>

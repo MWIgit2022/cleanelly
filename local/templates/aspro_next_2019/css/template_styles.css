@@ -2648,7 +2648,7 @@ body .wrapper .catalog_item .item_info .buttons_block{margin-top:17px;text-align
 .viewed_block .item_block .item.has-item:hover{box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.15);}
 .viewed_block .item_block .item.has-item{background:#fff;opacity:1}
 .viewed_block .image_wrapper_block, .viewed_block .image_wrapper_block a{height:91px;line-height:91px;width: 91px;margin: auto;text-align:center;}
-.viewed_block .image_wrapper_block img{max-height: 100%;}
+.viewed_block .image_wrapper_block img{max-height: 100%;position:absolute;}
 .viewed_block div.item-title a,.viewed_block div.item-title a span{line-height:18px;font-weight: normal;}
 .viewed_block .cost .price, .viewed_block .cost.prices .price .measure{font-size:14px;}
 .viewed_block .item_info{text-align: center;padding: 10px 0px 0px;}
@@ -3601,7 +3601,7 @@ div.header-v14 .top-description .region_wrapper{margin-right: 20px;}
     -webkit-box-shadow: 0px 0px 14px rgba(0,0,0,0.10);
     z-index: 1002;background: #fff;border-radius: 4px;
     padding: 20px 10px 20px 29px;box-sizing: border-box;
-    top:-50px;left:-50%;box-shadow: 0 0 12px 0px rgba(0, 0, 0, 0.2);margin-left: -35px;
+    top:-50px;left:0;box-shadow: 0 0 12px 0px rgba(0, 0, 0, 0.2);margin-left: -35px;
 }
 .city_selection{margin-left: 120px;width: 20%;}
 .confirm_region:before, .confirm_region:after{content: '';position: absolute;left: 50%; top: -19px;border: 10px solid transparent;border-bottom: 10px solid rgba(0, 0, 0, 0.05);margin-left:-10px;}
