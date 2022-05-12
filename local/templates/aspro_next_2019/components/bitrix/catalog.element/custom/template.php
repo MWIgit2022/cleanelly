@@ -705,6 +705,11 @@ $arViewedData = array(
 				</div>
 			<!-- noindex -->			
 			<div class="element_detail_text wrap_md">
+				<?if($arResult['CERTIFICATE']){?>
+					<a onclick="$.fancybox.open('<?=CFile::getPath($arResult['CERTIFICATE'])?>')">
+						<img style="margin-bottom:1em;max-height:200px" src="<?=$arResult['CERTIFICATE_PREVIEW']?>">
+					</a>
+				<?}?>
 				<div class="price_txt price_txt_delivery">
 					<a href="/help/delivery/" target="_blank" class="price_txt_addarr">
 						<?= GetMessage('SEND_IT', ['#DATE_SEND#' => date('d.m', time()+2*24*60*60)]) ?>

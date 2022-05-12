@@ -48,7 +48,7 @@ $logoClass = ($arTheme['COLORED_LOGO']['VALUE'] !== 'Y' ? '' : ' colored');
                                 )
                             );
                         }else{
-                            CNext::showCabinetLink(true,true);
+                            CNext::showCabinetLink(true,$USER->IsAuthorized(),'',true,'Личный<br>кабинет');
                         } ?>
                     </div>
                 </div>

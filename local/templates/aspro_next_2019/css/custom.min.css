@@ -8,3 +8,4 @@
 @media(min-width:992px){ .search_title_wrap{width:17%} }
 @media(min-width:1200px){ .search_title_wrap{width:20%} }
 @media(min-width:1500px){ .search_title_wrap{width:25%} }
+.logo_and_menu-row .search .search-input{padding-left:3em;}

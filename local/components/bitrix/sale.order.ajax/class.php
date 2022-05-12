@@ -6306,6 +6306,36 @@ class SaleOrderAjax extends \CBitrixComponent
 			$arResult["ORDER_ID"] = $res->getId();
 			
 			$order = Sale\Order::load($arResult["ORDER_ID"]); 
+			
+			$coupon = array_values($order->getDiscount()->getApplyResult()['COUPON_LIST'])[0]['COUPON'];
+			$coupon_id =  array_values($order->getDiscount()->getApplyResult()['COUPON_LIST'])[0]['DATA']['DISCOUNT_ID'];
+			if (!empty($coupon))
+			{
+				if ($coupon_id  != 124) {
+					$propertyCollection = $order->getPropertyCollection();
+					$couponPropValue = $propertyCollection->getItemByOrderPropertyId(21);
+					$couponPropValue->setValue($coupon);
+					$order->save(); 
+				} else {
+					$propertyCollection = $order->getPropertyCollection();
+					$couponPropValue = $propertyCollection->getItemByOrderPropertyId(36);
+					$couponPropValue->setValue($coupon);
+					$order->save(); 
+				}
+			}
+
+			$discounts = $order->getDiscount()->getApplyResult()['DISCOUNT_LIST'];
+			$res = [];
+			foreach ($discounts as $disc) {
+				$res[] = $disc['NAME'];
+			}
+			if (!empty($res)) {
+				$propertyCollection = $order->getPropertyCollection();
+				$promoPropValue = $propertyCollection->getItemByOrderPropertyId(37);
+				$promoPropValue->setValue($res);
+				$order->save();
+			}
+		
 			$paymentCollection = $order->getPaymentCollection();
 			$DeliveryTrue = 0;
 			foreach($paymentCollection as $payment){

@@ -92,7 +92,7 @@ $isShowSale = true;
 		);?>	
 	</div>
 <?endif;?>
-
+<?$APPLICATION->IncludeFile("/include/mainpage/reviews.php", Array(), array());?>
 
 
 <?if($isShowSale):?>

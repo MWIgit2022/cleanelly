@@ -16,9 +16,11 @@ $this->setFrameMode(true); ?>
                 <label for="adwCdekTrackCode" class="adw-cdek__form-label"><?= GetMessage('ADW_CDEK_TRACK_CODE') ?></label>
                 <input type="text" value="<?= $arResult['TRACK_CODE'] ?>" class="form-control" name="actc" id="adwCdekTrackCode">
             </div>
+			<p>По вопросам доставки вашего заказа, изменения сроков и условий его получения обращайтесь на бесплатную круглосуточную линию поддержки клиентов СДЭК <a style="font-size:1.25em;" href="tel:88002506915"><b>8-800-250-69-15</b></a> </p>
             <input type="submit" class="btn btn-default button is-primary button-default" value="<?= GetMessage('ADW_CDEK_SEND') ?>">
         </form>
     </div>
+	
 <? if (!empty($arResult['WARNING'])): ?>
     <? foreach ($arResult['WARNING'] as $warningCode => $warningText): ?>
         <div class="alert alert-warning alert--<?= $warningCode ?> message is-warning" role="alert">
