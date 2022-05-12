@@ -256,6 +256,8 @@ if (empty($arResult['ERROR_MESSAGE']))
 				$id_arr[] = $item->getField('PRODUCT_ID');
 			}
 		}
+		$quant_basket_arr[$item->getField('PRODUCT_ID')] = $item->getQuantity();
+		
 	}
 	$settings = HBUtils::GetSettings("settings");
 	$gifts_price = $settings['GIFT_MIN_SUM']['VALUE'];
@@ -330,7 +332,7 @@ if (empty($arResult['ERROR_MESSAGE']))
 		<?} else {?>
 			<p class="h3">Вы можете выбрать один из подарков</p>
 		<?}?>
-		<div style="display:flex;flex-wrap:wrap;">
+		<div class="gift_block" style="display:flex;flex-wrap:wrap;">
 			<?foreach($gifts as $k=>$v){
 				$mxResult = CCatalogSku::GetProductInfo($v);
 				if (is_array($mxResult)) {
@@ -339,6 +341,10 @@ if (empty($arResult['ERROR_MESSAGE']))
 					$gift = $v;
 				}
 				$ar_resr = CCatalogProduct::GetByID($v); 
+				
+				if ($quant_basket_arr[$v]) {
+					$ar_resr['QUANTITY'] = $ar_resr['QUANTITY'] - $quant_basket_arr[$v];
+				}
 				$res = CIBlockElement::GetByID($gift);
 				$ar_res = $res->GetNext();
 				$arPrice = CCatalogProduct::GetOptimalPrice($gift, 1, $USER->GetUserGroupArray());?>
@@ -364,6 +370,14 @@ if (empty($arResult['ERROR_MESSAGE']))
 		</div>
 	</div>
 		<script>
+			function giftBlock(){
+				if($('#gift_block .gift_block div').length == 0){
+					$('#gift_block').hide();
+				} else {
+					$('#gift_block').show();
+				}
+			}
+			giftBlock();
 			function addGift(id){
 				$.ajax({
 					type: "POST",
@@ -382,6 +396,7 @@ if (empty($arResult['ERROR_MESSAGE']))
 					url: '/basket/',
 					success: function (html) {
 						$('#gift_block').html($(html).filter('#gift_block').html());
+						giftBlock();
 					}
 				})
 			});

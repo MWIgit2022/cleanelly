@@ -94,7 +94,7 @@ $isShowSale = true;
 <?endif;?>
 
 
-
+<?$APPLICATION->IncludeFile("/include/mainpage/reviews.php", Array(), array());?>
 <?if($isShowSale):?>
 	<!--<div class="grey_block">-->
 		<div class="maxwidth-theme">
@@ -140,6 +140,8 @@ $isShowSale = true;
 	),
 	false
 );?>
+
+
 
 <?/*div class="maxwidth-theme">
 	<?global $arRegion, $isShowCompany;?>

@@ -478,7 +478,16 @@ $(document).ready(function(){
 		}
 	  };
 	 
-	  
+	total_coupon = $('#bx-soa-total .bx-soa-cart-total .change_basket')[0].outerHTML;
+	 BX.addCustomEvent('onAjaxSuccess', function(){
+		 setTimeout(function(){
+			if(!$('#bx-soa-total .bx-soa-cart-total .change_basket').length){
+				$('#bx-soa-total .bx-soa-cart-total').prepend(window.total_coupon);
+			} else {
+				total_coupon = $('#bx-soa-total .bx-soa-cart-total .change_basket')[0].outerHTML;
+			}
+		 }, 200);
+     });
 })
 
 function numberWithCommas(x) {return x.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} 

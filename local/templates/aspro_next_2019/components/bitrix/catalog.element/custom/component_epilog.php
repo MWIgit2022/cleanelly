@@ -155,7 +155,15 @@ use Bitrix\Main\ModuleManager;
 		</script>
 	<?}?>
 <?}?>
-
+<?if($_GET['rev']){?>
+	<script>
+	$(window).load(function(){
+		$('a[href="#review"]').first().click();
+		$('#reviews_content').show();
+		document.getElementById('reviews_content').scrollIntoView();
+	})
+	</script>
+<?}?>
 <?
 //$this->__template->SetViewTarget("counter");
 $arFilter = Array("IBLOCK_ID"=>$arResult['IBLOCK_ID'], 'ID'=>$arResult['ID']);

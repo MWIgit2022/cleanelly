@@ -1249,8 +1249,39 @@ foreach ($arResult['PROPERTIES']['VIDEO_YOUTUBE']['VALUE'] as $key => $videoCode
 	$arResult['VIDEO_PREVIEWS'][$key]['WIDTH'] = $videoCode[2];
 }
 
+foreach ($arResult['PROPERTIES']['ZEN_VIDEO']['VALUE'] as $key => $videoCode) {
+	$new_key = count($arResult['VIDEO_PREVIEWS'])+$key;
+	$videoCode = preg_split('/;/', $videoCode);
+	$arResult['VIDEO_URLS'][$new_key] = 'https://frontend.vh.yandex.ru/player/'.$videoCode[0].'?from_block=partner&from=zen&mute=1&autoplay=1&branding=0';
+	if(!is_file($_SERVER['DOCUMENT_ROOT'].'/upload/zen_thumbs/'.$videoCode.'.jpeg')){
+		getScreenShot($videoCode[0]);
+	}
+	$arResult['VIDEO_PREVIEWS'][$new_key]['URL'] = '/upload/zen_thumbs/'.$videoCode[0].'.jpeg';
+	$arResult['VIDEO_PREVIEWS'][$new_key]['HEIGHT'] = $videoCode[1];
+	$arResult['VIDEO_PREVIEWS'][$new_key]['WIDTH'] = $videoCode[2];
+}
+	
+function getScreenShot($code){
+	$url = 'https://frontend.vh.yandex.ru/player/'.$code.'?from_block=partner&from=zen&mute=1&autoplay=1&branding=0';
+    $result = "https://mini.s-shot.ru/1280x720/JPEG/1280/Z100/?".$url; // делаем запрос к сайту, который делает скрины
+    $pic = file_get_contents($result); // получаем данные. Ответ от сайта
+    file_put_contents($_SERVER['DOCUMENT_ROOT']."/upload/zen_thumbs/".$code.".jpeg", $pic); // сохраняем полученную картинку
+}
+	
 $settings = HBUtils::GetSettings("settings");
-
+if($settings['CERTIFICATE']['VALUE']){
+	$arResult['CERTIFICATE'] = $settings['CERTIFICATE']['VALUE'];
+	$arPhotoSmall = CFile::ResizeImageGet(
+	   $arResult['CERTIFICATE'], 
+	   array(
+		  'width'=>100,
+		  'height'=>200,
+	   ), 
+	   BX_RESIZE_IMAGE_PROPORTIONAL,
+	   false
+   );
+   $arResult['CERTIFICATE_PREVIEW'] = $arPhotoSmall['src'];
+}
 if($settings['DELIV_TAB_TEXT']['VALUE']){
 	$arResult['DELIV_TAB_TEXT'] = html_entity_decode($settings['DELIV_TAB_TEXT']['VALUE']['TEXT']);
 }

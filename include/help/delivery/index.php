@@ -1,7 +1,284 @@
-<span st="" yle="font-size: 18pt; font-family: Courier\ New;"><b><span style="font-size: 18pt;">Мы доставляем заказы&nbsp;от 5 000 рублей бесплатно по России. Отправка заказов интернет-магазина осуществляется из г. Москва.<br>
- </span></b><br>
- <b><span style="font-size: 18pt;"><br>
- </span></b><b><span style="font-size: 18pt;">Доставка курьером на дом:</span></b></span><br>
+<?$APPLICATION->addHeadScript('/help/delivery/widget/widjet.js');?>
+
+
+<div class="delivery_page">
+<h2>Мы доставляем заказы от 5000 рублей бесплатно по всей России </h2>
+<h3>Самовывоз из пункта СДЭК</h3>
+<div class="big_table">
+	<table width="100%">
+		<tbody>
+			<tr>
+				<td colspan="2">по Москве</td>
+				<td colspan="2">по Московской области</td>
+				<td colspan="2">по России</td>
+			</tr>
+			<tr>
+				<td>сроки</td>
+				<td>стоимость</td>
+				<td>сроки</td>
+				<td>стоимость</td>
+				<td>сроки</td>
+				<td>стоимость</td>
+			</tr>
+			<tr>
+				<td>от 1 раб/дн</td>
+				<td>150 руб</td>
+				<td>от 1 раб/дн</td>
+				<td>от 185 руб</td>
+				<td>от 1 раб/дн</td>
+				<td>от 235 руб</td>
+			</tr>
+		</tbody>
+	</table>	
+	<h3>Доставка курьером</h3>
+	<table width="100%">
+		<tbody>
+			<tr>
+				<td colspan="2">по Москве</td>
+				<td colspan="2">по Московской области</td>
+				<td colspan="2">по России</td>
+			</tr>
+			<tr>
+				<td>сроки</td>
+				<td>стоимость</td>
+				<td>сроки</td>
+				<td>стоимость</td>
+				<td>сроки</td>
+				<td>стоимость</td>
+			</tr>
+			<tr>
+				<td>от 2 раб/дн</td>
+				<td>295 руб</td>
+				<td>от 1 раб/дн</td>
+				<td>от 330 руб</td>
+				<td>от 2 раб/дн</td>
+				<td>от 380 руб</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<h2 style="margin-top:2em;">Наиболее популярные направления</h2>
+<div class="two_tables">
+	<div>
+		<h3>Самовывоз из пункта СДЭК</h3>
+		<table>
+			<tbody>
+				<tr>
+					<td colspan="2"><b>г. Санкт-Петербург</b></td>
+				</tr>
+				<tr>
+					<td>сроки</td>
+					<td>стоимость</td>
+				</tr>
+				<tr>
+					<td>от 1 раб/дн</td>
+					<td>от 200 руб</td>
+				</tr>
+				<tr>
+					<td colspan="2"><b>г. Ростов-на-Дону </b></td>
+				</tr>
+				<tr>
+					<td>сроки</td>
+					<td>стоимость</td>
+				</tr>
+				<tr>
+					<td>3 раб/дн</td>
+					<td>от 235 руб</td>
+				</tr>
+				<tr>
+					<td colspan="2"><b>г. Тюмень</b></td>
+				</tr>
+				<tr>
+					<td>сроки</td>
+					<td>стоимость</td>
+				</tr>
+				<tr>
+					<td>от 3 раб/дн</td>
+					<td>от 265 руб</td>
+				</tr>
+				<tr>
+					<td colspan="2"><b>г. Самара</b></td>
+				</tr>
+				<tr>
+					<td>сроки</td>
+					<td>стоимость</td>
+				</tr>
+				<tr>
+					<td>от 3 раб/дн</td>
+					<td>от 235 руб</td>
+				</tr>
+				<tr>
+					<td colspan="2"><b>г. Омск</b></td>
+				</tr>
+				<tr>
+					<td>сроки</td>
+					<td>стоимость</td>
+				</tr>
+				<tr>
+					<td>от 3 раб/дн</td>
+					<td>от 230 руб</td>
+				</tr>
+				<tr>
+					<td colspan="2"><b>г. Новосибирск</b></td>
+				</tr>
+				<tr>
+					<td>сроки</td>
+					<td>стоимость</td>
+				</tr>
+				<tr>
+					<td>от 4 раб/дн</td>
+					<td>от 230 руб</td>
+				</tr>
+				<tr>
+					<td colspan="2"><b>г. Екатеринбург</b></td>
+				</tr>
+				<tr>
+					<td>сроки</td>
+					<td>стоимость</td>
+				</tr>
+				<tr>
+					<td>от 3 раб/дн</td>
+					<td>от 240 руб</td>
+				</tr>
+				<tr>
+					<td colspan="2"><b>г. Томск</b></td>
+				</tr>
+				<tr>
+					<td>сроки</td>
+					<td>стоимость</td>
+				</tr>
+				<tr>
+					<td>от 4 раб/дн</td>
+					<td>от 230 руб</td>
+				</tr>
+				<tr>
+					<td colspan="2"><b>г. Казань</b></td>
+				</tr>
+				<tr>
+					<td>сроки</td>
+					<td>стоимость</td>
+				</tr>
+				<tr>
+					<td>2 раб/дн</td>
+					<td>от 235 руб</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div>
+		<h3>Доставка курьером</h3>
+		<table>
+			<tbody>
+				<tr>
+					<td colspan="2"><b>г. Санкт-Петербург</b></td>
+				</tr>
+				<tr>
+					<td>сроки</td>
+					<td>стоимость</td>
+				</tr>
+				<tr>
+					<td>от 1 раб/дн</td>
+					<td>от 345 руб</td>
+				</tr>
+				<tr>
+					<td colspan="2"><b>г. Ростов-на-Дону</b></td>
+				</tr>
+				<tr>
+					<td>сроки</td>
+					<td>стоимость</td>
+				</tr>
+				<tr>
+					<td>от 2 раб/дн</td>
+					<td>от 380 руб</td>
+				</tr>
+				<tr>
+					<td colspan="2"><b>г. Тюмень</b></td>
+				</tr>
+				<tr>
+					<td>сроки</td>
+					<td>стоимость</td>
+				</tr>
+				<tr>
+					<td>4 раб/дн</td>
+					<td>от 410 руб</td>
+				</tr>
+				<tr>
+					<td colspan="2"><b>г. Самара</b></td>
+				</tr>
+				<tr>
+					<td>сроки</td>
+					<td>стоимость</td>
+				</tr>
+				<tr>
+					<td>от 2 раб/дн</td>
+					<td>от 380 руб</td>
+				</tr>
+				<tr>
+					<td colspan="2"><b>г. Омск</b></td>
+				</tr>
+				<tr>
+					<td>сроки</td>
+					<td>стоимость</td>
+				</tr>
+				<tr>
+					<td>от 3 раб/дн</td>
+					<td>от 350 руб</td>
+				</tr>
+				<tr>
+					<td colspan="2"><b>г. Новосибирск</b></td>
+				</tr>
+				<tr>
+					<td>сроки</td>
+					<td>стоимость</td>
+				</tr>
+				<tr>
+					<td>от 4 раб/дн</td>
+					<td>от 350 руб</td>
+				</tr>
+				<tr>
+					<td colspan="2"><b>г. Екатеринбург</b></td>
+				</tr>
+				<tr>
+					<td>сроки</td>
+					<td>стоимость</td>
+				</tr>
+				<tr>
+					<td>от 3 раб/дн</td>
+					<td>от 385 руб</td>
+				</tr>
+				<tr>
+					<td colspan="2"><b>г. Томск</b></td>
+				</tr>
+				<tr>
+					<td>сроки</td>
+					<td>стоимость</td>
+				</tr>
+				<tr>
+					<td>от 5 раб/дн</td>
+					<td>от 350 руб</td>
+				</tr>
+				<tr>
+					<td colspan="2"><b>г. Казань</b></td>
+				</tr>
+				<tr>
+					<td>сроки</td>
+					<td>стоимость</td>
+				</tr>
+				<tr>
+					<td>от 1 раб/дн</td>
+					<td>от 380 руб</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+<p class="note">
+*Курьерская доставка осуществляется в рабочие дни с 10:00 до 18:00. Срок доставки: от 2 до 10 дней, в зависимости от удаленности от г. Донецк Ростовской области.<br>
+*Во время подтверждающего звонка курьера о его приезде сообщите о желаемом способе оплаты, подготовьте карту\сумму к оплате, уточните, необходима ли сдача.
+</p>
+
+
+<!--b><span style="font-size: 18pt;">Доставка курьером на дом:</span></b><br>
  <u> </u><br>
 <p>
 	 – заказы свыше 5 000 руб. – доставка на дом бесплатно,
@@ -108,4 +385,46 @@
 <p>
 </p>
 <p>
-</p>
+</p-->
+</div>
+<div class="form">
+	<div class="flex">
+		<label>Ширина,см:</label>
+		<input type="text" name="w" placeholder="Ширина" value="15">
+		<label>Длина,см:</label>
+		<input type="text" name="l" placeholder="Длина" value="10">
+		<label>Высота,см:</label>
+		<input type="text" name="h" placeholder="Высота" value="20">
+		<label>Вес,кг:</label>
+		<input type="text" name="weight" placeholder="Вес" value="2">
+		<button class="btn btn-default" type="button" onclick="changeWidgetprice(this)">Пересчитать стоимость доставки</button>
+	</div>	
+</div>
+<div id="forpvz" style="height:600px;"></div>
+<script>
+    var widjet = new ISDEKWidjet({
+		country: 'Россия',
+        defaultCity: 'Санкт-Петербург',
+        cityFrom: 'Москва',
+        link: 'forpvz',
+        path: '/help/delivery/widget/scripts/',
+		choose: false,
+        servicepath: '/help/delivery/widget/scripts/service.php', //ссылка на файл service.php на вашем сайте
+		goods: [{
+            length: 15,
+            width: 10,
+            height: 20,
+            weight: 2
+        }]
+		 
+    });
+	function changeWidgetprice(th){
+		widjet.cargo.reset();
+		widjet.cargo.add({
+            length: Number($(th).parent().find('input[name="l"]').val()),
+            width: Number($(th).parent().find('input[name="w"]').val()),
+            height: Number($(th).parent().find('input[name="h"]').val()),
+            weight: Number($(th).parent().find('input[name="weight"]').val())
+        });
+	}
+</script>
