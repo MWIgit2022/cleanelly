@@ -325,8 +325,18 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 				if(this.showPopupStart == false && sale_number_ord ==true){
 					this.showPopupStart = true; 
 					setTimeout(function(){
-						 var priceBefore = result.order.TOTAL.ORDER_TOTAL_PRICE;
-						var priceAfter = priceBefore - priceBefore/100*5;
+						
+						var priceBefore = result.order.TOTAL.ORDER_TOTAL_PRICE;
+						var priceAfter = 0;
+						 for (var key in result.order.GRID.ROWS){
+							if(result.order.GRID.ROWS[key].data.CUSTOM_PRICE == 'N'){
+								priceAfter+= result.order.GRID.ROWS[key].data.PRICE*result.order.GRID.ROWS[key].data.QUANTITY;
+							} else {
+								priceAfter+=(result.order.GRID.ROWS[key].data.PRICE-result.order.GRID.ROWS[key].data.PRICE/100*5)*result.order.GRID.ROWS[key].data.QUANTITY;
+							}
+						}
+				
+						//var priceAfter = priceBefore - priceBefore/100*5;
 						result.order.TOTAL.DISCOUNT_PRICE_FORMATED = result.order.TOTAL.BASKET_PRICE_DISCOUNT_DIFF = numberWithCommas(result.order.TOTAL.DISCOUNT_PRICE + priceBefore/100*5)+' руб';
 						result.order.TOTAL.ORDER_PRICE_FORMATED = result.order.TOTAL.ORDER_TOTAL_PRICE_FORMATED = numberWithCommas(priceAfter)+' руб'; 
 						result.order.TOTAL.DISCOUNT_PRICE = result.order.TOTAL.BASKET_PRICE_DISCOUNT_DIFF_VALUE = result.order.TOTAL.DISCOUNT_PRICE + priceBefore/100*5;
@@ -346,8 +356,15 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 						BX.Sale.OrderAjaxComponent.editTotalBlock(); */ 
 				} else if(BX.Sale.OrderAjaxComponent.getSelectedPaySystem().ID == 3 && result.order.TOTAL.ORDER_PRICE>=5000 && sale_number_ord ==true) {
 					BX.Sale.OrderAjaxComponent.showPopup(); 
-					var priceBefore = result.order.TOTAL.ORDER_TOTAL_PRICE;
-						var priceAfter = priceBefore - priceBefore/100*5;
+						var priceBefore = result.order.TOTAL.ORDER_TOTAL_PRICE;
+						var priceAfter = 0;
+						 for (var key in result.order.GRID.ROWS){
+							if(result.order.GRID.ROWS[key].data.CUSTOM_PRICE == 'N'){
+								priceAfter+= result.order.GRID.ROWS[key].data.PRICE*result.order.GRID.ROWS[key].data.QUANTITY;
+							} else {
+								priceAfter+=(result.order.GRID.ROWS[key].data.PRICE-result.order.GRID.ROWS[key].data.PRICE/100*5)*result.order.GRID.ROWS[key].data.QUANTITY;
+							}
+						}
 						result.order.TOTAL.DISCOUNT_PRICE_FORMATED = result.order.TOTAL.BASKET_PRICE_DISCOUNT_DIFF = numberWithCommas(result.order.TOTAL.DISCOUNT_PRICE + priceBefore/100*5)+' руб';
 						result.order.TOTAL.ORDER_PRICE_FORMATED = result.order.TOTAL.ORDER_TOTAL_PRICE_FORMATED = numberWithCommas(priceAfter)+' руб'; 
 						result.order.TOTAL.DISCOUNT_PRICE = result.order.TOTAL.BASKET_PRICE_DISCOUNT_DIFF_VALUE = result.order.TOTAL.DISCOUNT_PRICE + priceBefore/100*5;
@@ -8170,6 +8187,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 				);
 			}
                         
+						
                         if (total.ORDER_PRICE < $('#freeDeliveryThreshold').val())
                         {
                             this.totalInfoBlockNode.appendChild(
@@ -8665,6 +8683,11 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 								promocodeAlertInner.append(`<div class="order-promocode-alert order-text-danger">
 														<span class="order-promocode-text"><strong>`+currentCopon.COUPON+`</strong> - ` + currentCopon.JS_CHECK_CODE + ` (` +currentCopon.DISCOUNT_NAME+`) </span>
 														<span class="close-link-promocode" data-entity="order-promocode-delete" data-promocode="`+currentCopon.COUPON+`">Удалить</span> </div>`); 
+							} else if (currentCopon.JS_STATUS == "ENTERED") {
+								couponAlertInner.append(`<div class="order-coupon-alert order-text-danger">
+														<span class="order-coupon-text"><strong>`+currentCopon.COUPON+` - `+currentCopon.JS_CHECK_CODE+' '+currentCopon.DISCOUNT_NAME+`</span>
+														<span class="close-link" data-entity="order-coupon-delete" data-coupon="`+currentCopon.COUPON+`">Удалить</span> </div>`);
+							
 							} else if (currentCopon.DISCOUNT_ACTIVE == "Y") {
 								couponAlertInner.append(`<div class="order-coupon-alert order-text-danger">
 														<span class="order-coupon-text"><strong>`+currentCopon.COUPON+`</strong> - купон активен и может быть использован `+currentCopon.DISCOUNT_NAME+`</span>
@@ -8682,6 +8705,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 						var couponAlertInner = target.find('.order-coupon-alert-inner');
 						$.each($coupons, function() {
 							var currentCopon = $(this)[0];
+							
 							if (currentCopon.JS_STATUS == "APPLIED") {
 								couponAlertInner.append('<div class="order-coupon-alert order-text-muted"></div>');																
 								couponAlertInner.find('.order-text-muted.order-text-muted').append('<span class="order-coupon-text"><strong>'+currentCopon.COUPON+'</strong> - купон применен '+currentCopon.DISCOUNT_NAME+'</span>');
@@ -8690,7 +8714,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 								couponAlertInner.append(`<div class="order-promocode-alert order-text-danger">
 														<span class="order-promocode-text"><strong>`+currentCopon.COUPON+`</strong> - купон не активен `+currentCopon.DISCOUNT_NAME+`</span>
 														<span class="close-link-promocode" data-entity="order-promocode-delete" data-promocode="`+currentCopon.COUPON+`">Удалить</span> </div>`);
-							} else if (currentCopon.JS_STATUS == "BAD") {
+							} else if (currentCopon.JS_STATUS == "BAD" || currentCopon.JS_STATUS == "ENTERED") {
 								couponAlertInner.append(`<div class="order-promocode-alert order-text-danger">
 														<span class="order-promocode-text"><strong>`+currentCopon.COUPON+`</strong> - ` + currentCopon.JS_CHECK_CODE + ` (` +currentCopon.DISCOUNT_NAME+`) </span>
 														<span class="close-link-promocode" data-entity="order-promocode-delete" data-promocode="`+currentCopon.COUPON+`">Удалить</span> </div>`); 

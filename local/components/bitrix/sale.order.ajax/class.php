@@ -6306,36 +6306,6 @@ class SaleOrderAjax extends \CBitrixComponent
 			$arResult["ORDER_ID"] = $res->getId();
 			
 			$order = Sale\Order::load($arResult["ORDER_ID"]); 
-			
-			$coupon = array_values($order->getDiscount()->getApplyResult()['COUPON_LIST'])[0]['COUPON'];
-			$coupon_id =  array_values($order->getDiscount()->getApplyResult()['COUPON_LIST'])[0]['DATA']['DISCOUNT_ID'];
-			if (!empty($coupon))
-			{
-				if ($coupon_id  != 124) {
-					$propertyCollection = $order->getPropertyCollection();
-					$couponPropValue = $propertyCollection->getItemByOrderPropertyId(21);
-					$couponPropValue->setValue($coupon);
-					$order->save(); 
-				} else {
-					$propertyCollection = $order->getPropertyCollection();
-					$couponPropValue = $propertyCollection->getItemByOrderPropertyId(36);
-					$couponPropValue->setValue($coupon);
-					$order->save(); 
-				}
-			}
-
-			$discounts = $order->getDiscount()->getApplyResult()['DISCOUNT_LIST'];
-			$res = [];
-			foreach ($discounts as $disc) {
-				$res[] = $disc['NAME'];
-			}
-			if (!empty($res)) {
-				$propertyCollection = $order->getPropertyCollection();
-				$promoPropValue = $propertyCollection->getItemByOrderPropertyId(37);
-				$promoPropValue->setValue($res);
-				$order->save();
-			}
-		
 			$paymentCollection = $order->getPaymentCollection();
 			$DeliveryTrue = 0;
 			foreach($paymentCollection as $payment){
@@ -6345,18 +6315,43 @@ class SaleOrderAjax extends \CBitrixComponent
 			 }
 			}
 			$setCustom = 0;
-			$discountData = $order->getDiscount()->getApplyResult();
+			/* $discountData = $order->getDiscount()->getApplyResult();
 			foreach($discountData['DISCOUNT_LIST'] as $d){
 				if($d['REAL_DISCOUNT_ID'] == 122){
 					$setCustom = 1;
 				}
-			}
+			} */
 
-			if($setCustom==0 && $DeliveryTrue==1 && $order->getPrice()>=5000){
-				$new_price = $order->getPrice() - $order->getPrice()/100*5;
-				$order->setField('PRICE', round($new_price));
+			if($DeliveryTrue==1 && $order->getPrice()>=5000){
+				$basket = Bitrix\Sale\Basket::loadItemsForOrder($order);
+				foreach ($basket as $basketItem){
+					$basketPropertyCollection = $basketItem->getPropertyCollection();
+					$props = $basketPropertyCollection->getPropertyValues();
+					if($props['SALE_NUMBER'] != false){
+						$new_price +=  ($basketItem->getField('PRICE')-$basketItem->getField('PRICE')/100*5)*$basketItem->getQuantity();;
+						$basketItem->markFieldCustom('PRICE');
+						$basketItem->setFields(
+							array(
+							'PRICE' => $basketItem->getField('PRICE')-$basketItem->getField('PRICE')/100*5,
+							'CUSTOM_PRICE'=>'Y'
+							)
+						);
+						//$new_price +=  $basketItem->getField('PRICE')-$basketItem->getField('PRICE')/100*5;
+					} else {
+						$new_price +=  $basketItem->getField('PRICE')*$basketItem->getQuantity();
+					}
+				} 
+				
+				
+				$basket->save();
 				$order->save();
-			}
+				
+				$order2 = Bitrix\Sale\Order::load($arResult["ORDER_ID"]); 
+				//$new_price = $order2->getPrice() - $order2->getPrice()/100*5;
+				$order2->setField('PRICE', $new_price);
+				
+				$order2->save();
+			} 
 
 			$arResult["ACCOUNT_NUMBER"] = $this->order->getField('ACCOUNT_NUMBER');
 

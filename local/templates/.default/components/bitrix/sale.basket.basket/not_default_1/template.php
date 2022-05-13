@@ -256,6 +256,8 @@ if (empty($arResult['ERROR_MESSAGE']))
 				$id_arr[] = $item->getField('PRODUCT_ID');
 			}
 		}
+		$quant_basket_arr[$item->getField('PRODUCT_ID')] = $item->getQuantity();
+		
 	}
 	$settings = HBUtils::GetSettings("settings");
 	$gifts_price = $settings['GIFT_MIN_SUM']['VALUE'];
@@ -305,14 +307,32 @@ if (empty($arResult['ERROR_MESSAGE']))
 		
 		
 	}
-	
+	/* $order = Bitrix\Sale\Order::load(6775); 
+			$paymentCollection = $order->getPaymentCollection();
+			$DeliveryTrue = 0;
+			foreach($paymentCollection as $payment){
+			 $psID = $payment->getPaymentSystemId(); 
+			 if($psID == 3){
+				 $DeliveryTrue = 1;
+			 }
+			}
+			
+			$setCustom = 0;
+			$discountData = $order->getDiscount()->getApplyResult(true);
+			foreach($discountData['DISCOUNT_LIST'] as $d){
+				if($d['REAL_DISCOUNT_ID'] == 122){
+					$setCustom = 1;
+				}
+				
+			}
+			echo '<pre>'; print_r($discountData); echo '</pre>'; */
 	if($settings['GIFTS_LOGIC']['VALUE'] && $gifts){
 		if($gifts_price>$price_on_discount){?>
 			<p class="h3">Возможные подарки при заказе от <?=$gifts_price?> руб.</p>
 		<?} else {?>
 			<p class="h3">Вы можете выбрать один из подарков</p>
 		<?}?>
-		<div style="display:flex;flex-wrap:wrap;">
+		<div class="gift_block" style="display:flex;flex-wrap:wrap;">
 			<?foreach($gifts as $k=>$v){
 				$mxResult = CCatalogSku::GetProductInfo($v);
 				if (is_array($mxResult)) {
@@ -320,29 +340,44 @@ if (empty($arResult['ERROR_MESSAGE']))
 				} else {
 					$gift = $v;
 				}
+				$ar_resr = CCatalogProduct::GetByID($v); 
+				
+				if ($quant_basket_arr[$v]) {
+					$ar_resr['QUANTITY'] = $ar_resr['QUANTITY'] - $quant_basket_arr[$v];
+				}
 				$res = CIBlockElement::GetByID($gift);
 				$ar_res = $res->GetNext();
 				$arPrice = CCatalogProduct::GetOptimalPrice($gift, 1, $USER->GetUserGroupArray());?>
-				<div style="display:flex;align-items:center;justify-content:space-between;flex-direction:column;max-width:250px;text-align:center;padding:0.5em;
-				margin:0.5em;border:1px #eee solid;">
-					<img src="<?=Cfile::getPath($ar_res['PREVIEW_PICTURE'])?>" style="max-width:200px;">
-					<a href="<?=$ar_res['DETAIL_PAGE_URL']?>"><?=$ar_res['NAME']?></a>
-					<div style="display:flex;margin:1em 0;">
-						<span style="text-decoration:line-through;"><?=number_format($arPrice['DISCOUNT_PRICE'],0,'',' ')?></span>/
-						<span>1 руб.</span>
-					</div>
-					<?if($gifts_price<$price_on_discount){
-						if(in_array($v,$id_arr)){?>
-							<a class="btn btn-default basket read_more"  href="javascript:void(0)">Добавлен к заказу</a>
-						<?} else {?>
-							<a class="btn btn-default basket read_more"  href="javascript:void(0)" onclick="addGift(<?=$v?>)" >Выбрать</a>
+				<?if($ar_resr['QUANTITY']>0){?>
+					<div style="display:flex;align-items:center;justify-content:space-between;flex-direction:column;max-width:250px;text-align:center;padding:0.5em;
+					margin:0.5em;border:1px #eee solid;">
+						<img src="<?=Cfile::getPath($ar_res['PREVIEW_PICTURE'])?>" style="max-width:200px;">
+						<a href="<?=$ar_res['DETAIL_PAGE_URL']?>"><?=$ar_res['NAME']?></a>
+						<div style="display:flex;margin:1em 0;">
+							<span style="text-decoration:line-through;"><?=number_format($arPrice['DISCOUNT_PRICE'],0,'',' ')?></span>/
+							<span>1 руб.</span>
+						</div>
+						<?if($gifts_price<$price_on_discount){
+							if(in_array($v,$id_arr)){?>
+								<a class="btn btn-default basket read_more"  href="javascript:void(0)">Добавлен к заказу</a>
+							<?} else {?>
+								<a class="btn btn-default basket read_more"  href="javascript:void(0)" onclick="addGift(<?=$v?>)" >Выбрать</a>
+							<?}?>
 						<?}?>
-					<?}?>
-				</div>
+					</div>
+				<?}?>
 			<?}?>
 		</div>
 	</div>
 		<script>
+			function giftBlock(){
+				if($('#gift_block .gift_block div').length == 0){
+					$('#gift_block').hide();
+				} else {
+					$('#gift_block').show();
+				}
+			}
+			giftBlock();
 			function addGift(id){
 				$.ajax({
 					type: "POST",
@@ -361,6 +396,7 @@ if (empty($arResult['ERROR_MESSAGE']))
 					url: '/basket/',
 					success: function (html) {
 						$('#gift_block').html($(html).filter('#gift_block').html());
+						giftBlock();
 					}
 				})
 			});
