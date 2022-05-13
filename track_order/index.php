@@ -1,7 +1,7 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetPageProperty("title", "Отследить заказ");
-$APPLICATION->SetTitle("Отследить заказ");
+$APPLICATION->SetTitle("Отследить заказ2");
 ?>
 <? $APPLICATION->IncludeComponent("adwex:sdek.track", "cleanelly", Array(
 	"CDEK_ACCOUNT" => "70d21358204861b6e21c1c25cb1f64df",	// Идентификатор контрагента (Account)
