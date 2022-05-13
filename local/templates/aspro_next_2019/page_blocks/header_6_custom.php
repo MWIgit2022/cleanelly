@@ -48,7 +48,7 @@ $logoClass = ($arTheme['COLORED_LOGO']['VALUE'] !== 'Y' ? '' : ' colored');
                                 )
                             );
                         }else{
-                            CNext::showCabinetLink(true,true);
+                            CNext::showCabinetLink(true,$USER->IsAuthorized(),'',true,'Личный<br>кабинет');
                         } ?>
                     </div>
                 </div>
@@ -118,7 +118,7 @@ $logoClass = ($arTheme['COLORED_LOGO']['VALUE'] !== 'Y' ? '' : ' colored');
                             </div>
                         </div>
                     <? endif; ?>
-                    <div class="col-lg-3 col-md-2 <?= ($_COOKIE['current_region'])?'':'city_selection' ?>">
+                    <div class="col-lg-3 search_title_wrap col-md-2 <?= ($_COOKIE['current_region'])?'':'city_selection' ?>">
                         <div class="search-block inner-table-block">
                             <? $APPLICATION->IncludeComponent(
                                 "bitrix:main.include",

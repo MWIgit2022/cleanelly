@@ -362,6 +362,9 @@ if (!empty($arResult['ITEMS'])){
 				{
 					//if (empty($arItem['MIN_PRICE']))
 					//{
+						if($arOffer['PROPERTIES']['SOSTAV']['VALUE'] && $arResult['ID'] == 199){ // пледы
+							$arItem['SOSTAV_PLEDY'] = $arOffer['PROPERTIES']['SOSTAV']['VALUE'];
+						}
 						if ($arItem['OFFER_ID_SELECTED'] > 0)
 							$foundOffer = ($arItem['OFFER_ID_SELECTED'] == $arOffer['ID']);
 						else
@@ -696,4 +699,6 @@ if (!empty($arResult['ITEMS'])){
 	}
 
 }
+
+
 ?>

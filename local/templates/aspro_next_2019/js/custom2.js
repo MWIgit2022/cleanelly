@@ -31,3 +31,7 @@ BX.addCustomEvent('onAjaxSuccess', function(){
 		});
 	}
 });
+
+$(document).on('click', '.confirm_region .btn', function(){
+	$('#title-search-input_fixed').css('padding-left','0');
+})

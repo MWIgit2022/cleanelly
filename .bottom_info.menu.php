@@ -55,6 +55,13 @@ $aMenuLinks = Array(
 		Array(), 
 		Array("custom_style"=>"track_order"), 
 		"" 
+	),
+	Array(
+		"Проверить баланс дисконтной карты", 
+		"/discount_card-info/", 
+		Array(), 
+		Array(), 
+		"" 
 	)
 );
 ?>

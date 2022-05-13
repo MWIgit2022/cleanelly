@@ -93,4 +93,4 @@ $APPLICATION->SetTitle("Дисконтная карта Cleanelly");
 <p>
 	 *Обращаем внимание, что скидки по карте, дню рождения, и оплата на сайте применяются поэтапно (сначала применяется одна скидка, от получившейся суммы применяется вторая скидка, и от получившейся суммы- третья).
 </p>
- <b><a target="_blank" href="/upload/blog/Методическая%20инструкция.docx"><u>Положение о дисконтной карте Cleanelly</u></a></b><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
+ <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

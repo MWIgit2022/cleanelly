@@ -1448,7 +1448,9 @@ BX.addCustomEvent('onAjaxSuccess', function(){
 			if(sale_number && sale_number.trim() == 'Доп.скидка к дисконтной карте'){
 				$('.basket-coupon-text').html('<strong>'+$('.basket-coupon-text strong').text()+'</strong> - дисконтная карта применена с дополнительной скидкой');
 			} 
+
 			if(sale_number && BX.Sale.BasketComponent.result.DISCOUNT_PRICE_ALL>0){
+
 				$('#all_discount_price').text(BX.Sale.BasketComponent.result.DISCOUNT_PRICE_ALL_FORMATED);
 				$('#modal_discount .header_modal span').text(sale_number);
 				$.fancybox.open($('#modal_discount').html());	

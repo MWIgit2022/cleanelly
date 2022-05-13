@@ -21,4 +21,9 @@ $(document).ready(function(){
 	$('.js_city_chooser').on('click', function(){
 		$('.confirm_region').remove();
 	})
+	
+	if($('.confirm_region').length==0){
+		$('#title-search-input_fixed').css('padding-left','0');
+	}
+	
 });

@@ -76,7 +76,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	<?if($_COOKIE["check_cookie"] != "Y" && $settings['MESSAGE_TEXT']['VALUE']['TEXT']){?>
 		<div class='maxwidth-theme'>
 		<div class="js-hide">
-			<span class="info-message"><?=$settings['MESSAGE_TEXT']['VALUE']['TEXT']?></span>
+			<span class="info-message" style="padding-top:1.5em;"><?=$settings['MESSAGE_TEXT']['VALUE']['TEXT']?></span>
 			<div class="js-close"></div>
 		</div>	
 		</div>

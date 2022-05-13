@@ -26,8 +26,10 @@ use Bitrix\Main\Localization\Loc;
 					
 				</div>
 				<p><?= Loc::getMessage('SBB_ADDITIONAL_MESSAGE') ?></p>
+
+					<a style="text-decoration:underline" href="/discount_card-info/">Проверить баланс дисконтной карты</a>
 			</div>
-			
+		
 			<?
 		}
 		?>

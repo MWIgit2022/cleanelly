@@ -30,10 +30,15 @@ use Bitrix\Main;
 							'BASE_PRICE' => 1,
 							'PRICE' => 1,
 							'DISCOUNT_PRICE'=>0,
+<<<<<<< HEAD
 							'PRODUCT_PROVIDER_CLASS' => 'CCatalogProductProvider',
 							'CUSTOM_PRICE' => 'Y',
 							'NAME'=>$ar_res['NAME'],
 							'DETAIL_PAGE_URL'=>$ar_res['DETAIL_PAGE_URL']
+=======
+							'CUSTOM_PRICE' => 'Y',
+							'NAME'=>$ar_res['NAME'],
+>>>>>>> 3b663d1b653d027986be41c284d6d5fd091968fd
 					   ));
 						$item->save();
 						$basketPropertyCollection = $item->getPropertyCollection();

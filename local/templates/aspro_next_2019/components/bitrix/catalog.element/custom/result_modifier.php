@@ -19,7 +19,7 @@ $detailPictMode = array(
 	'MAGNIFIER' => true,
 	'GALLERY' => true
 );
-
+echo '<div style="display:none;">'.($arResult['DETAIL_TEXT']).'</div>';
 $arDefaultParams = array(
 	'TYPE_SKU' => 'Y',
 	'ADD_PICT_PROP' => '-',
@@ -1267,14 +1267,14 @@ function getScreenShot($code){
     $pic = file_get_contents($result); // получаем данные. Ответ от сайта
     file_put_contents($_SERVER['DOCUMENT_ROOT']."/upload/zen_thumbs/".$code.".jpeg", $pic); // сохраняем полученную картинку
 }
-	
+
 $settings = HBUtils::GetSettings("settings");
 if($settings['CERTIFICATE']['VALUE']){
 	$arResult['CERTIFICATE'] = $settings['CERTIFICATE']['VALUE'];
 	$arPhotoSmall = CFile::ResizeImageGet(
 	   $arResult['CERTIFICATE'], 
 	   array(
-		  'width'=>100,
+		  'width'=>200,
 		  'height'=>200,
 	   ), 
 	   BX_RESIZE_IMAGE_PROPORTIONAL,

@@ -75,6 +75,11 @@
 				<img class="lazy" alt="whatsapp_round-2" data-src="/bitrix/templates/aspro_next/images/whatsapp_round-2.svg">
 			</a>
 		</li>
+		<li class="zen">
+			<a href="https://zen.yandex.ru/id/61e01907b4a508646b41deca" target="_blank" rel="nofollow" title="Яндекс Дзен" style="background: url(/images/zen.png) no-repeat 10px 10px/ 20px">
+				
+			</a>
+		</li>
 	</ul>
 	<!-- /noindex -->
 </div>
