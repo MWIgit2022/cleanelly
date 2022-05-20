@@ -36,7 +36,8 @@ if (file_exists($_SERVER["DOCUMENT_ROOT"] . '/local/php_interface/s1/classes/geo
             $city = ID_DEFAULT_CITY;
         }
         if ($_COOKIE['current_region']) {
-           $GLOBALS['arRegion'] =  $arResult['CURRENT_REGION'] = $arResult['REGIONS'][$_COOKIE['current_region']];
+			$GLOBALS['arRegion'] =  $arResult['CURRENT_REGION'] = $arResult['REGIONS'][$_COOKIE['current_region']];
+             
         } else {
             $arResult['CURRENT_REGION'] = $arResult['REGIONS'][$city];
 		}
