@@ -1,5 +1,6 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+$APPLICATION->SetTitle("Информация по дисконтной карте");
 ?>
 <form method="POST" action="">
 <p><b>Введите номер вашей дисконтной карты</b></p>

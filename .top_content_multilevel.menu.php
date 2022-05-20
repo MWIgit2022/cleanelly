@@ -34,6 +34,13 @@ $aMenuLinks = Array(
 		Array(), 
 		Array("custom_style"=>"track_order"), 
 		"" 
+	),
+	Array(
+		"Блог", 
+		"/blog/", 
+		Array(), 
+		Array(), 
+		"" 
 	)
 );
 ?>

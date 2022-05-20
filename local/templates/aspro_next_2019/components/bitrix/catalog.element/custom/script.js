@@ -113,7 +113,7 @@ $(document).ready(function () {
     })
 
     $(document).on('click', '.to-cart', function (e) {
-        if ($(this).hasClass('disabled_2 read_more')) {
+        if ($(this).hasClass('disabled_2 read_more') || ($('select[data-prop-code]').length>0 && $('select[data-prop-code]').val =='')) {
             e.preventDefault();
             $(this).parent().removeClass('loadings');
 
@@ -3772,3 +3772,11 @@ function declOfNum(number, words) {
         });
     });
 })(jQuery);
+
+setInterval(function(){
+	if($('select[data-prop-code]').val() == ''){
+		$('.to-cart').addClass('disabled_2 read_more');
+	} else {
+		$('.to-cart').removeClass('disabled_2 read_more');
+	}
+},200);
