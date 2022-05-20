@@ -483,6 +483,7 @@ $(document).ready(function(){
 		 setTimeout(function(){
 			if(!$('#bx-soa-total .bx-soa-cart-total .change_basket').length){
 				$('#bx-soa-total .bx-soa-cart-total').prepend(window.total_coupon);
+				$('#bx-soa-total-mobile .bx-soa-cart-total').prepend(window.total_coupon);
 			} else {
 				total_coupon = $('#bx-soa-total .bx-soa-cart-total .change_basket')[0].outerHTML;
 			}
@@ -490,4 +491,8 @@ $(document).ready(function(){
      });
 })
 
+$(document).on('click', '.order-promocode-block-promocode-btn', function(){
+	var coupon = $(this).parent().find('.promocode-input').val();
+	BX.Sale.OrderAjaxComponent.sendRequest('enterCoupon', coupon);
+})
 function numberWithCommas(x) {return x.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} 

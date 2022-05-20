@@ -2616,6 +2616,7 @@ InitFlexSlider = function() {
 			config.after = function(slider){
 				var eventdata = {slider: slider};
 				BX.onCustomEvent('onSlideComplete', [eventdata]);
+			
 			}
 
 			config.end = function(slider){

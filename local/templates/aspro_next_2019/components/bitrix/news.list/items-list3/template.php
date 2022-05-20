@@ -64,6 +64,10 @@
 										</a>
 									<?endif;?>
 								</div>
+								
+							<?if($arParams['SHOW_NAME'] == 'Y'){?>
+								<p class="name"><?=$arItem['NAME']?></p>
+							<?}?>
 							</div>
 						</div>
 					<?endforeach;?>

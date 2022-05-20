@@ -11,11 +11,11 @@ $bIncludedModule = (\Bitrix\Main\Loader::includeModule("aspro.next"));?>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?=LANGUAGE_ID?>" lang="<?=LANGUAGE_ID?>" <?=($htmlClass ? 'class="'.$htmlClass.'"' : '')?>>
 <head>
 <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+<!--script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-584QHN2');</script>
+})(window,document,'script','dataLayer','GTM-584QHN2');</script-->
 <!-- End Google Tag Manager -->
 	<link rel="preload" href="/local/templates/aspro_next_2019/css/fonts/BODONIC_2.woff2" as="font" crossorigin="anonymous">
 	<link rel="preload" href="/local/templates/aspro_next_2019/css/fonts/FuturaBookC_0.woff2" as="font" crossorigin="anonymous">
@@ -43,8 +43,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	<meta name="yandex-verification" content="5485301c6d2c9321" />
 	<meta name="cmsmagazine" content="b74d1ea861a2702905f8c30e430ef5aa" />
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-584QHN2"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!--noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-584QHN2"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript-->
 <!-- End Google Tag Manager (noscript) -->
 	
 <!-- Global site tag (gtag.js) - Google Analytics -->

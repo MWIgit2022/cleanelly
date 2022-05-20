@@ -1,4 +1,3 @@
-
 <script type="text/javascript" >
 var fired = false;
  
@@ -23,18 +22,7 @@ window.addEventListener('scroll', () => {
 		<!-- vk.com code begin -->
 		!function(){var t=document.createElement("script");t.type="text/javascript",t.defer=!0,t.src="https://vk.com/js/api/openapi.js?154",t.onload=function(){VK.Retargeting.Init("VK-RTRG-254335-hykNI"),VK.Retargeting.Hit()},document.head.appendChild(t)}();
 		<!-- vk.com code end-->
-		<!-- Facebook Pixel Code -->
-		!function(f,b,e,v,n,t,s)
-		{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-		n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-		if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-		n.queue=[];t=b.createElement(e);t.defer=!0;
-		t.src=v;s=b.getElementsByTagName(e)[0];
-		s.parentNode.insertBefore(t,s)}(window, document,'script',
-		'https://connect.facebook.net/en_US/fbevents.js');
-		fbq('init', '407568949975493');
-		fbq('track', 'PageView');
-		<!-- End Facebook Pixel Code -->
+		
 		<!-- RuTarget -->
 		(function(w, d, s, p) { var f = d.getElementsByTagName(s)[0], j = d.createElement(s); j.defer = true; j.src = '//cdn.rutarget.ru/static/tag/tag.js'; f.parentNode.insertBefore(j, f); w[p] = {rtgNoSync: false, rtgSyncFrame: true}; })(window, document, 'script', '_rtgParams');
 		<!-- /RuTarget -->
@@ -75,8 +63,7 @@ window.addEventListener('scroll', () => {
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/22769200" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'UA-57179076-1');</script>
-<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=407568949975493&ev=PageView&noscript=1"/></noscript>
 <noscript><div>
 <img src="https://top-fwz1.mail.ru/counter?id=3227145;js=na" style="border:0;position:absolute;left:-9999px;" alt="Top.Mail.Ru" />
 </div></noscript>
-<img src="https://top-fwz1.mail.ru/counter?id=3227145;pid=USERID" />
+<img style="border:0;position:absolute;left:-9999px;" src="https://top-fwz1.mail.ru/counter?id=3227145;pid=USERID" />

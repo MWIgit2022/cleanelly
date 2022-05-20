@@ -2183,4 +2183,20 @@ h2.basket-item-info-name {
     margin-top: 0.5em;
 }
 
+.basket-checkout-block-total-inner{
+	display:flex;
+	flex-direction:column;
+}
+
+@media(max-width:500px){
+	.basket-checkout-block-total-description{
+		order:-1;
+	}
+	.basket-checkout-section-inner .basket-checkout-block-total-price-inner{
+		padding-top:0;
+	}
+	#basket-root .basket-checkout-section-inner > div{
+		padding-left:0;
+	}
+}
 /*endregion*/

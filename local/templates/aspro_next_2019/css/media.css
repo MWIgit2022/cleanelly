@@ -1491,7 +1491,8 @@ ul.tabs li.stretch { display: none; }
 	.top_big_banners > .row > div.col-md-3.col-m-20, .top_big_banners > .row > div.col-md-3.col-m-60{width: 100%;float: none;}
 }
 @media all and (max-width: 500px){
-	.flex-direction-nav { display: none !important; }
+	/*.flex-direction-nav { display: none !important; }*/
+	
 	.stores_block_wrap .stores_block .stores_text_wrapp .main_info { max-width: 200px; }
 	.module_products_list .counter_wrapp .counter_block { display: none; }
 	body .catalog_block .catalog_item_wrapp, .wrapper_inner #content .catalog_block .catalog_item_wrapp:nth-child(3n), .wrapper_inner #content .catalog_block .catalog_item_wrapp:nth-child(4n), body .right_block.catalog .catalog_block .catalog_item_wrapp { width: 100%; }
