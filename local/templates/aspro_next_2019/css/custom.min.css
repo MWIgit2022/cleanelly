@@ -122,7 +122,7 @@
 		}
 		.review_c.content_inner:not(.flexslider) ul li{
 			flex-basis:100%
-		}
+		} 
 		.review{
 			padding-bottom:2em;
 			margin-left:0;
@@ -142,3 +142,13 @@
 	.logo-block .logo{
 		margin:0 auto;
 	}
+	
+	.mega-menu table td:hover a.personal-link{
+	color:#fff!important;
+}
+.dropdown-menu li, .mega-menu table .dropdown-submenu{
+	height:3em;
+}
+.mega-menu table .dropdown-menu li a{
+	white-space:normal;
+}	

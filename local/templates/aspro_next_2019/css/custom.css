@@ -3872,7 +3872,7 @@ width:100%;
 		.specials.tab_slider_wrapp ul.tabs li.cur span, .catalog_detail .title-tab-heading{
 			font-size:18px;
 		}
-	}
+	} 
 	
 .popup_regions .ui-menu-item a{
 		width:100%;
@@ -3888,4 +3888,14 @@ width:100%;
     align-items: center;
     border: 1px solid;
     border-radius: 5px;
+}
+
+.mega-menu table td:hover a.personal-link{
+	color:#fff!important;
+}
+.dropdown-menu li, .mega-menu table .dropdown-submenu{
+	height:3em;
+}
+.mega-menu table .dropdown-menu li a{
+	white-space:normal;
 }
