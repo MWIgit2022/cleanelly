@@ -250,7 +250,9 @@ $isAjax = ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["ajax_action"]) 
 				$arCompare = array();
 				foreach($arResult["ITEMS"] as &$arElement)
 				{
-					$arPropertyValue = $arElement["DISPLAY_PROPERTIES"][$code]["VALUE"];
+					
+				
+					$arPropertyValue = $arElement["DISPLAY_PROPERTIES"][$code]["DISPLAY_VALUE"];
 					if(is_array($arPropertyValue))
 					{
 						sort($arPropertyValue);
@@ -275,7 +277,9 @@ $isAjax = ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["ajax_action"]) 
 				$arCompare = array();
 				foreach($arResult["ITEMS"] as &$arElement)
 				{
-					$arPropertyValue = $arElement["OFFER_DISPLAY_PROPERTIES"][$code]["VALUE"];
+					$arPropertyValue = $arElement["OFFER_DISPLAY_PROPERTIES"][$code]["DISPLAY_VALUE"];
+					
+					
 					if(is_array($arPropertyValue))
 					{
 						sort($arPropertyValue);
@@ -284,7 +288,9 @@ $isAjax = ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["ajax_action"]) 
 					$arCompare[] = $arPropertyValue;
 				}
 				unset($arElement);
+				
 				$showRow = (count(array_unique($arCompare)) > 1);
+				
 			}
 			if($showRow)
 				$arShowOfferProps[$code] = $arProperty;

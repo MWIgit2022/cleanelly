@@ -540,6 +540,7 @@
 			},
 			hide : function()
 			{
+				
 				BX.onCustomEvent(this.form, 'onBeforeHide', [this]);
 				BX.hide(this.form.parentNode);
 				BX.onCustomEvent(this.form, 'onAfterHide', [this]);

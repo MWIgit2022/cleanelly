@@ -3772,3 +3772,11 @@ function declOfNum(number, words) {
         });
     });
 })(jQuery);
+
+setInterval(function(){
+	if($('select[data-prop-code]').val() == ''){
+		$('.to-cart').addClass('disabled_2 read_more');
+	} else {
+		$('.to-cart').removeClass('disabled_2 read_more');
+	}
+},200);

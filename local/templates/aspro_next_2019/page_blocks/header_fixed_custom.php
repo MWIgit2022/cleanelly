@@ -1,5 +1,5 @@
 <?
-global $arTheme, $arRegion;
+global $arTheme, $arRegion, $USER;
 if($arRegion)
 	$bPhone = ($arRegion['PHONES'] ? true : false);
 else
@@ -54,7 +54,7 @@ $logoClass = ($arTheme['COLORED_LOGO']['VALUE'] !== 'Y' ? '' : ' colored');
 		<div class="pull-right">
 			<div class="inner-table-block small-block">
 				<div class="wrap_icon wrap_cabinet">
-					<?=CNext::ShowCabinetLink(true, false, 'big');?>
+					<?=CNext::showCabinetLink(true,$USER->IsAuthorized(),'big',!$USER->IsAuthorized(),'Личный<br>кабинет');?> 
 				</div>
 			</div>
 		</div>

@@ -61,9 +61,9 @@ while ($ar_sales = $db_sales->Fetch())
 		}
 		if($props['GIFT_NUMB']){
 			if($delivery_discount && $order->getPrice()>=5000){
-				$props['SALE_NUMBER']['VALUE'].=' + скидка за оплату на сайте';
+				$props['GIFT_NUMB']['VALUE'].=' + скидка за оплату на сайте';
 			}
-			$discount_arr[$xmls[$basketItem->getId()]]['DISCOUNTS']['акция '.$props['SALE_NUMBER']['VALUE']] = ($basketItem->getField('BASE_PRICE')-$basketItem->getPrice())*$basketItem->getField('QUANTITY');
+			$discount_arr[$xmls[$basketItem->getId()]]['DISCOUNTS']['акция '.$props['GIFT_NUMB']['VALUE']] = ($basketItem->getField('BASE_PRICE')-$basketItem->getPrice())*$basketItem->getField('QUANTITY');
 			
 		}
 		$discount_arr[$xmls[$basketItem->getId()]]['BASE_AMOUNT'] =  $basketItem->getField('BASE_PRICE')*$basketItem->getField('QUANTITY');

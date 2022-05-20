@@ -575,6 +575,7 @@ $arViewedData = array(
 					<?}?>
 					<?if($arResult["SIZE_PATH"]):?>
 						<? //deb($arResult["SIZE_PATH"], false)?>
+
 						<div class="table_sizes">
 							<span><span class="animate-load link" data-event="jqm" data-param-form_id="TABLES_SIZE" data-param-url="<?=$arResult["SIZE_PATH"];?>" data-name="TABLES_SIZE"><?=GetMessage("TABLES_SIZE");?></span></span>
 						</div>
@@ -631,9 +632,12 @@ $arViewedData = array(
 						<div class="offer_buy_block buys_wrapp" style="display:none;">
 							<div class="counter_wrapp"></div>
 						</div>
+						
 					<?elseif($arResult["OFFERS"] && $arParams['TYPE_SKU'] != 'TYPE_1'):?>
 						<span class="btn btn-default btn-lg slide_offer transition_bg type_block"><i></i><span><?=\Bitrix\Main\Config\Option::get("aspro.next", "EXPRESSION_READ_MORE_OFFERS_DEFAULT", GetMessage("MORE_TEXT_BOTTOM"));?></span></span>
 					<?endif;?>
+					
+					
 				</div>
 				<div class="element_detail offer_quantity_block"></div>
 			<?$frame->end();?>
@@ -648,6 +652,8 @@ $arViewedData = array(
 					<?endforeach;?>
 				</div>
 			<?endif;*/?>
+			
+			
 			<?if($arParams["DISPLAY_WISH_BUTTONS"] != "N"):?>
 				<div class="element_detail_text wrap_md element_detail_text_wish">
 					<div class="price_txt">

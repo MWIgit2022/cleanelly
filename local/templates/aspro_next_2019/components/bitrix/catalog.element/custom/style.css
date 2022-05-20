@@ -264,7 +264,7 @@ html {
     margin: 0px 0 0 !important; 
 }
 
-.inner-table-block {
+.inner-table-block:not(.search-block) {
     display: revert !important;
 }
 

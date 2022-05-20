@@ -35,3 +35,31 @@ BX.addCustomEvent('onAjaxSuccess', function(){
 $(document).on('click', '.confirm_region .btn', function(){
 	$('#title-search-input_fixed').css('padding-left','0');
 })
+
+function autoHeightFlexSlider(clas){
+	var height = $(clas).find('li').height();
+	$(clas).css('height',height);
+}
+
+function elementInViewport(el){
+    var bounds = el.getBoundingClientRect();
+    return (
+        (bounds.top + bounds.height > 30) && // Елемент ниже верхней границы
+        (window.innerHeight - bounds.top > 30) && // Выше нижней
+        (bounds.left + bounds.width > 30) && // Правее левой
+        (window.innerWidth - bounds.left > 30)// Левее правой
+    );
+}
+
+
+$(document).ready(function(){
+	setInterval(function(){
+		$('.review_c').find('li').each(function(){
+			var inViewPort = elementInViewport(this);
+		
+			if(inViewPort){
+				$('.review_c').css('height', $(this).height());
+			}
+		});
+	}, 100);
+})

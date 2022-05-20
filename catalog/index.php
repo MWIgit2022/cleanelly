@@ -67,7 +67,6 @@ $APPLICATION->IncludeComponent(
 		"COMPARE_FIELD_CODE" => array(
 			0 => "NAME",
 			1 => "TAGS",
-			2 => "SORT",
 			3 => "PREVIEW_PICTURE",
 			4 => "DETAIL_PICTURE",
 			5 => "",

@@ -1487,8 +1487,8 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 		initPhoneField: function() 
 		{
 			$("input[name=ORDER_PROP_3").click(function() {
-				$(this).setCursorPosition(3);
-			  }).mask("+7 999 999-9999? 9");
+				$(this).inputmask("+7 999 999-9999");
+			})
 			$('input[name=ORDER_PROP_3').keypress(function(){
 				if (($('input[name=ORDER_PROP_3').val()[3] == '8' || $('input[name=ORDER_PROP_3').val()[3] == '7') && $('input[name=ORDER_PROP_3').val()[$('input[name=ORDER_PROP_3').val().length-1] != '_') {
 					var newPhone = $('input[name=ORDER_PROP_3').val().substr(0,3) + $('input[name=ORDER_PROP_3').val().substr(4,$('input[name=ORDER_PROP_3').val().length);

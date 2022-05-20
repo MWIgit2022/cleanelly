@@ -72,6 +72,13 @@ endif;
 		}
 		?>
 	});
+	$(document).on('click', '#sw<?=$arParams["FORM_ID"]?>', function(){
+		if($(this).text()==BX.message('MINIMIZED_MINIMIZE_TEXT')){
+			$(this).text(BX.message('MINIMIZED_EXPAND_TEXT'));
+		} else {
+			$(this).text(BX.message('MINIMIZED_MINIMIZE_TEXT'));
+		}
+	});
 </script>
 	<input type="hidden" name="index" value="<?=htmlspecialcharsbx($arParams["form_index"])?>" />
 	<input type="hidden" name="back_page" value="<?=$arResult["CURRENT_PAGE"]?>" />
