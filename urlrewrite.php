@@ -144,4 +144,12 @@ $arUrlRewrite=array (
     'PATH' => '/sale/index.php',
     'SORT' => 100,
   ),
+  45 => 
+  array (
+    'CONDITION' => '#^/skidki/#',
+    'RULE' => '',
+    'ID' => 'bitrix:news',
+    'PATH' => '/skidki/index.php',
+    'SORT' => 100,
+  ),
 );
