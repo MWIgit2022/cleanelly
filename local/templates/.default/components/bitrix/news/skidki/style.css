@@ -1,0 +1,18 @@
+.loyal_container{display:flex;gap:1em;flex-wrap:wrap;argin-top:1em}
+.loyal_container .block {display:flex;gap:1em;align-items:center;margin:1em 0;border: 1px solid;padding: 2em;border-radius: 1em; flex-wrap:wrap;width:420px}
+.card_fake{height:2em;width:100%;background:#000;flex-basis:100%;}
+.abs_loyal_cont{padding: 1em; border: 1px solid; position: relative;border-radius: 50%;min-width:100px;height:100px;}
+.abs_loyal_val{position: absolute;font-size: 3em;font-weight: 600;top:50%;left:50%;transform:translate(-50%, -50%);}
+.abs_loyal_desc{font-size:1.25em;}
+.always_sales{display:flex;gap:1em;align-items:center}
+.always_sales .perc{padding: 1em;border: 1px solid;position: relative;border-radius: 50%;min-width:150px;height:150px;}
+.always_sales .perc span{position: absolute;font-size: 4em;font-weight: 600;top:50%;left:50%;transform:translate(-50%, -50%);}
+@media(max-width:469px){
+	.always_sales{flex-wrap:wrap;justify-content:center;}
+	.abs_loyal_desc{font-size:1em;}
+}
+@media(max-width:399px){
+	.abs_loyal_cont{min-width:80px;height:80px;}
+	.abs_loyal_val{font-size:2em;}
+	.loyal_container .block{justify-content:center;}
+}
