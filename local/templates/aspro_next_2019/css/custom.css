@@ -3894,7 +3894,7 @@ width:100%;
 	color:#fff!important;
 }
 .dropdown-menu li, .mega-menu table .dropdown-submenu{
-	height:3em;
+	/*height:3em;*/
 }
 .mega-menu table .dropdown-menu li a{
 	white-space:normal;
