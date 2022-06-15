@@ -124,6 +124,7 @@ $APPLICATION->SetAdditionalCSS("//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slic
 					$this->AddDeleteAction($arItem['ID'], $arItem['DELETE_LINK'], CIBlock::GetArrayByID($arParams["IBLOCK_ID"], "ELEMENT_DELETE"), array("CONFIRM" => GetMessage('CT_BCS_ELEMENT_DELETE_CONFIRM')));
 
 					$arItem["strMainID"] = $this->GetEditAreaId($arItem['ID']);
+					
 					$arItemIDs=CNext::GetItemsIDs($arItem);
 
 					$totalCount = CNext::GetTotalCount($arItem, $arParams);
@@ -153,7 +154,7 @@ $APPLICATION->SetAdditionalCSS("//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slic
 					<div class="stickers">
 						<?$prop = ($arParams["STIKERS_PROP"] ? $arParams["STIKERS_PROP"] : "HIT");?>
 						<? foreach(CNext::GetItemStickers($arItem["PROPERTIES"][$prop]) as $arSticker) { ?>
-							<div><div class="<?=$arSticker['CLASS']?>"><?=$arSticker['VALUE']?></div></div>
+							<div><div class="<?=$arSticker['CLASS']?>"><?=$arSticker['VALUE']?><?if($arSticker['VALUE'] == 'Скидка'){ echo ' '.$arItem['MIN_PRICE']['DISCOUNT_DIFF_PERCENT'].'%'; }?></div></div>
 						<? } ?>
 						<? if ($arParams["SALE_STIKER"] && $arItem["PROPERTIES"][$arParams["SALE_STIKER"]]["VALUE"]) { ?>
 							<div><div class="sticker_sale_text"><?=$arItem["PROPERTIES"][$arParams["SALE_STIKER"]]["VALUE"];?></div></div>

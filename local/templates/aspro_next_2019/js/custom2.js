@@ -58,7 +58,7 @@ $(document).ready(function(){
 			var inViewPort = elementInViewport(this);
 		
 			if(inViewPort){
-				$('.review_c').css('height', $(this).height());
+				$('.review_c').css('height', $(this).height()+50);
 			}
 		});
 	}, 100);

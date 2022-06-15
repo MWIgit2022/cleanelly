@@ -16,6 +16,9 @@
 
 $context = Main\Application::getInstance()->getContext();
 $request = $context->getRequest();
+global $USER;
+$rsUser = CUser::GetByID($USER->GetID()); 
+$arUser = $rsUser->Fetch();
 
 if (empty($arParams['TEMPLATE_THEME']))
 {
@@ -742,3 +745,13 @@ else
 		</div>
 	</div>
 <?//}?>
+
+<?if($arUser['WORK_PROFILE'] && $arUser['WORK_PROFILE']!=''){?>
+	<script>
+		$('select[name="PERSON_TYPE"]').val("<?=$arUser['WORK_PROFILE']?>");
+		var element = document.querySelector('select[name="PERSON_TYPE"]');
+		var event = new Event('change');
+		element.dispatchEvent(event);
+		$('select[name="PERSON_TYPE"]').closest('.form-group').hide();
+	</script>
+<?}?>

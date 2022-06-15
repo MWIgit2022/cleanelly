@@ -9,8 +9,8 @@
 			$url=($arParams["ALL_URL"] ? $arParams["ALL_URL"] : "sale/");
 			$count=ceil(count($arResult["ITEMS"])/4);
 			?>
-			<h3 class="title_block"><?=$title_block;?></h3>
-			<a href="<?=SITE_DIR.$url;?>"><?=$title_all_block;?></a>
+			<h3 class="title_block"><a href="<?=SITE_DIR.$url;?>"><?=$title_all_block;?></a></h3>
+			<!--a href="<?=SITE_DIR.$url;?>"><?=$title_all_block;?></a-->
 		</div>
 		<?$col=4;
 		if($arParams["LINE_ELEMENT_COUNT"]>=3 && $arParams["LINE_ELEMENT_COUNT"]<4)

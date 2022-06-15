@@ -4,9 +4,7 @@
 	Array(
 		"CATEGORY_0" => array("iblock_aspro_next_catalog"),
 		"CATEGORY_0_TITLE" => "ALL",
-		"CATEGORY_0_iblock_1c_catalog" => array("all"),
-		"CATEGORY_0_iblock_aspro_next_catalog" => array("17"),
-		"CATEGORY_0_iblock_aspro_next_content" => array("all"),
+		"CATEGORY_0_iblock_aspro_next_catalog" => array("17","20"),
 		"CATEGORY_OTHERS_TITLE" => "OTHER",
 		"CHECK_DATES" => "Y",
 		"CONTAINER_ID" => "title-search_fixed",
