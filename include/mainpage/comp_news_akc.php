@@ -15,7 +15,7 @@
 		"ALL_URL" => "sale/",
 		"CACHE_FILTER" => "Y",
 		"CACHE_GROUPS" => "N",
-		"CACHE_TIME" => "36000000",
+		"CACHE_TIME" => "36000",
 		"CACHE_TYPE" => "A",
 		"CHECK_DATES" => "Y",
 		"COMPONENT_TEMPLATE" => "front_akc",

@@ -15,8 +15,15 @@ $aMenuLinks = Array(
 		"" 
 	),
 	Array(
-		"Новости и акции", 
-		"/sale/", 
+		"Рассрочка ХАЛВА", 
+		"/rassrochka-halva/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Возврат", 
+		"/help/warranty/", 
 		Array(), 
 		Array(), 
 		"" 
@@ -29,8 +36,8 @@ $aMenuLinks = Array(
 		"" 
 	),
 	Array(
-		"Возврат", 
-		"/help/warranty/", 
+		"Новости и акции", 
+		"/sale/", 
 		Array(), 
 		Array(), 
 		"" 
@@ -59,6 +66,13 @@ $aMenuLinks = Array(
 	Array(
 		"Проверить баланс дисконтной карты", 
 		"/discount_card-info/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Скидки", 
+		"/skidki/", 
 		Array(), 
 		Array(), 
 		"" 

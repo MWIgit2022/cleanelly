@@ -30,7 +30,7 @@ $APPLICATION->SetTitle("Новости и акции 2021");
 		"AJAX_OPTION_STYLE" => "Y",
 		"AJAX_OPTION_HISTORY" => "N",
 		"CACHE_TYPE" => "A",
-		"CACHE_TIME" => "36000000",
+		"CACHE_TIME" => "36000",
 		"CACHE_FILTER" => "Y",
 		"CACHE_GROUPS" => "N",
 		"SET_TITLE" => "Y",

@@ -20,6 +20,11 @@ $APPLICATION->SetTitle("Доставка и оплата");
  </li>
 	<li>
 	<p>
+		<b><u><a href="https://www.cleanelly.ru/rassrochka-halva/">оплата картой рассрочки Халва</a></u></b>
+	</p>
+	</li>
+	<li>
+	<p>
 		 платежный терминал при курьерской доставке
 	</p>
  </li>
@@ -87,4 +92,7 @@ $APPLICATION->SetTitle("Доставка и оплата");
 <p>
 	 Безналичным расчётом можно воспользоваться при курьерской доставке или самовывозе из магазина\пункта выдачи ТК СДЕК.
 </p>
- <br><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
+<p>
+	Подробнее об оплате картой рассрочки Халва <b><u><a href="https://www.cleanelly.ru/rassrochka-halva/">здесь.</a></u></b>
+</p>
+<b><u><a href="https://www.cleanelly.ru/rassrochka-halva/"> </a></u></b><br><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
