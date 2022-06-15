@@ -203,9 +203,9 @@ a.icon-text:focus { color: #fff; }
     background-position: -71px 4px;
 }
 
-.wrapp_one_click {
+/* .wrapp_one_click {
     display: none!important;
-}
+} */
 
 .basket-checkout-section .fastorder {
     display: none!important;

@@ -1,4 +1,5 @@
 <?if(!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) die();?>
+
 <?global $isShowSale;?>
 <?if($isShowSale):?>
 <?$APPLICATION->IncludeComponent(
@@ -55,11 +56,12 @@
 		"SORT_ORDER1" => "DESC",
 		"SORT_ORDER2" => "ASC",
 		"TITLE_BLOCK" => "Новости и акции",
-		"TITLE_BLOCK_ALL" => "Все акции →"
+		"TITLE_BLOCK_ALL" => "Все новости и акции →"
 	),
 false,
 Array(
 	'ACTIVE_COMPONENT' => 'Y'
 )
 );?>
+
 <?endif;?>

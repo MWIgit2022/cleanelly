@@ -3096,12 +3096,16 @@ $('.set_block').ready(function () {
                     buyBlock.find('.wrapp_one_click').html(ocb);
                 } else {
                     buyBlock.append('<div class="wrapp_one_click">' + ocb + '</div>');
+					if(obj.PRICE.DISCOUNT_VALUE<5000){
+						$('.wrapp_one_click').hide();
+					}
                 }
             } else {
                 if (buyBlock.find('.wrapp_one_click').length) {
                     buyBlock.find('.wrapp_one_click').remove();
                 }
             }
+			console.log(obj);
         } else {
             if (buyBlock.find('.wrapp_one_click').length) {
                 buyBlock.find('.wrapp_one_click').remove();
@@ -3112,6 +3116,9 @@ $('.set_block').ready(function () {
 
         buyBlock.find('.counter_wrapp .counter_block input').data('product', 'ob' + this.obProduct.id);
         this.setPriceAction('', 'Y');
+		if($('.sticker_skidka').length>0){
+			$('.sticker_skidka').text('Скидка '+obj.PRICE.DISCOUNT_DIFF_PERCENT.replace('-',''));
+		}
     }
 
     /*set store block*/

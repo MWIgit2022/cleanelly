@@ -159,7 +159,7 @@ $arViewedData = array(
 		<div class="stickers">
 			<?$prop = ($arParams["STIKERS_PROP"] ? $arParams["STIKERS_PROP"] : "HIT");?>
 			<?foreach(CNext::GetItemStickers($arResult["PROPERTIES"][$prop]) as $arSticker):?>
-				<div><div class="<?=$arSticker['CLASS']?>"><?=$arSticker['VALUE']?></div></div>
+				<div><div class="<?=$arSticker['CLASS']?>"><?=$arSticker['VALUE']?><?if($arSticker['VALUE'] == 'Скидка'){ echo ' '.$arResult['MIN_PRICE']['DISCOUNT_DIFF_PERCENT'].'%'; }?></div></div>
 			<?endforeach;?>
 			<?if($arParams["SALE_STIKER"] && $arResult["PROPERTIES"][$arParams["SALE_STIKER"]]["VALUE"]){?>
 				<div><div class="sticker_sale_text"><?=$arResult["PROPERTIES"][$arParams["SALE_STIKER"]]["VALUE"];?></div></div>

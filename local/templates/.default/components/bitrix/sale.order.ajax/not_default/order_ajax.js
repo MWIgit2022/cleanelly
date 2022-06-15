@@ -391,6 +391,8 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 				}else{
 					$('input[name=ORDER_PROP_35]').val('');
 				}
+				
+				$('select[name="PERSON_TYPE"]').closest('.form-group').hide();
 				$('input[name=ORDER_PROP_4]').val('');
 				this.mapsReady && this.initMaps();
 				BX.saleOrderAjax && BX.saleOrderAjax.initDeferredControl();
