@@ -6,6 +6,6 @@ $aMenuLinks = Array(
 		Array(), 
 		Array(), 
 		"" 
-	),
+	)
 );
 ?>

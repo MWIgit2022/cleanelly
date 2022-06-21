@@ -6,4 +6,10 @@ $APPLICATION->SetTitle("Оплата заказа");
 	"",
 	Array(
 	)
-);?><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_after.php");?>
+);?>
+<script>
+<?if($_GET['HASH']){?>
+	document.querySelector('form').setAttribute('action', document.querySelector('form').getAttribute('action')+'&HASH=<?=$_GET['HASH']?>');
+<?}?>
+</script>
+<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_after.php");?>

@@ -1282,6 +1282,8 @@ if($settings['CERTIFICATE']['VALUE']){
    );
    $arResult['CERTIFICATE_PREVIEW'] = $arPhotoSmall['src'];
 }
+
+$arResult['TEMPLATE_SETTINGS'] = $settings;
 if($settings['DELIV_TAB_TEXT']['VALUE']){
 	$arResult['DELIV_TAB_TEXT'] = html_entity_decode($settings['DELIV_TAB_TEXT']['VALUE']['TEXT']);
 }

@@ -37,9 +37,9 @@ foreach($notes as $note){
 
 	$fields_arr = array(
 		'name_short_with_opf'=>'Сокращенное наименование юридического лица',
-		'name_full_with_opf'=>'Полное наименование юридического лица',
-		'inn'=>'ИНН',
-		'kpp'=>'КПП',
+		'name_full_with_opf'=>'Полное наименование юридического лица*',
+		'inn'=>'ИНН*',
+		'kpp'=>'КПП*',
 		'ogrn'=>($arUser['WORK_PROFILE']=='2') ? 'ОГРН' : 'ОГРНИП',
 		'address_value'=>'Юридический адрес',
 		'address_data_postal_code'=>'Почтовый индекс (Юридический адрес)',
@@ -60,7 +60,7 @@ foreach($notes as $note){
 		'deliv_address_house'=> 'Дом, строение, корпус и т.д. (Адрес доставки)',
 		'deliv_address_flat'=>'Квартира, офис и т.д. (Адрес доставки)',
 		'phones'=>'Телефоны',
-		'emails'=>'E-mail',
+		'emails'=>'E-mail*',
 		'management_name' => 'ФИО контактного лица',
 		'bank'=>'Наименование банка',
 		'ks'=>'Корреспондентский счет',

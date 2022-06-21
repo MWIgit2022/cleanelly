@@ -3096,7 +3096,7 @@ $('.set_block').ready(function () {
                     buyBlock.find('.wrapp_one_click').html(ocb);
                 } else {
                     buyBlock.append('<div class="wrapp_one_click">' + ocb + '</div>');
-					if(obj.PRICE.DISCOUNT_VALUE<5000){
+					if(window.HBUtils.CLICK_BUY_IN_CATALOG.VALUE != 'Y' || obj.PRICE.DISCOUNT_VALUE<window.HBUtils.CLICK_BUY_IN_CATALOG.DESCRIPTION){
 						$('.wrapp_one_click').hide();
 					}
                 }
@@ -3787,3 +3787,14 @@ setInterval(function(){
 		$('.to-cart').removeClass('disabled_2 read_more');
 	}
 },200);
+
+$(document).on('click', '.halva', function(){
+	$('.halva_absolute').show();
+})
+
+$(document).mouseup(function (e) {
+		var div = $(".halva_absolute");
+		if (!div.is(e.target) && div.has(e.target).length === 0) { 
+			div.hide(); 
+		}
+});
