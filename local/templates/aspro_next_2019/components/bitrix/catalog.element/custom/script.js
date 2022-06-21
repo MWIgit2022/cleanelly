@@ -3096,7 +3096,7 @@ $('.set_block').ready(function () {
                     buyBlock.find('.wrapp_one_click').html(ocb);
                 } else {
                     buyBlock.append('<div class="wrapp_one_click">' + ocb + '</div>');
-					if(window.HBUtils.CLICK_BUY_IN_CATALOG.VALUE != 'Y' || obj.PRICE.DISCOUNT_VALUE<window.HBUtils.CLICK_BUY_IN_CATALOG.DESCRIPTION){
+					if(window.HBUtils.CLICK_BUY_IN_CATALOG.VALUE != 'Y' || parseInt(obj.PRICE.DISCOUNT_VALUE)<parseInt(window.HBUtils.CLICK_BUY_IN_CATALOG.DESCRIPTION)){
 						$('.wrapp_one_click').hide();
 					}
                 }
