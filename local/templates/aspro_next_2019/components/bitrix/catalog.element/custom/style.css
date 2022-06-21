@@ -320,6 +320,29 @@ html {
     color: #fff;
 }
 
+.halva_container{
+	position:relative;
+}
+.halva{
+	max-width:130px;padding:0.5em;border:1px solid #282a2d;border-radius:5px;margin-bottom:1em;cursor:pointer;text-align:center;
+}
+.halva div{
+	height:1.5em;width:100%;background:#282a2d;border-radius:5px;color:#fff;text-align:center;font-size:0.75em;line-height:1em;
+}
+.halva img{
+	max-height: 15px;
+}
+.halva_absolute{
+	display:none;position:absolute;background:#fff;z-index:9;border:1px solid #282a2d;padding:1em;border-radius:5px;
+}
+.halva_absolute .close{
+	position:absolute;right:0.5em;top:0.5em;z-index:10;
+}
+.halva_absolute li{
+	padding:0;
+}.halva_absolute p{
+	font-weight:600;
+}
 @media (max-width: 991px) {
     .xzoom_image {
         pointer-events: none;

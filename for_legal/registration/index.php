@@ -1,7 +1,16 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Регистрация юр. лица");
-?>
+
+
+global $USER;
+if($USER->getID()){
+	$rsUser = CUser::GetByID($USER->GetID()); 
+	$arUser = $rsUser->Fetch();
+}
+
+if($arUser['WORK_PROFILE'] !=2 && $arUser['WORK_PROFILE'] !=3){?>
+
 <style>
 .errors, .success{
 	display: flex;
@@ -42,6 +51,7 @@ $APPLICATION->SetTitle("Регистрация юр. лица");
 	<input type="submit" class="btn btn-default button is-primary button-default" value="Получить информацию">
 </form>
 
+
 <?
 if($_POST['PERSON_TYPE'] == 3){
 	$fields_arr_merge = array(
@@ -53,6 +63,8 @@ if($_POST['PERSON_TYPE'] == 3){
 		'Полное наименование юридического лица'=>'name.full_with_opf',
 	);
 }
+
+$required_fields = array('inn','kpp','login','password','confirm_password','name.full_with_opf', 'emails');
 $fields_arrz = array(
 	
 	'ИНН'=>'inn',
@@ -107,30 +119,30 @@ $fields_arr = array_merge($fields_arr_merge,$fields_arrz);
 			<div style="display:flex;flex-wrap:wrap;gap:1em;">
 			<?foreach($field as $k=>$v){?>
 				<div style="flex-basis:450px;flex-grow:1;max-width:100%">
-					<p><b><?=$k?></b></p>
-					<input type="text" class="form-group" name="<?=$v?>" value="">
+					<p><b><?=$k?></b><?if(in_array($v,$required_fields)){?>*<?}?></p>
+					<input type="text" class="form-group" name="<?=$v?>" value="" <?if(in_array($v,$required_fields)){?>required<?}?>>
 				</div>
 			<?}?>
 			</div>
 		<?} else {?>
 		
-			<p><b><?=$fk?></b></p>
-			<input type="text" class="form-group" name="<?=$field?>" value="">
+			<p><b><?=$fk?></b> <?if(in_array($field,$required_fields)){?>*<?}?></p>
+			<input type="text" class="form-group" name="<?=$field?>" value="" <?if(in_array($field,$required_fields)){?>required<?}?>>
 		<?}
 	}?>
 	<p style="font-size:1.5em;margin-bottom:1em;"><b>Данные для входа</b></p>
 			<div style="display:flex;flex-wrap:wrap;gap:1em;">
 				<div style="flex-basis:100%;max-width:100%">
-					<p><b>Логин</b></p>
-					<input type="text" class="form-group" name="login" value="">
+					<p><b>Логин</b>*</p>
+					<input type="text" class="form-group" name="login" value="" required>
 				</div>
 				<div style="flex-basis:450px;flex-grow:1;max-width:100%">
-					<p><b>Пароль</b></p>
-					<input type="password" class="form-group" name="password" value="">
+					<p><b>Пароль</b>*</p>
+					<input type="password" class="form-group" name="password" value="" required>
 				</div>
 				<div style="flex-basis:450px;flex-grow:1;max-width:100%">
-					<p><b>Повторите пароль</b></p>
-					<input type="password" class="form-group" name="confirm_password" value="">
+					<p><b>Повторите пароль</b>*</p>
+					<input type="password" class="form-group" name="confirm_password" value="" required>
 				</div>
 			</div>
 			<input type="hidden" name="PERSON_TYPE" value="<?=$_POST['PERSON_TYPE']?>">
@@ -160,7 +172,6 @@ $fields_arr = array_merge($fields_arr_merge,$fields_arrz);
 	.catch(error => console.log("error", error));
 
 	function getDataDa(data){
-		console.log(data);
 		<?foreach($fields_arr as $field){
 			if(is_array($field)){
 				foreach($field as $v){?>
@@ -196,9 +207,15 @@ $('.legal_register').on('submit', function(e){
 					}, 1000);
 				} else if($(html).filter('.success').length>0){
 					$th.append($(html).filter('.success')[0].outerHTML);
+					 $('html, body').animate({
+						scrollTop: $('.success').offset().top-150
+					}, 500);
 				}
 			}
 		 })
 });
 </script>
+<?} else {?>
+	<p>Вы авторизованы как юридическое лицо</p>
+<?}?>
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

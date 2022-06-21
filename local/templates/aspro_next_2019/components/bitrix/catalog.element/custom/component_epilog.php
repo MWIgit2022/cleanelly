@@ -164,6 +164,21 @@ use Bitrix\Main\ModuleManager;
 	})
 	</script>
 <?}?>
+
+<?if($_GET['oid']){
+	$res = CIBlockElement::GetProperty(20, $_GET['oid'], "sort", "asc", array("CODE" => "SIZES"));
+    if ($ob = $res->GetNext())
+    {
+       $cur_size = $ob;
+    }?>
+	<script>
+		$(document).ready(function(){
+				$('select[data-prop-code="264"]').val('<?=$cur_size['VALUE']?>');
+				$('select[data-prop-code="264"]').trigger('change');
+		});
+	</script>
+<?}?>
+
 <?
 //$this->__template->SetViewTarget("counter");
 $arFilter = Array("IBLOCK_ID"=>$arResult['IBLOCK_ID'], 'ID'=>$arResult['ID']);

@@ -1964,13 +1964,17 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 				this.reachGoal('order');
 				var $city = $("input.bx-ui-sls-route").val().split(',')[0];
 				var $citySdek = $("input[name='ORDER_PROP_5']").val();
-				if ($citySdek.replace(/[ёЁеЕ]/gi, '') != $city.replace(/[ёЁеЕ]/gi, '')) {
-					if ($('#citiesDontMatch').length == 0) {
-						$('[data-property-id-row = "5"]').append('<p id="citiesDontMatch" style="color: red">Города не совпадают</p>');
-					}
+				if($citySdek){
+					if ($citySdek.replace(/[ёЁеЕ]/gi, '') != $city.replace(/[ёЁеЕ]/gi, '')) {
+						if ($('#citiesDontMatch').length == 0) {
+							$('[data-property-id-row = "5"]').append('<p id="citiesDontMatch" style="color: red">Города не совпадают</p>');
+						}
+					} else {
+						this.sendRequest('saveOrderAjax');
+					}	
 				} else {
 					this.sendRequest('saveOrderAjax');
-				}				
+				}					
 			}
 		},
 

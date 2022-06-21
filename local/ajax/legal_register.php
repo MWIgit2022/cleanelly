@@ -77,10 +77,26 @@ if($_POST['PERSON_TYPE'] == 2){
 	if($_POST[$field]){
 		$notes .= $name.'--'.$_POST[$field].PHP_EOL;
 	}
+	if($name == 'ИНН'){
+		$inn = $_POST[$field];
+	}
 } 
 
+
+$filter = array('?WORK_NOTES'=>'ИНН--'.$inn);
+$order = array('sort' => 'asc');
+$tmp = 'sort';
+$rsUsers = CUser::GetList($order, $tmp, $filter);
+while($arUser = $rsUsers->fetch()){
+	$inn_consists = true;
+}
+
+
+if($inn_consists){
+	$error='<span>ИНН уже есть в базе</span>';
+}
 if($_POST['name_full_with_opf'] ==''){
-	$error='<span>Не заполнено поле - Полное наименование юридического лица</span>';
+	$error.='<span>Не заполнено поле - Полное наименование юридического лица</span>';
 }
 if($_POST['inn'] ==''){
 	$error.='<span>Не заполнено поле - ИНН</span>';

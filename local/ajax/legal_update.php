@@ -74,8 +74,20 @@ if ($ar_sales = $db_sales->Fetch())
   $profile = $ar_sales['ID'];
 }
 
+$inn_consists=0;
+$filter = array('?WORK_NOTES'=>'ИНН--'.$inn);
+$order = array('sort' => 'asc');
+$tmp = 'sort';
+$rsUsers = CUser::GetList($order, $tmp, $filter);
+while($arUser = $rsUsers->fetch()){
+	$inn_consists++;
+}
+
+if($inn_consists>1){
+	$error='<span>ИНН уже есть в базе</span>';
+}
 if($_POST['name_full_with_opf'] ==''){
-	$error='<span>Не заполнено поле - Полное наименование юридического лица</span>';
+	$error.='<span>Не заполнено поле - Полное наименование юридического лица</span>';
 }
 if($_POST['inn'] ==''){
 	$error.='<span>Не заполнено поле - ИНН</span>';

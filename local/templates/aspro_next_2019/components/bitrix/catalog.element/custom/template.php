@@ -48,6 +48,14 @@ if (!empty($arResult['CURRENCIES'])){
 	$templateLibrary[] = 'currency';
 	$currencyList = CUtil::PhpToJSObject($arResult['CURRENCIES'], false, true, true);
 }
+
+$settings = CUtil::PhpToJSObject($arResult['TEMPLATE_SETTINGS']);
+
+?>
+<script>
+    HBUtils = <?=CUtil::PhpToJSObject($arResult['TEMPLATE_SETTINGS']);?>
+</script>
+<?
 $templateData = array(
 	'TEMPLATE_LIBRARY' => $templateLibrary,
 	'CURRENCIES' => $currencyList,
@@ -638,6 +646,24 @@ $arViewedData = array(
 					<?endif;?>
 					
 					
+				</div>
+				<div class="halva_container">
+					<div class="halva">
+						<div>рассрочка 0%</div>
+						<img src="<?=SITE_TEMPLATE_PATH?>/images/halva.svg">	
+					</div>
+					<div class="halva_absolute">
+						<a class="close" onclick="$('.halva_absolute').hide()">✖</a>
+						<ul>
+							<li>✓ 4 месяца рассрочки на все товары</li>
+							<li>✓ 0 % за пользование рассрочкой</li>
+							<li>✓ Бесплатное оформление и обслуживание</li>
+							<li>✓ 0% первоначальный взнос</li>
+							<li>✓ Бесплатное пополнение онлайн</li>
+							<li>✓ Выбрать оплату рассрочкой Халва можно в корзине на этапе оформления заказа</li>
+						</ul>
+						<p>Действует на все покупки в интернет-магазине Cleanelly.ru при онлайн-оплате. Не принимается при доставке курьером на дом</p>
+					</div>
 				</div>
 				<div class="element_detail offer_quantity_block"></div>
 			<?$frame->end();?>
