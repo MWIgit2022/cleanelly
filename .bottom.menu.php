@@ -20,6 +20,13 @@ $aMenuLinks = Array(
 		Array(), 
 		Array(), 
 		"" 
+	),
+	Array(
+		"Рассрочка Халва", 
+		"/rassrochka-khalva/", 
+		Array(), 
+		Array(), 
+		"" 
 	)
 );
 ?>
