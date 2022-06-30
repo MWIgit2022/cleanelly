@@ -480,6 +480,7 @@ else
 						}
 						?>
 					</div>
+					
 				</div>
 
 				<div style="display: none;">
@@ -755,3 +756,4 @@ else
 		$('select[name="PERSON_TYPE"]').closest('.form-group').hide();
 	</script>
 <?}?>
+
