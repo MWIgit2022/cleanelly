@@ -99,7 +99,7 @@ if($marked == false){
 		 }
 	}
 }  
-if($marked==true){
+//if($marked==true){
 	$order3 = Sale\Order::load($data->Order_ID);
 	$shipments = $order3->getShipmentCollection();
 
@@ -114,7 +114,7 @@ if($marked==true){
 		   }
 	}
 	$order3->save();
-	echo 'ok';
-} else {
-	echo 'Сайт не произвел запись по неизвестной ошибке, обратитесь к разработчикам сайта';
-}
+//	echo 'ok';
+//} else {
+//	echo 'Сайт не произвел запись по неизвестной ошибке, обратитесь к разработчикам сайта';
+//}
