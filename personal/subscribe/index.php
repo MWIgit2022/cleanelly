@@ -20,6 +20,34 @@ $APPLICATION->SetTitle("Подписка на новости");
 	),
 false
 );?>
+<?
+global $USER;
+$rsUser = CUser::GetByID($USER->GetID()); 
+$arUser = $rsUser->Fetch();
+
+?>
+<h3>SMS уведомления</h3>
+<div class="form">
+	<div class="licence_block filter label_block">
+		<input type="checkbox" id="licenses_popup_OCB" name="sms" required="" <?if($arUser['UF_SMS'] == '1'){?>checked<?}?> aria-required="true">
+		<label for="licenses_popup_OCB" class="license">
+			Я согласен получать смс- рассылку с номером заказа, информированием об акциях и тп.
+		</label>
+	</div>
+</div>
+
+<script>
+$('input[name="sms"]').on('change', function(){
+	$.ajax({
+			type: "POST",
+			url: "/local/ajax/sms_subscribe.php",
+			data: 'sms='+$(this).prop('checked'),
+			success: function(html){
+				console.log(html);
+			}
+		 })
+});
+</script>
 <?if((CNext::checkVersionModule('16.5.3', 'catalog') && !$GLOBALS['USER']->isAuthorized()) || $GLOBALS['USER']->isAuthorized()):?>
 	<?$APPLICATION->IncludeComponent(
 		"bitrix:catalog.product.subscribe.list",
