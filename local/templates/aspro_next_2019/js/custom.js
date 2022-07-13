@@ -27,6 +27,7 @@ $(document).ready(function () {
                 if (msg.success) {
                     if (msg.add) {
                         //изменить иконку на удалить из избранного
+						ym(22769200,'reachGoal','Add-to-favorite');
                         $('#productId-' + msg.productId).children('svg').children('g').children('g').children('#fav_color').attr('class', 'icon_favorite');
                     } else {
                         //изменить иконку на добавить в избранное

@@ -3089,7 +3089,7 @@ $('.set_block').ready(function () {
         if (obj.CONFIG.ACTION !== "NOTHING") {
             if (obj.CONFIG.ACTION == "ADD" && obj.CAN_BUY && obj.SHOW_ONE_CLICK_BUY != "N") {
 
-                var ocb = '<span class="transparent btn-lg type_block btn btn-default white one_click transition_bg" data-offers="Y" data-item="' + obj.ID + '" data-iblockID="' + obj.IBLOCK_ID + '" data-quantity="' + obj.CONFIG.MIN_QUANTITY_BUY + '" data-props="' + obj.OFFER_PROPS + '" onclick="oneClickBuy(' + obj.ID + ', ' + obj.IBLOCK_ID + ', this)">' +
+                var ocb = '<span class="transparent btn-lg type_block btn btn-default white one_click transition_bg" data-offers="Y" data-item="' + obj.ID + '" data-iblockID="' + obj.IBLOCK_ID + '" data-quantity="' + obj.CONFIG.MIN_QUANTITY_BUY + '" data-props="' + obj.OFFER_PROPS + '" onclick="oneClickBuy(' + obj.ID + ', ' + obj.IBLOCK_ID + ', this);ym(22769200,\'reachGoal\',\'Buy-in-1-click\');">' +
                     '<span>' + obj.ONE_CLICK_BUY + '</span>' +
                     '</span>';
                 if (buyBlock.find('.wrapp_one_click').length) {

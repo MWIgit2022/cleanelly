@@ -1,5 +1,5 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
-<form action="<?=SITE_DIR.$arParams["PAGE"]?>" method="post" class="subscribe-form">
+<form action="<?=SITE_DIR.$arParams["PAGE"]?>" method="post" class="subscribe-form" onsubmit="ym(22769200,'reachGoal','Subscribe');">
 	<?echo bitrix_sessid_post();?>
 	<input type="text" name="EMAIL" class="form-control subscribe-input required" placeholder="<?=GetMessage("EMAIL_INPUT");?>" value="<?=$arResult["USER_EMAIL"] ? $arResult["USER_EMAIL"] : ($arResult["SUBSCRIPTION"]["EMAIL"]!=""?$arResult["SUBSCRIPTION"]["EMAIL"]:$arResult["REQUEST"]["EMAIL"]);?>" size="30" maxlength="255" />
 

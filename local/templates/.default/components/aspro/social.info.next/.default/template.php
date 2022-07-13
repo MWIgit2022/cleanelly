@@ -71,7 +71,7 @@
 		<?endif;?>
 			
 		<li class="whatsapp">
-			<a href="https://wa.me/79613004564" target="_blank" rel="nofollow" title="whatsapp" style="background: url(/bitrix/templates/aspro_next/images/whatsapp_round-2.svg) no-repeat 10px 10px/ 20px">
+			<a onclick="ym(22769200,'reachGoal','Click-whatsapp')" href="https://wa.me/79613004564" target="_blank" rel="nofollow" title="whatsapp" style="background: url(/bitrix/templates/aspro_next/images/whatsapp_round-2.svg) no-repeat 10px 10px/ 20px">
 				<img class="lazy" alt="whatsapp_round-2" data-src="/bitrix/templates/aspro_next/images/whatsapp_round-2.svg">
 			</a>
 		</li>
