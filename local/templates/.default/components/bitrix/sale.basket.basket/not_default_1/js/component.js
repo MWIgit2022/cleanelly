@@ -2235,7 +2235,8 @@
 			if (itemData)
 			{
 				this.actionPool.deleteItem(itemData.ID);
-
+				ym(22769200,'reachGoal','Remove-from-cart');
+				console.log('ym');
 				this.items[itemData.ID].SHOW_LOADING = true;
 
 				if (this.params.SHOW_RESTORE === 'Y' && this.isItemAvailable(itemData.ID))

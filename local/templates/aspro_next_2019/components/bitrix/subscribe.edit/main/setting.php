@@ -4,7 +4,7 @@
 //setting section
 //***********************************
 ?>
-<form action="<?=$arResult["FORM_ACTION"]?>" method="post">
+<form action="<?=$arResult["FORM_ACTION"]?>" method="post" onsubmit="ym(22769200,'reachGoal','Subscribe');">
 <?echo bitrix_sessid_post();?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="data-table top">
 <thead><tr><td colspan="2"><h4><?echo GetMessage("subscr_title_settings")?></h4></td></tr></thead>
