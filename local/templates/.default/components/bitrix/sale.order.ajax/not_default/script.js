@@ -442,7 +442,7 @@ BX.saleOrderAjax = { // bad solution, actually, a singleton at the page
 		});
 	}
 };
-$('body').ready(function(){
+/* $('body').ready(function(){
 	if(!($.cookie('current_region')))
 	{
 		if(!($('select[name="PROFILE_ID"]').length))
@@ -452,7 +452,7 @@ $('body').ready(function(){
 			}, 2000); 
 		}
 	}
-}); 
+});  */
 
 $('body').on('change', 'select[name="PROFILE_ID"]', function() {
 	var a = $('select[name="PROFILE_ID"]').val();

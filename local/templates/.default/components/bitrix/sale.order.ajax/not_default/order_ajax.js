@@ -8194,7 +8194,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 			}
                         
 						
-                        if (total.ORDER_PRICE < $('#freeDeliveryThreshold').val())
+                        if (Number(this.result.TOTAL.ORDER_PRICE) < Number($('#freeDeliveryThreshold').val()))
                         {
                             this.totalInfoBlockNode.appendChild(
                                     BX.create('DIV', {
@@ -8216,7 +8216,9 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
                                             ]
                                     })
                             );
-                        }
+                        } else {
+							$('.bx-soa-cart-total-free_delivery').remove();
+						}
 			
 			this.editMobileTotalBlock();
 		},

@@ -1,7 +1,8 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Регистрация юр. лица");
-
+use Bitrix\Main\Application;
+$request = Application::getInstance()->getContext()->getRequest();
 
 global $USER;
 if($USER->getID()){
@@ -36,28 +37,28 @@ if($arUser['WORK_PROFILE'] !=2 && $arUser['WORK_PROFILE'] !=3){?>
 		<label class="bx-soa-custom-label">Тип плательщика</label><br>
 		<div class="radio-inline checked">
 			<label>
-				<input <?if($_POST['PERSON_TYPE']=='2' || !$_POST['PERSON_TYPE']){?>checked="true"<?}?> type="radio" name="PERSON_TYPE" value="2">Юр. лицо
+				<input <?if($request->getPost('PERSON_TYPE')=='2' || !$request->getPost('PERSON_TYPE')){?>checked="true"<?}?> type="radio" name="PERSON_TYPE" value="2">Юр. лицо
 			</label>
 		</div>
 		<br>
 		<div class="radio-inline">
 			<label>
-				<input <?if($_POST['PERSON_TYPE']=='3'){?>checked="true"<?}?> type="radio" name="PERSON_TYPE" value="3">ИП
+				<input <?if($request->getPost('PERSON_TYPE')=='3'){?>checked="true"<?}?> type="radio" name="PERSON_TYPE" value="3">ИП
 			</label>
 		</div>
 	</div>
 	<p><b>Введите ИНН</b></p>
-	<input type="text" class="form-group" name="inn" value="<?=$_POST['inn']?>">
+	<input type="text" class="form-group" name="inn" value="<?=$request->getPost('inn')?>">
 	<input type="submit" class="btn btn-default button is-primary button-default" value="Получить информацию">
 </form>
 
 
 <?
-if($_POST['PERSON_TYPE'] == 3){
+if($request->getPost('PERSON_TYPE') == 3){
 	$fields_arr_merge = array(
 		'Полностью ФИО индивидуального предпринимателя'=>'name.full_with_opf',
 	);
-} elseif($_POST['PERSON_TYPE'] == 2 || !$_POST['PERSON_TYPE']) {
+} elseif($request->getPost('PERSON_TYPE') == 2 || !$request->getPost('PERSON_TYPE')) {
 	$fields_arr_merge = array(
 		'Сокращенное наименование юридического лица'=>'name.short_with_opf',
 		'Полное наименование юридического лица'=>'name.full_with_opf',
@@ -145,15 +146,15 @@ $fields_arr = array_merge($fields_arr_merge,$fields_arrz);
 					<input type="password" class="form-group" name="confirm_password" value="" required>
 				</div>
 			</div>
-			<input type="hidden" name="PERSON_TYPE" value="<?=$_POST['PERSON_TYPE']?>">
+			<input type="hidden" name="PERSON_TYPE" value="<?=$request->getPost('PERSON_TYPE')?>">
 	<input type="submit" class="btn btn-default button is-primary button-default" value="Зарегистрироваться">
 </form>
 
-<?if($_POST['inn']){?>
+<?if($request->getPost('inn')){?>
 	<script>
 	var url = "https://suggestions.dadata.ru/suggestions/api/4_1/rs/findById/party";
 	var token = "16fe0b41c40f655a6a03e030476915eb229411d6";
-	var query = "<?=$_POST['inn']?>";
+	var query = "<?=$request->getPost('inn')?>";
 
 	var options = {
 		method: "POST",

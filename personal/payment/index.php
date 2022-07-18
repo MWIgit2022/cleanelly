@@ -1,5 +1,7 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
+use Bitrix\Main\Application;
+
 $APPLICATION->SetTitle("Оплата заказа");
 ?><?$APPLICATION->IncludeComponent(
 	"bitrix:sale.order.payment",
@@ -7,9 +9,13 @@ $APPLICATION->SetTitle("Оплата заказа");
 	Array(
 	)
 );?>
+<?
+$request = Application::getInstance()->getContext()->getRequest();
+$hash->getQuery("HASH");
+?>
 <script>
-<?if($_GET['HASH']){?>
-	document.querySelector('form').setAttribute('action', document.querySelector('form').getAttribute('action')+'&HASH=<?=$_GET['HASH']?>');
+<?if($hash){?>
+	document.querySelector('form').setAttribute('action', document.querySelector('form').getAttribute('action')+'&HASH=<?=$hash?>');
 <?}?>
 </script>
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_after.php");?>

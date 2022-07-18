@@ -1,18 +1,20 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Информация по дисконтной карте");
+use Bitrix\Main\Application;
+$request = Application::getInstance()->getContext()->getRequest();
+$coupon_post = $request->getPost("coupon");
 ?>
 <form method="POST" action="">
 <p><b>Введите номер вашей дисконтной карты</b></p>
-<input type="text" class="form-group" name="coupon" value="<?=$_POST['coupon']?>">
+<input type="text" class="form-group" name="coupon" value="<?=$coupon_post?>">
 <input type="submit" class="btn btn-default button is-primary button-default" value="Получить информацию">
 </form>
 <?
 
 
-
-if($_POST['coupon']){
-	$couponIterator =  \Bitrix\Sale\Internals\DiscountCouponTable::getList(array('select' => array('DESCRIPTION', 'DISCOUNT_ID'), 'filter' => array('ACTIVE'=>'Y','COUPON' => $_POST['coupon']), 'group' => array('DISCOUNT_ID')));
+if($coupon_post){
+	$couponIterator =  \Bitrix\Sale\Internals\DiscountCouponTable::getList(array('select' => array('DESCRIPTION', 'DISCOUNT_ID'), 'filter' => array('ACTIVE'=>'Y','COUPON' => $coupon_post), 'group' => array('DISCOUNT_ID')));
      while ($coupon = $couponIterator->fetch()) {
 		 $discountIterator = \Bitrix\Sale\Internals\DiscountTable::getList(array('select' => array('*'), 'filter' => array('ACTIVE'=>'Y','ID' => $coupon['DISCOUNT_ID']), 'group' => array('ID')));
 		 while ($discount = $discountIterator->fetch()) {
