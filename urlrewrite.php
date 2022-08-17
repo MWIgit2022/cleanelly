@@ -72,28 +72,12 @@ $arUrlRewrite=array (
     'PATH' => '/info/brands/index.php',
     'SORT' => 100,
   ),
-  9 => 
-  array (
-    'CONDITION' => '#^/projects/#',
-    'RULE' => '',
-    'ID' => 'bitrix:news',
-    'PATH' => '/projects/index.php',
-    'SORT' => 100,
-  ),
   15 => 
   array (
     'CONDITION' => '#^/landings/#',
     'RULE' => '',
     'ID' => 'bitrix:catalog',
     'PATH' => '/landings/index.php',
-    'SORT' => 100,
-  ),
-  33 => 
-  array (
-    'CONDITION' => '#^/personal/#',
-    'RULE' => '',
-    'ID' => 'bitrix:sale.personal.section',
-    'PATH' => '/personal/index.php',
     'SORT' => 100,
   ),
   13 => 
@@ -104,6 +88,22 @@ $arUrlRewrite=array (
     'PATH' => '/services/index.php',
     'SORT' => 100,
   ),
+  33 => 
+  array (
+    'CONDITION' => '#^/personal/#',
+    'RULE' => '',
+    'ID' => 'bitrix:sale.personal.section',
+    'PATH' => '/personal/index.php',
+    'SORT' => 100,
+  ),
+  9 => 
+  array (
+    'CONDITION' => '#^/projects/#',
+    'RULE' => '',
+    'ID' => 'bitrix:news',
+    'PATH' => '/projects/index.php',
+    'SORT' => 100,
+  ),
   46 => 
   array (
     'CONDITION' => '#^/catalog/#',
@@ -112,7 +112,7 @@ $arUrlRewrite=array (
     'PATH' => '/catalog/index.php',
     'SORT' => 100,
   ),
-  45 => 
+  48 => 
   array (
     'CONDITION' => '#^/skidki/#',
     'RULE' => '',

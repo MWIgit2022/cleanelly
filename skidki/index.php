@@ -52,8 +52,9 @@ $APPLICATION->SetTitle("Скидки");
 			4 => "",
 		),
 		"LIST_PROPERTY_CODE" => array(
-			0 => "PERIOD",
-			1 => "",
+			0 => "",
+			1 => "PERIOD",
+			2 => "",
 		),
 		"HIDE_LINK_WHEN_NO_DETAIL" => "N",
 		"DISPLAY_NAME" => "N",
@@ -69,7 +70,8 @@ $APPLICATION->SetTitle("Скидки");
 			4 => "",
 		),
 		"DETAIL_PROPERTY_CODE" => array(
-			
+			0 => "",
+			1 => "",
 		),
 		"IBLOCK_CATALOG_TYPE" => "aspro_next_catalog",
 		"DISPLAY_DATE" => "Y",
@@ -144,8 +146,11 @@ $APPLICATION->SetTitle("Скидки");
 		),
 		"HIDE_NOT_AVAILABLE" => "N",
 		"FILE_404" => "",
+		"COMPOSITE_FRAME_MODE" => "A",
+		"COMPOSITE_FRAME_TYPE" => "AUTO",
 		"SEF_URL_TEMPLATES" => array(
 			"news" => "",
+			"section" => "",
 			"detail" => "#ELEMENT_CODE#/",
 		)
 	),

@@ -6343,14 +6343,14 @@ class SaleOrderAjax extends \CBitrixComponent
 				} 
 				
 				$discounts = $order->getDiscount()->getApplyResult()['DISCOUNT_LIST'];
-				$res = [];
+				$resz = [];
 				foreach ($discounts as $disc) {
-					$res[] = $disc['NAME'];
+					$resz[] = $disc['NAME'];
 				}
-				if (!empty($res)) {
+				if (!empty($resz)) {
 					$propertyCollection = $order->getPropertyCollection();
 					$promoPropValue = $propertyCollection->getItemByOrderPropertyId(37);
-					$promoPropValue->setValue($res);
+					$promoPropValue->setValue($resz);
 				}
 		
 				

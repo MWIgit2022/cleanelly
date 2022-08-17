@@ -35,7 +35,7 @@ $arNotify = unserialize($notifyOption);
 						<?if($arItem["PROPERTIES"]["HIT"]["VALUE"]):?>
 							<?$prop = ($arParams["STIKERS_PROP"] ? $arParams["STIKERS_PROP"] : "HIT");?>
 							<?foreach(CNext::GetItemStickers($arItem["PROPERTIES"][$prop]) as $arSticker):?>
-								<div><div class="<?=$arSticker['CLASS']?>"><?=$arSticker['VALUE']?></div></div>
+								<div><div class="<?=$arSticker['CLASS']?>"><?=$arSticker['VALUE']?><?if($arSticker['VALUE'] == 'Скидка'){ echo ' '.$arItem['MIN_PRICE']['DISCOUNT_DIFF_PERCENT'].'%'; }?></div></div>
 							<?endforeach;?>
 						<?endif;?>
 						<?if($arParams["SALE_STIKER"] && $arItem["PROPERTIES"][$arParams["SALE_STIKER"]]["VALUE"]){?>

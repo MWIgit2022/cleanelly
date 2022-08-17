@@ -7,15 +7,11 @@ $APPLICATION->SetTitle("О бренде Cleanelly");
 <ul>
 	<li><a href="/catalog/khalaty_1/" target="_blank"><u>махровые и вафельные халаты</u></a> — мужские, женские, подростковые, детские;</li>
 	<li><a href="/catalog/polotentsa_1/" target="_blank"><u>махровые и вафельные полотенца</u></a> — банные, пляжные, кухонные, детские;</li>
-	<li><u><a target="_blank" href="/catalog/tekstil_dlya_stolovoy_i_kukhni/skaterti_i_salfetki/">махровые салфетки</a></u>, рушники и рукавички;</li>
-	<li><a href="/catalog/tekstil_dlya_spalni/prostyni/" target="_blank"><u>махровые</u></a> и <a href="/catalog/dlya_spalni/prostyni_vafelnye/" target="_blank"><u>вафельные</u></a> простыни;</li>
- <br>
-</ul>
-<ul>
+	<li><a href="/catalog/tekstil_dlya_spalni/pokryvala_vafelnye/" target="_blank">вафельные</a> и <a href="/catalog/tekstil_dlya_spalni/pokryvala_makhrovye/">махровые покрывала</a></li>
 	<li><u><a href="https://www.cleanelly.ru/catalog/tekstil_dlya_detey/ugolki_posle_kupaniya/">детские уголки для купания</a></u>;</li>
 	<li><a target="_blank" href="/catalog/polotentsa_1/komplekty_polotenets_dlya_bani_sauny/"><u>махровые и вафельные комплекты для сауны</u></a>;</li>
 	<li><a href="/catalog/tekstil_dlya_stolovoy_i_kukhni/"><u>столовое белье</u></a> — скатерти, салфетки, полотенца;</li>
-	<li><a target="_blank" href="/catalog/tekstil_dlya_spalni/"><u>трикотажное постельное белье</u></a></li>
+	<li><a target="_blank" href="/catalog/tekstil_dlya_spalni/komplekty_postelnogo_belya/"><u>комплекты постельного белья</u></a></li>
 </ul>
 <h2 style="text-align: left;"><img alt="Logo_1.jpg" src="/upload/medialibrary/07c/Logo_1.jpg" title="Logo_1.jpg"><br>
  </h2>
@@ -39,7 +35,7 @@ $APPLICATION->SetTitle("О бренде Cleanelly");
 <p>
 	 Разнообразие материалов и стилевых решений, высокое европейское качество, функциональность и красота – всё это служит залогом полноценного отдыха и хорошего настроения для тех, кто предпочитает практичные и при этом модные вещи Cleanelly.
 </p>
-<h3><img alt="Logo_2.jpg" src="/upload/medialibrary/41a/Logo_2.jpg" title="Logo_2.jpg" width="1023" height="367"><br>
+<h3><img width="1023" alt="Logo_2.jpg" src="/upload/medialibrary/41a/Logo_2.jpg" height="367" title="Logo_2.jpg"><br>
  </h3>
 <h3>Cleanelly Perfetto — истинное наслаждение от каждого прикосновения…</h3>
 <p>
@@ -56,7 +52,7 @@ $APPLICATION->SetTitle("О бренде Cleanelly");
 </p>
 <h2><br>
  </h2>
- <img alt="Logo_3.jpg" src="/upload/medialibrary/621/Logo_3.jpg" title="Logo_3.jpg" width="1024" height="353"><br>
+ <img width="1024" alt="Logo_3.jpg" src="/upload/medialibrary/621/Logo_3.jpg" height="353" title="Logo_3.jpg"><br>
 <h2>Cleanelly Collection</h2>
 <p>
 	 Под брендом Cleanelly Collection создаются эксклюзивные коллекции текстильных товаров для ванной, спальни и кухни, выполненные в едином стиле.
@@ -69,7 +65,7 @@ $APPLICATION->SetTitle("О бренде Cleanelly");
 </p>
 <h2><br>
  </h2>
- <img alt="dm_lux_russ.png" src="/upload/medialibrary/753/dm_lux_russ.png" title="dm_lux_russ.png" width="800" height="424">
+ <img width="800" alt="dm_lux_russ.png" src="/upload/medialibrary/753/dm_lux_russ.png" height="424" title="dm_lux_russ.png">
 <h2>ДМ-люкс</h2>
 <p>
 	 Махровые полотенца, комплекты для сауны, рушники, выпускаемые под торговой маркой «ДМ-люкс» изготовлены из 100% хлопка и окрашены в яркие, радостные тона. Красивые и доступные по цене вещи предназначены для практичных людей, предпочитающих качество и надёжность.
@@ -82,7 +78,7 @@ $APPLICATION->SetTitle("О бренде Cleanelly");
 </p>
 <h2><br>
  </h2>
- <img alt="dm.png" src="/upload/medialibrary/841/dm.png" title="dm.png" width="800" height="424">
+ <img width="800" alt="dm.png" src="/upload/medialibrary/841/dm.png" height="424" title="dm.png">
 <h2>ДМ</h2>
 <p>
 	 Красивые и яркие махровые изделия, выпускаемые под торговой маркой «ДМ», предназначены для людей, которые ценят качество и надежность. Полотенца и салфетки под маркой «ДМ» выпускается из 100%-ной хлопковой пряжи, они идеально подходят для дома и отдыха.

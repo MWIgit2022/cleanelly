@@ -3116,8 +3116,8 @@ $('.set_block').ready(function () {
 
         buyBlock.find('.counter_wrapp .counter_block input').data('product', 'ob' + this.obProduct.id);
         this.setPriceAction('', 'Y');
-		if($('.sticker_skidka').length>0){
-			$('.sticker_skidka').text('Скидка '+obj.PRICE.DISCOUNT_DIFF_PERCENT.replace('-',''));
+		if($('.catalog_detail .sticker_skidka').length>0){
+			$('.catalog_detail .sticker_skidka').text('Скидка '+obj.PRICE.DISCOUNT_DIFF_PERCENT.replace('-',''));
 		}
     }
 
