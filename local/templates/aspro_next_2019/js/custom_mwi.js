@@ -37,3 +37,5 @@ $(document).on('click', '.overl_action_banner .clos', function(){
 $(document).on('click', '.sberbank__payment-link', function(){
 	ym(22769200,'reachGoal','Continue-to-payment');
 });
+
+

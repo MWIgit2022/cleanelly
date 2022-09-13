@@ -70,7 +70,7 @@
 			<div class="overl_action_banner" style="display:none;"> 
 				<div class="closdiv">
 					<span class="clos">✖</span>
-					<a href="/catalog/action.php" onclick="ym(22769200,'reachGoal','clikck-popup_banner')">
+					<a href="<?=$settings['ACTION_BANNER']['DESCRIPTION']?>" onclick="ym(22769200,'reachGoal','clikck-popup_banner')">
 						<img src="<?=CFile::getPath($settings['ACTION_BANNER']['VALUE'])?>">
 					</a>
 				</div>
