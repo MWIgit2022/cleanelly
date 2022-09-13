@@ -79,8 +79,8 @@ $logoClass = ($arTheme['COLORED_LOGO']['VALUE'] !== 'Y' ? '' : ' colored');
 							<img src="<?=SITE_TEMPLATE_PATH?>/images/track_order.png" style="max-width:20px">
 							Отследить мой заказ
 						</a>
-                        <a href="tel:88005115203"><img src="<?=SITE_TEMPLATE_PATH?>/images/phone_round.svg" width="30" height="30" alt="phone_round"></a>
-					    <a href="https://wa.me/79613004564"><img src="<?=SITE_TEMPLATE_PATH?>/images/whatsapp_round.svg" width="30" height="30" alt="whatsapp_round"></a>
+                        <a href="tel:88005115203" onclick="ym(22769200,'reachGoal','Phone-click')"><img src="<?=SITE_TEMPLATE_PATH?>/images/phone_round.svg" width="30" height="30" alt="phone_round"></a>
+					    <a onclick="ym(22769200,'reachGoal','Click-whatsapp')" href="https://wa.me/79613004564"><img src="<?=SITE_TEMPLATE_PATH?>/images/whatsapp_round.svg" width="30" height="30" alt="whatsapp_round"></a>
 					</div>
 	</div>
 </div>

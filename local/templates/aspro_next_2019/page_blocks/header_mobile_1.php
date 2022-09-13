@@ -31,8 +31,8 @@ $logoClass = ($arTheme['COLORED_LOGO']['VALUE'] !== 'Y' ? '' : ' colored');
 			</div>
 		</div>
 		<div class="pull-right header-socials" >
-			<a href="tel:88005115203"><img src="<?=SITE_TEMPLATE_PATH?>/images/phone_round.svg" alt="phone_round"></a>
-			<a href="https://wa.me/79613004564"><img src="<?=SITE_TEMPLATE_PATH?>/images/whatsapp_round.svg" alt="whatsapp_round"></a>
+			<a href="tel:88005115203" onclick="ym(22769200,'reachGoal','Phone-click')"><img src="<?=SITE_TEMPLATE_PATH?>/images/phone_round.svg" alt="phone_round"></a>
+			<a href="https://wa.me/79613004564" onclick="ym(22769200,'reachGoal','Click-whatsapp')"><img src="<?=SITE_TEMPLATE_PATH?>/images/whatsapp_round.svg" alt="whatsapp_round"></a>
 		</div>
 	</div>
 </div>

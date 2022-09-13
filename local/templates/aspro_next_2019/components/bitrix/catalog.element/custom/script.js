@@ -120,7 +120,10 @@ $(document).ready(function () {
             showBuyNoPopup();
             e.stopImmediatePropagation();
             return false;
-        }
+        } else {
+			ym(22769200,'reachGoal','add-in-basket');
+			console.log('yy');
+		}
 //        }
     });
 

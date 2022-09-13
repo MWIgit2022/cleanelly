@@ -48,3 +48,10 @@
 .item_block.banner a img{
 	width:100%;
 }
+.catalog_block .catalog_item_wrapp .catalog_item {
+    box-shadow: 0 0 0 1px #f2f2f2 inset;
+}
+
+.catalog.action .item_wrap.hover, .catalog .item_wrap.touch.hover, .catalog.action .item_wrap:not(.touch):hover {
+    box-shadow: 0 0 0 1px #ccc inset;
+}

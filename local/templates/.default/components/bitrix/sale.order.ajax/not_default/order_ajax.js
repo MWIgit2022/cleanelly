@@ -1959,6 +1959,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 
 		doSaveAction: function()
 		{
+			ym(22769200,'reachGoal','order-success');
 			if (this.isOrderSaveAllowed())
 			{
 				this.reachGoal('order');
