@@ -127,3 +127,61 @@ if ($arParams["SET_TITLE"] == "Y")
 	</table>
 
 <? endif ?>
+
+<?
+$order = Bitrix\Sale\Order::load($arResult['ORDER']['ID']);
+$propertyCollection = $order->getPropertyCollection();
+$ar = $propertyCollection->getArray();
+foreach($ar['properties'] as $prop){
+	$props_arr[$prop['CODE']] = $prop;
+}
+$user_id = $order->getUserId();
+$rsUser = CUser::GetByID($user_id); 
+$arUser = $rsUser->Fetch();
+
+if($arUser && $props_arr['DISCOUNT_CARD']['VALUE'][0]== 'Y'){?>
+
+	<div style="display: none; width: 500px;" id="hidden">
+		<h2>Код из СМС</h2>
+		<p>
+			Вы хотели получить дисконтную карту, для её активации введите код из смс. 
+		</p>
+		<p>
+			Смс отправлено на номер <?=$arUser['PERSONAL_PHONE']?>
+		</p>
+		<input type="text" name="sms_cd" placeholder="Введите код...">
+		<a class="resend disable" href="javascript:void(0)" onclick="reSend(this)">Отправть повторно</a>
+		<button onclick="checkCode(this)" style="margin:1em 0" type="button" class="btn btn-default aprove">Подтвердить</button>
+		<div class="rez"></div>
+	</div>
+	
+<script>
+$(window).load(function(){
+	$.fancybox.open($('#hidden').html());	
+	$('.fancybox-inner input[name="sms_cd"]').focus();
+	setTimeout(function(){
+		$('.resend.disable').removeClass('disable');
+	},60000);
+})
+function checkCode(th){
+	 $.ajax({
+            type: "POST",
+            url: '/local/dc/check_code.php',
+            data: 'code='+$(th).parent().find('input').val()+'&phone=<?=$arUser['PERSONAL_PHONE']?>',
+            success: function (data) {
+				$(th).parent().find('.rez').html(data);
+			}
+	 })
+}
+function reSend(th){
+	 $.ajax({
+            type: "POST",
+            url: '/local/dc/resend_code.php',
+            data: 'phone=<?=$arUser['PERSONAL_PHONE']?>',
+            success: function (data) {
+				$(th).parent().find('.rez').html(data);
+			}
+	 })
+}
+</script>
+<?}

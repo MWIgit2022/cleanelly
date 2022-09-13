@@ -1806,3 +1806,20 @@ label[for="soa-property-33"] {
     font-size: 1.5em;
     margin-top: 0.5em;
 }
+.success{
+	color:green;
+	margin: 0.5em;
+}
+.error{
+	color:red;
+	margin: 0.5em;
+}
+.resend{
+	display: block;
+    margin-top: 0.5em;
+    color: #800;
+}
+.resend.disable{
+    color: #777;
+    cursor: default;
+}

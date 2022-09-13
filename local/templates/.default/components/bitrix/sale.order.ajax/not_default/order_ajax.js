@@ -1976,6 +1976,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 					this.sendRequest('saveOrderAjax');
 				}					
 			}
+			ym(22769200,'reachGoal','order-success');
 		},
 
 		/**

@@ -6305,7 +6305,7 @@ class SaleOrderAjax extends \CBitrixComponent
 		{
 			$arResult["ORDER_ID"] = $res->getId();
 			
-			$order = Sale\Order::load($arResult["ORDER_ID"]); 
+			$order = Bitrix\Sale\Order::load($arResult["ORDER_ID"]); 
 			$paymentCollection = $order->getPaymentCollection();
 			$DeliveryTrue = 0;
 			foreach($paymentCollection as $payment){
@@ -6343,14 +6343,14 @@ class SaleOrderAjax extends \CBitrixComponent
 				} 
 				
 				$discounts = $order->getDiscount()->getApplyResult()['DISCOUNT_LIST'];
-				$res = [];
+				$resd = [];
 				foreach ($discounts as $disc) {
-					$res[] = $disc['NAME'];
+					$resd[] = $disc['NAME'];
 				}
-				if (!empty($res)) {
+				if (!empty($resd)) {
 					$propertyCollection = $order->getPropertyCollection();
 					$promoPropValue = $propertyCollection->getItemByOrderPropertyId(37);
-					$promoPropValue->setValue($res);
+					$promoPropValue->setValue($resd);
 				}
 		
 				
