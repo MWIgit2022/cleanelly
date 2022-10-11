@@ -1,7 +1,7 @@
 <?
 include($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
 
-$json_code = '{"phone":"+7 (918) 111-11-11"}';
+$json_code = file_get_contents('php://input');//'{"phone":"+7 (918) 111-11-11"}';
 $data = json_decode($json_code,true);
 $res = Bitrix\Main\UserTable::getList([
     "select" => ["ID", "ACTIVE"],
