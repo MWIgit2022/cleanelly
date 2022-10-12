@@ -476,6 +476,9 @@ $(document).ready(function(){
 		  range.moveStart('character', pos);
 		  range.select();
 		}
+		if(!$('.appendig_adress').length){
+			$('div[data-property-id-row="7"]').append('<div class="appendig_adress"></div>');
+		}
 	  };
 	 
 	total_coupon = $('#bx-soa-total .bx-soa-cart-total .change_basket')[0].outerHTML;
@@ -487,6 +490,9 @@ $(document).ready(function(){
 			} else {
 				total_coupon = $('#bx-soa-total .bx-soa-cart-total .change_basket')[0].outerHTML;
 			}
+			if(!$('.appendig_adress').length){
+				$('div[data-property-id-row="7"]').append('<div class="appendig_adress"></div>');
+			}
 		 }, 200);
      });
 })
@@ -496,3 +502,66 @@ $(document).on('click', '.order-promocode-block-promocode-btn', function(){
 	BX.Sale.OrderAjaxComponent.sendRequest('enterCoupon', coupon);
 })
 function numberWithCommas(x) {return x.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} 
+
+$(document).on('focus','[name="ORDER_PROP_7"]', function(){
+	var token = "e01ad93c1cc25a045b3aefcdfee5a8e8aef8070d"; //dadata
+	if($('div[data-property-id-row="5"] input').val()) {
+						//$.ajax({
+						//	type: 'POST',
+						//	url: '/local/ajax/getCityName.php',
+						//	data: {code: $('div[data-property-id-row="5"] input').val()},
+							//success: function(city){
+							var city = $('div[data-property-id-row="5"] input').val();
+							console.log(city);
+								if(city){
+									$(document).on('keyup', '[name=ORDER_PROP_7]', function () {
+
+										let addressField = $(this);
+										let url = "https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address";
+
+										let queryCity = $(this).val();
+										var options = {
+											method: "POST",
+											mode: "cors",
+											headers: {
+												"Content-Type": "application/json",
+												"Accept": "application/json",
+												"Authorization": "Token " + token
+											},
+											body: JSON.stringify({
+												"query": queryCity,
+												"locations": [{
+													"city": city
+												}]
+											})
+										}
+
+										fetch(url, options)
+											.then(response => response.text())
+											.then(result => {
+												let res = JSON.parse(result);
+												$('.appendig_adress').html('');
+												if (res.suggestions.length != 0) {
+													res.suggestions.forEach(function(item, i, arr) {
+														$('.appendig_adress').append('<a href="javascript:void(0)">'+ item.value +'</a>');
+														$('.appendig_adress').show();
+													});
+
+													$(document).on('click', '.appendig_adress a', function(){
+														$('[name=ORDER_PROP_7]').val($(this).text()).focus();
+														$('.address_variants').hide();
+													})
+													$(document).on('click', 'body', function(){
+														$('.appendig_adress').hide();
+													})
+												} else {
+													$('.appendig_adress').hide();
+												}
+											})
+											.catch(error => console.log("error", error));
+									});
+								}
+							//}
+						//});
+					}
+})

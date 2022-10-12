@@ -1823,3 +1823,35 @@ label[for="soa-property-33"] {
     color: #777;
     cursor: default;
 }
+div[data-property-id-row="5"],div[data-property-id-row="37"]{
+	display:none;
+}
+.bx-soa-customer{
+	display:flex;
+	flex-direction:column;
+}
+
+.appendig_adress, .appendig_find_city{
+  position: absolute;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  max-height:50vh;
+  overflow:hidden;
+  overflow-y: scroll
+}
+.appendig_adress a, .appendig_find_city a{
+  padding: 0.25em;
+  border-bottom: 1px dotted;
+  width: 100%;
+  z-index:9;
+  text-decoration:none;
+  color:#111;
+  font-size: 14px;
+}
+.appendig_adress a:hover, .appendig_find_city a:hover{
+  background: #ccc;
+}

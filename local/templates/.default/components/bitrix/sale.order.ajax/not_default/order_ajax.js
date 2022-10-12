@@ -6856,6 +6856,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 				});
 				
 				propsItemNode.setAttribute('data-property-id-row', property.getId());
+				$(propsItemNode).css('order',property.getSettings().SORT);
 				propsItemNode.appendChild(label);
 			}
 
@@ -8062,6 +8063,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 
 		editTotalBlock: function()
 		{
+			
 			if (!this.totalInfoBlockNode || !this.result.TOTAL)
 				return;
 
