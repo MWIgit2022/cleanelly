@@ -138,21 +138,30 @@ foreach($ar['properties'] as $prop){
 $user_id = $order->getUserId();
 $rsUser = CUser::GetByID($user_id); 
 $arUser = $rsUser->Fetch();
-
+$statuses_n_active = array(20,19,23);
 if($arUser && $props_arr['DISCOUNT_CARD']['VALUE'][0]== 'Y'){?>
-
 	<div style="display: none; width: 500px;" id="hidden">
-		<h2>Код из СМС</h2>
-		<p>
-			Вы хотели получить дисконтную карту, для её активации введите код из смс. 
-		</p>
-		<p>
-			Смс отправлено на номер <?=$arUser['PERSONAL_PHONE']?>
-		</p>
-		<input type="text" name="sms_cd" placeholder="Введите код...">
-		<a class="resend disable" href="javascript:void(0)" onclick="reSend(this)">Отправть повторно</a>
-		<button onclick="checkCode(this)" style="margin:1em 0" type="button" class="btn btn-default aprove">Подтвердить</button>
-		<div class="rez"></div>
+		<?if(in_array($arUser['UF_DISCOUNT_CARD_STATUS'],$statuses_n_active) || !$arUser['UF_DISCOUNT_CARD_STATUS']){?>
+			<h2>Код из СМС</h2>
+			<p>
+				Вы хотели получить дисконтную карту, для её активации введите код из смс. 
+			</p>
+			<p>
+				Смс отправлено на номер <?=$arUser['PERSONAL_PHONE']?>
+			</p>
+			<input type="text" name="sms_cd" placeholder="Введите код...">
+			<a class="resend disable" href="javascript:void(0)" onclick="reSend(this)">Отправть повторно</a>
+			<button onclick="checkCode(this)" style="margin:1em 0" type="button" class="btn btn-default aprove">Подтвердить</button>
+			<div class="rez"></div>
+		<?} else {?>
+			<h2>Карта уже присвоена</h2>
+			<p>
+				Вы хотели получить дисконтную карту 
+			</p>
+			<p>
+				За пользователем уже закреплена дисконтная карта <?=$arUser['UF_DISCOUNT_CARD_ID']?>
+			</p>
+		<?}?>
 	</div>
 	
 <script>

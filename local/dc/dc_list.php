@@ -1,5 +1,8 @@
 <?
 include($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
+if (file_exists($_SERVER["DOCUMENT_ROOT"].'/local/dc/dc_functions.php')) {
+    include($_SERVER["DOCUMENT_ROOT"] . '/local/dc/dc_functions.php');
+}
 //$_SERVER['PHP_AUTH_USER'] = 'admin';
 //$_SERVER['PHP_AUTH_PW'] = 'sVn7u&*l#Hs2hy';
 $auth = LoginByHttpAuth();
@@ -19,7 +22,14 @@ if($USER->isAdmin()){
 				$status_arr[$arStatus['ID']] =  $arStatus["XML_ID"];
 			}
 	while ($arRes = $res->fetch()) {
+	
+		
+		
 		$json = json_decode($arRes['UF_DISCOUNT_JSON'],true);
+		
+		$json = getFormatDCFields( $json );
+
+		
 		unset($arRes['UF_DISCOUNT_JSON']);
 		$add_arr = ['dcid'=>$arRes['UF_DISCOUNT_CARD_ID'], 'status'=>$status_arr[$arRes['UF_DISCOUNT_CARD_STATUS']]];
 		$result[] = array_merge($json,$add_arr);

@@ -27,11 +27,11 @@ use Bitrix\Main;
 							'QUANTITY' => 1,
 							'CURRENCY' => Bitrix\Currency\CurrencyManager::getBaseCurrency(),
 							'LID' => Bitrix\Main\Context::getCurrent()->getSite(),
-							'BASE_PRICE' => 1,
+							'BASE_PRICE' => $arPrice['PRICE']['PRICE'],
 							'PRICE' => 1,
-							'DISCOUNT_PRICE'=>0,
+							'DISCOUNT_PRICE'=>$arPrice['PRICE']['PRICE'] - 1,
 							'PRODUCT_PROVIDER_CLASS' => 'CCatalogProductProvider',
-							'CUSTOM_PRICE' => 'Y',
+							'CUSTOM_PRICE' => 'N',
 							'NAME'=>$ar_res['NAME'],
 							'DETAIL_PAGE_URL'=>$ar_res['DETAIL_PAGE_URL']
 					   ));

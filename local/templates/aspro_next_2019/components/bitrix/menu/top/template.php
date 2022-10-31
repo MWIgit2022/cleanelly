@@ -25,7 +25,7 @@ $iVisibleItemsMenu = ($arTheme['MAX_VISIBLE_ITEMS_MENU']['VALUE'] ? $arTheme['MA
 							</a>
 							<?if($arItem["CHILD"] && $bShowChilds):?>
 								<span class="tail"></span>
-								<ul class="dropdown-menu">
+								<ul class="dropdown-menu <?if($arItem['TEXT'] == 'Полотенца'){?>polotentsa_menu<?}?>">
 									<?foreach($arItem["CHILD"] as $arSubItem):?>
 										<?$bShowChilds = $arParams["MAX_LEVEL"] > 2;?>
 										<?$bHasPicture = (isset($arSubItem['PARAMS']['PICTURE']) && $arSubItem['PARAMS']['PICTURE'] && $arTheme['SHOW_CATALOG_SECTIONS_ICONS']['VALUE'] == 'Y');?>

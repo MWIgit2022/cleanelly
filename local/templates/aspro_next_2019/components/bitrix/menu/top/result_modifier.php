@@ -1,10 +1,10 @@
 <?$arResult = CNext::getChilds($arResult);
 
 $arFilter = array('IBLOCK_ID' => 17,'ACTIVE'=>'Y', '!UF_CAT_IN_MENU'=>false);
-	$rsSect = CIBlockSection::GetList(array('left_margin' => 'asc'),$arFilter,false, array('UF_CAT_IN_MENU'));
+	$rsSect = CIBlockSection::GetList(array('left_margin' => 'asc'),$arFilter,false, array('UF_CAT_IN_MENU','SECTION_ID'));
 	while ($arSect = $rsSect->GetNext())
 	{
-		$sect_lvls[$arSect['UF_CAT_IN_MENU']][$arSect['NAME']] = array('TEXT'=>$arSect['NAME'], 'LINK'=>$arSect['SECTION_PAGE_URL']);
+		$sect_lvls[$arSect['UF_CAT_IN_MENU']][$arSect['IBLOCK_SECTION_ID']][$arSect['NAME']] = array('TEXT'=>$arSect['NAME'], 'LINK'=>$arSect['SECTION_PAGE_URL']);
 	}
 
 $arSect = false;
@@ -33,7 +33,7 @@ if($arResult){
 
 	if($arItemChild['PARAMS']['DEPTH_LEVEL'] == 2){
 			   $arFilter = array('IBLOCK_ID' => 17,'ACTIVE'=>'Y', 'NAME'=>$arItemChild['TEXT']);
-			   $rsSect = CIBlockSection::GetList(array('left_margin' => 'asc'),$arFilter,false, array('UF_CAT_IN_MENU'));
+			   $rsSect = CIBlockSection::GetList(array('left_margin' => 'asc'),$arFilter,false, array('UF_CAT_IN_MENU', 'SECTION_ID'));
 			   while ($arSect = $rsSect->GetNext())
 			   {
 				   if($arSect['UF_CAT_IN_MENU']){
@@ -45,7 +45,7 @@ if($arResult){
 					    if($sect_lvls[$arSect['UF_CAT_IN_MENU']][$arItemChild['TEXT']] && $arItemChild['CHILD']){
 							$sect_lvls[$arSect['UF_CAT_IN_MENU']][$arItemChild['TEXT']]['CHILD'] = $arItemChild['CHILD'];
 					   }
-					   $arResult[$key]['CHILD'][$arSect['UF_CAT_IN_MENU']]['CHILD'] = $sect_lvls[$arSect['UF_CAT_IN_MENU']];
+					   $arResult[$key]['CHILD'][$arSect['UF_CAT_IN_MENU']]['CHILD'] = $sect_lvls[$arSect['UF_CAT_IN_MENU']][$arSect['IBLOCK_SECTION_ID']];
 					 
 					   unset($arResult[$key]['CHILD'][$key2]);
 				   }

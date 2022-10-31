@@ -8757,6 +8757,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 					if(customerFieldCheckbox.prop("checked")) {
 						propDateField.show();
 						customerFieldCardCheckbox.prop('checked', false);
+						$('[data-property-id-row="33"]').hide();
 						customerFieldNumber.val("");
 					} else {
 						propDateField.hide();
