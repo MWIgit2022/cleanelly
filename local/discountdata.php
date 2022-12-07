@@ -17,6 +17,7 @@ echo '</pre>';
 
 
 global $DB;
+global $USER;
 $yesterday = date('d.m.Y', strtotime('yesterday'));
 $today = date('d.m.Y');
 
@@ -45,14 +46,27 @@ while ($ar_sales = $db_sales->Fetch())
 			$delivery_discount = 1;
 		}	
 	}
+	$deliveryIds = $order->getDeliverySystemId();
+  $delivery_arr = [];
+	if($deliveryIds){
+		$delivery_arr = Bitrix\Sale\Delivery\Services\Manager::getById(current($deliveryIds));
+	}
 	$order_info[$order->getId()] = array(
 		'DATE'=>$order->getField('DATE_UPDATE')->format("Y-m-d H:i:s"),
 		'ID' => $order->getId(),
+		'DELIVERY' =>$delivery_arr['NAME'],
+		'DELIVERY_PRICE'=>$order->getDeliveryPrice()
 	);
 	foreach ($basket as $basketItem){
 		$basketPropertyCollection = $basketItem->getPropertyCollection();
 		$props = $basketPropertyCollection->getPropertyValues();
-		$xmls[$basketItem->getId()] = $props['PRODUCT.XML_ID']['VALUE'];
+		$xmls[$basketItem->getId()] = $basketItem->getField('PRODUCT_XML_ID');
+		if($basketItem->getField('PRODUCT_XML_ID') == false){
+			$not_found_xml = CIBlockElement::GetByID($basketItem->getProductId());
+			if($ar_not_found_xml = $not_found_xml->GetNext()){
+				$xmls[$basketItem->getId()] = $ar_not_found_xml['XML_ID'];
+			}
+		}
 		if($props['SALE_NUMBER']){
 			if($delivery_discount && $order->getPrice()>=5000){
 				$props['SALE_NUMBER']['VALUE'].=' + скидка за оплату на сайте';
@@ -66,8 +80,10 @@ while ($ar_sales = $db_sales->Fetch())
 			$discount_arr[$xmls[$basketItem->getId()]]['DISCOUNTS']['акция '.$props['GIFT_NUMB']['VALUE']] = ($basketItem->getField('BASE_PRICE')-$basketItem->getPrice())*$basketItem->getField('QUANTITY');
 			
 		}
+		
 		$discount_arr[$xmls[$basketItem->getId()]]['BASE_AMOUNT'] =  $basketItem->getField('BASE_PRICE')*$basketItem->getField('QUANTITY');
 		$discount_arr[$xmls[$basketItem->getId()]]['QUANTITY'] = $basketItem->getField('QUANTITY');
+		$prices[$xmls[$basketItem->getId()]] = $basketItem->getPrice()*$basketItem->getField('QUANTITY');
 	}
 	$discountData = $order->getDiscount()->getApplyResult(true);
 	foreach($discountData['DISCOUNT_LIST'] as $d){
@@ -82,8 +98,22 @@ while ($ar_sales = $db_sales->Fetch())
 			}
 		}
 	}
-	$order_info[$order->getId()]['PRODUCTS'] = $discount_arr;
 	
+	
+	foreach($discount_arr as $k=>&$arr){
+		
+		if($arr['DISCOUNTS'] == false && $arr['BASE_AMOUNT']>$prices[$k]){
+			$arr['DISCOUNTS']['CUSTOM_PRICE'] = $arr['BASE_AMOUNT'] - $prices[$k];
+		}
+	}
+	
+	$order_info[$order->getId()]['PRODUCTS'] = $discount_arr;
+}
+//ksort($order_info);
+if($USER->getId() == '1'){
+	echo '<pre>';
+		print_r($order_info);
+	echo '</pre>';
 }
  echo $json_order = json_encode($order_info, JSON_UNESCAPED_UNICODE);
 ?>

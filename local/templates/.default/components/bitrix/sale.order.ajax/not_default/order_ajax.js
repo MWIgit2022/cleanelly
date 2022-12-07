@@ -332,7 +332,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 							if(result.order.GRID.ROWS[key].data.CUSTOM_PRICE == 'N'){
 								priceAfter+= result.order.GRID.ROWS[key].data.PRICE*result.order.GRID.ROWS[key].data.QUANTITY;
 							} else {
-								priceAfter+=(result.order.GRID.ROWS[key].data.PRICE-result.order.GRID.ROWS[key].data.PRICE/100*5)*result.order.GRID.ROWS[key].data.QUANTITY;
+								priceAfter+=Math.round(result.order.GRID.ROWS[key].data.PRICE-result.order.GRID.ROWS[key].data.PRICE/100*5)*result.order.GRID.ROWS[key].data.QUANTITY;
 							}
 						}
 				

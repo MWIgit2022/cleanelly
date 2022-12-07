@@ -167,7 +167,17 @@ $arViewedData = array(
 		<div class="stickers">
 			<?$prop = ($arParams["STIKERS_PROP"] ? $arParams["STIKERS_PROP"] : "HIT");?>
 			<?foreach(CNext::GetItemStickers($arResult["PROPERTIES"][$prop]) as $arSticker):?>
-				<div><div class="<?=$arSticker['CLASS']?>"><?=$arSticker['VALUE']?><?if($arSticker['VALUE'] == 'Скидка'){ echo ' '.$arResult['MIN_PRICE']['DISCOUNT_DIFF_PERCENT'].'%'; }?></div></div>
+				<?if($arSticker['VALUE'] == 'Скидка' && !$arResult['MIN_PRICE']['DISCOUNT_DIFF_PERCENT']){
+					continue;
+				}?>					
+				<div>
+					<div class="<?=$arSticker['CLASS']?>">
+						<?=$arSticker['VALUE']?>
+						<?if($arSticker['VALUE'] == 'Скидка'){ 
+							echo ' '.$arResult['MIN_PRICE']['DISCOUNT_DIFF_PERCENT'].'%'; 
+						}?>
+					</div>
+				</div>
 			<?endforeach;?>
 			<?if($arParams["SALE_STIKER"] && $arResult["PROPERTIES"][$arParams["SALE_STIKER"]]["VALUE"]){?>
 				<div><div class="sticker_sale_text"><?=$arResult["PROPERTIES"][$arParams["SALE_STIKER"]]["VALUE"];?></div></div>
@@ -585,7 +595,10 @@ $arViewedData = array(
 						<? //deb($arResult["SIZE_PATH"], false)?>
 
 						<div class="table_sizes">
-							<span><span class="animate-load link" data-event="jqm" data-param-form_id="TABLES_SIZE" data-param-url="<?=$arResult["SIZE_PATH"];?>" data-name="TABLES_SIZE"><?=GetMessage("TABLES_SIZE");?></span></span>
+							<span>
+								<span class="animate-load link" data-event="jqm" data-param-form_id="TABLES_SIZE" data-param-url="<?=$arResult["SIZE_PATH"];?>" data-name="TABLES_SIZE"><?=GetMessage("TABLES_SIZE");?></span>
+								<span class="show_calculator_sizes">Рассчитать размер</span>
+							</span>
 						</div>
 					<?endif;?>
 					<?if(!$arResult["OFFERS"]):?>
@@ -646,6 +659,22 @@ $arViewedData = array(
 					<?endif;?>
 					
 					
+				</div>
+				<div class="subscribe"> 
+						<span class="btn-lg ss to-subscribe auth nsubsc btn btn-default transition_bg has-ripple" 
+							data-name="subscribe"
+							data-param-form_id="subscribe" 
+							rel="nofollow"
+							data-props="CML2_ARTICLE;SIZES" 
+							data-item="<?=$arResult["ID"]?>">
+								<span>Уведомить о поступлении</span>
+							</span>
+						<span 
+							class="btn-lg ss in-subscribe  auth nsubsc btn btn-default transition_bg has-ripple" rel="nofollow" style="display:none;" 
+							data-props="CML2_ARTICLE;SIZES;"
+							data-item="<?=$arResult["ID"]?>">
+								<span>Отписаться</span>
+						</span>
 				</div>
 				<div class="halva_container">
 					<div class="halva">
@@ -1991,4 +2020,17 @@ if ($arResult['CATALOG'] && $arParams['USE_GIFTS_MAIN_PR_SECTION_LIST'] == 'Y' &
 		    </iframe>
 	    </div>
 	</div>
+<div class="calculator" style="display:none;">
+	<p class="сalc_header">Узнать свой размер</p>
+	<div class="calculator_tabs">
+		<span data-arr="men" data-fields='{"GRUD":"Обхват груди (см)","TALIA":"Обхват талии (см)","BEDRA":"Обхват бедер (см)","NECK":" Обхват шеи (см)"}' class="active">Мужчины</span>
+		<span data-arr="women" data-fields='{"GRUD":"Обхват груди (см)","TALIA":"Обхват талии (см)","BEDRA":"Обхват бедер (см)"}'>Женщины</span>
+		<span data-arr="children" data-fields='{"ROST":"Рост ребенка (см)","AGE":"Возраст","GRUD":"Обхват груди (см)","TALIA":"Обхват талии (см)","SPINKA":"Ширина спинки на уровне глубины проймы (см)","DLINA":"Длина изделия по спинке (см)","RUKAV":"Длина рукава от плеча (см)"}'>Дети</span>
+	</div>
+	<form class="calculator_form">
+		<div class="inputs"> </div>
+		<div class="result"></div>
+		<button class="btn btn-default aprove">Рассчитать</button>
+	</form>
+</div>
 </div>

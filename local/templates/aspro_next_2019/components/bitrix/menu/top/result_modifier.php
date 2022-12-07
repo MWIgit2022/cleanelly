@@ -1,10 +1,10 @@
 <?$arResult = CNext::getChilds($arResult);
 
 $arFilter = array('IBLOCK_ID' => 17,'ACTIVE'=>'Y', '!UF_CAT_IN_MENU'=>false);
-	$rsSect = CIBlockSection::GetList(array('left_margin' => 'asc'),$arFilter,false, array('UF_CAT_IN_MENU'));
+	$rsSect = CIBlockSection::GetList(array('left_margin' => 'asc'),$arFilter,false, array('UF_CAT_IN_MENU','SECTION_ID'));
 	while ($arSect = $rsSect->GetNext())
 	{
-		$sect_lvls[$arSect['UF_CAT_IN_MENU']][$arSect['NAME']] = array('TEXT'=>$arSect['NAME'], 'LINK'=>$arSect['SECTION_PAGE_URL']);
+		$sect_lvls[$arSect['UF_CAT_IN_MENU']][$arSect['IBLOCK_SECTION_ID']][$arSect['NAME']] = array('TEXT'=>$arSect['NAME'], 'LINK'=>$arSect['SECTION_PAGE_URL']);
 	}
 
 $arSect = false;
@@ -12,13 +12,12 @@ global $arRegion, $arTheme;
 if($arResult){
 	foreach($arResult as $key=>$arItem)
 	{
-		
-		if($arItem['DEPTH_LEVEL'] == 2){
+		if($arItem['DEPTH_LEVEL'] == 1){
 			   $arFilter = array('IBLOCK_ID' => 17,'ACTIVE'=>'Y', 'NAME'=>$arItem['TEXT']);
-			   $rsSect = CIBlockSection::GetList(array('left_margin' => 'asc'),$arFilter,false, array('UF_CAT_IN_MENU'));
+			   $rsSect = CIBlockSection::GetList(array('left_margin' => 'asc'),$arFilter,false, array('ID'));
 			   while ($arSect = $rsSect->GetNext())
 			   {
-				   
+				   $arItem['SECTION_ID'] = $arSect['ID'];
 			   }
 			}
 		
@@ -32,8 +31,9 @@ if($arResult){
 			
 
 	if($arItemChild['PARAMS']['DEPTH_LEVEL'] == 2){
-			   $arFilter = array('IBLOCK_ID' => 17,'ACTIVE'=>'Y', 'NAME'=>$arItemChild['TEXT']);
-			   $rsSect = CIBlockSection::GetList(array('left_margin' => 'asc'),$arFilter,false, array('UF_CAT_IN_MENU'));
+		
+			   $arFilter = array('IBLOCK_ID' => 17,'ACTIVE'=>'Y', 'SECTION_ID'=>$arItem['SECTION_ID'], 'NAME'=>$arItemChild['TEXT']);
+			   $rsSect = CIBlockSection::GetList(array('left_margin' => 'asc'),$arFilter,false, array('ID', 'UF_CAT_IN_MENU', 'IBLOCK_SECTION_ID'));
 			   while ($arSect = $rsSect->GetNext())
 			   {
 				   if($arSect['UF_CAT_IN_MENU']){
@@ -42,10 +42,11 @@ if($arResult){
 					   $arEnum = $rsEnum->GetNext();  
 					   $uf_name = $arEnum['VALUE'];
 					   $arResult[$key]['CHILD'][$arSect['UF_CAT_IN_MENU']]['TEXT'] = $uf_name;
-					    if($sect_lvls[$arSect['UF_CAT_IN_MENU']][$arItemChild['TEXT']] && $arItemChild['CHILD']){
-							$sect_lvls[$arSect['UF_CAT_IN_MENU']][$arItemChild['TEXT']]['CHILD'] = $arItemChild['CHILD'];
+					    if($sect_lvls[$arSect['UF_CAT_IN_MENU']][$arSect['IBLOCK_SECTION_ID']][$arItemChild['TEXT']] && $arItemChild['CHILD']){
+							$sect_lvls[$arSect['UF_CAT_IN_MENU']][$arSect['IBLOCK_SECTION_ID']]['CHILD'] = $arItemChild['CHILD'];
+							
 					   }
-					   $arResult[$key]['CHILD'][$arSect['UF_CAT_IN_MENU']]['CHILD'] = $sect_lvls[$arSect['UF_CAT_IN_MENU']];
+					   $arResult[$key]['CHILD'][$arSect['UF_CAT_IN_MENU']]['CHILD'] = $sect_lvls[$arSect['UF_CAT_IN_MENU']][$arSect['IBLOCK_SECTION_ID']];
 					 
 					   unset($arResult[$key]['CHILD'][$key2]);
 				   }

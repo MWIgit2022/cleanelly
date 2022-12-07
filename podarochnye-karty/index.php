@@ -35,7 +35,7 @@ $APPLICATION->SetTitle("Подарочные карты");
 	</style>
 <div class="newWrap">
 	<div class="newImage iNew">
- <img alt="card.jpg" src="/upload/medialibrary/dc9/rudh1s174n2zb8p26vhsza5msqqbwl40/card.jpg" title="card.jpg" width="800" height="600">
+ <img width="800" alt="card.jpg" src="/upload/medialibrary/dc9/rudh1s174n2zb8p26vhsza5msqqbwl40/card.jpg" height="600" title="card.jpg">
 	</div>
 	<div class="newText iNew">
 		<p>
@@ -61,9 +61,9 @@ $APPLICATION->SetTitle("Подарочные карты");
 	<li>Карта не имеет срока действия.</li>
 	<li>Карта возврату и обмену на денежные средства не подлежит.</li>
 	<li>Карта действительна во всех фирменных розничных магазинах Cleanelly.</li>
-	<li><strong>Подарочной картой нельзя оплатить покупки в интернет-магазине <a href="http://www.Cleanelly.ru.">www.Cleanelly.ru.</a>. Подарочную карту нельзя купить в интернет-магазине <a href="http://www.cleanelly.ru./">www.Cleanelly.ru</a>.</strong></li>
-	<li><strong>Подарочной картой нельзя оплатить курьеру заказ интернет-магазина <a href="http://www.Cleanelly.ru.">www.Cleanelly.ru</a> при доставке его курьером.</strong></li>
-	<li><strong>Подарочной картой нельзя оплатить заказ интернет-магазина <a href="http://www.Cleanelly.ru.">www.Cleanelly.ru</a> в пунктах выдачи транспортных компаний.</strong></li>
+	<li><strong>Подарочной картой нельзя оплатить покупки в интернет-магазине <a href="https://www.cleanelly.ru/">www.Cleanelly.ru.</a>. Подарочную карту нельзя купить в интернет-магазине <a href="https://www.cleanelly.ru/">www.Cleanelly.ru</a>.</strong></li>
+	<li><strong>Подарочной картой нельзя оплатить курьеру заказ интернет-магазина <a href="https://www.cleanelly.ru/">www.Cleanelly.ru</a> при доставке его курьером.</strong></li>
+	<li><strong>Подарочной картой нельзя оплатить заказ интернет-магазина <a href="https://www.cleanelly.ru/">www.Cleanelly.ru</a> в пунктах выдачи транспортных компаний.</strong></li>
 	<li>Возврат денежных средств за товар надлежащего качества, приобретенного по подарочной карте, не производится.</li>
 </ul>
 <p>

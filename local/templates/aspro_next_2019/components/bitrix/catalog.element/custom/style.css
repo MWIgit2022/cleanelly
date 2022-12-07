@@ -364,3 +364,7 @@ html {
         display: block !important;
     }
 }
+.subscribe{
+	display:none;
+	margin-bottom:1em;
+}

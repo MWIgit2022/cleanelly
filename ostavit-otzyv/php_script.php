@@ -3,7 +3,7 @@ CModule::IncludeModule("forum");
 $db_res = CForumMessage::GetList(array("ID"=>"ASC"), array('APPROVED'=>'Y'));
 while ($ar_res = $db_res->Fetch())
 {
-	if(stristr(strtolower($ar_res['AUTHOR_NAME']),'admin')==false){
+	if(stristr(strtolower($ar_res['AUTHOR_NAME']),'admin')==false && $ar_res['AUTHOR_NAME'] != 'Обмен 1С 1С'){
 		
 		$ar_res['POST_MESSAGE'] = preg_replace('#:f.*:#sUi', '', $ar_res['POST_MESSAGE']);
 		$arResult['REVIEWS'][] = array('NAME'=>$ar_res['AUTHOR_NAME'], 'DATE'=>$ar_res['POST_DATE'], 'REVIEW'=>str_replace(array('[',']'),array('<','>'),strtolower($ar_res['POST_MESSAGE'])), 'PRODUCT'=>$ar_res['PARAM2']);

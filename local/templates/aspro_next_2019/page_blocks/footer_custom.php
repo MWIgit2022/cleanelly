@@ -127,7 +127,7 @@
 										);?>
 										</div>
 									</div>
-									<div class="col-md-12 col-sm-4">
+									<?/*<div class="col-md-12 col-sm-4">
 										<?CNext::ShowHeaderPhones('', true);?>
 									</div>
 									<div class="col-md-12 col-sm-4">
@@ -136,6 +136,7 @@
 									<div class="col-md-12 col-sm-4">
 										<?CNext::showAddress('address blocks');?>
 									</div>
+									*/?>
 									<div class="col-md-12 col-sm-4">
 										<div class="social-block">
 											<?$APPLICATION->IncludeComponent(

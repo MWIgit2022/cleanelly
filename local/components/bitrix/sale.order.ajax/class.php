@@ -6310,7 +6310,7 @@ class SaleOrderAjax extends \CBitrixComponent
 			$DeliveryTrue = 0;
 			foreach($paymentCollection as $payment){
 			 $psID = $payment->getPaymentSystemId(); 
-			 if($psID == 3){
+			 if($psID == 3){ 
 				 $DeliveryTrue = 1;
 			 }
 			}
@@ -6332,7 +6332,7 @@ class SaleOrderAjax extends \CBitrixComponent
 						$basketItem->markFieldCustom('PRICE');
 						$basketItem->setFields(
 							array(
-							'PRICE' => $basketItem->getField('PRICE')-$basketItem->getField('PRICE')/100*5,
+							'PRICE' => round($basketItem->getField('PRICE')-$basketItem->getField('PRICE')/100*5),
 							'CUSTOM_PRICE'=>'Y'
 							)
 						);
@@ -6359,7 +6359,7 @@ class SaleOrderAjax extends \CBitrixComponent
 				
 				$order2 = Bitrix\Sale\Order::load($arResult["ORDER_ID"]); 
 				//$new_price = $order2->getPrice() - $order2->getPrice()/100*5;
-				$order2->setField('PRICE', $new_price);
+				$order2->setField('PRICE', round($new_price));
 				
 				$order2->save();
 			} 

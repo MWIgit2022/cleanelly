@@ -154,7 +154,17 @@ $APPLICATION->SetAdditionalCSS("//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slic
 					<div class="stickers">
 						<?$prop = ($arParams["STIKERS_PROP"] ? $arParams["STIKERS_PROP"] : "HIT");?>
 						<? foreach(CNext::GetItemStickers($arItem["PROPERTIES"][$prop]) as $arSticker) { ?>
-							<div><div class="<?=$arSticker['CLASS']?>"><?=$arSticker['VALUE']?><?if($arSticker['VALUE'] == 'Скидка'){ echo ' '.$arItem['MIN_PRICE']['DISCOUNT_DIFF_PERCENT'].'%'; }?></div></div>
+							<?if($arSticker['VALUE'] == 'Скидка' && !$arItem['MIN_PRICE']['DISCOUNT_DIFF_PERCENT']){
+								continue;
+							}?>	
+							<div>
+								<div class="<?=$arSticker['CLASS']?>">
+									<?=$arSticker['VALUE']?>
+									<?if($arSticker['VALUE'] == 'Скидка'){ 
+										echo ' '.$arItem['MIN_PRICE']['DISCOUNT_DIFF_PERCENT'].'%'; 
+									}?>
+								</div>
+							</div>
 						<? } ?>
 						<? if ($arParams["SALE_STIKER"] && $arItem["PROPERTIES"][$arParams["SALE_STIKER"]]["VALUE"]) { ?>
 							<div><div class="sticker_sale_text"><?=$arItem["PROPERTIES"][$arParams["SALE_STIKER"]]["VALUE"];?></div></div>

@@ -102,4 +102,7 @@
 		</div>
 	</body> 
 	<div class="overflow"><!-- Затемнение --></div>
+		<!-- Bothelp.io widget -->
+<script type="text/javascript">!function(){var e={"token":"+79613004564","position":"left","bottomSpacing":"20px","callToActionMessage":"","displayOn":"everywhere","subtitle":"Пн - Пт  с 9:00  по 18:00","message":{"name":"Cleanelly","content":"Здравствуйте, чем мы можем помочь?"}},t=document.location.protocol+"//bothelp.io",o=document.createElement("script");o.type="text/javascript",o.async=!0,o.src=t+"/widget-folder/widget-whatsapp-chat.js",o.onload=function(){BhWidgetWhatsappChat.init(e)};var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(o,n)}();</script>
+<!-- /Bothelp.io widget -->
 </html>

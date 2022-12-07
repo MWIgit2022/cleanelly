@@ -301,3 +301,20 @@ function automaticFacetedIndexCreation() {
     }
   //return "automaticFacetedIndexCreation();";
 }
+
+ function LoginByHttpAuth()
+ {
+     $arAuth = CHTTP::ParseAuthRequest();
+     if (isset($arAuth["basic"]) && $arAuth["basic"]["username"] != '' && $arAuth["basic"]["password"] != '') {
+         // Authorize user, if it is http basic authorization, with no remembering
+         if (!$GLOBALS["USER"]->IsAuthorized() || $GLOBALS["USER"]->GetLogin() != $arAuth["basic"]["username"]) {
+             return $GLOBALS["USER"]->Login($arAuth["basic"]["username"], $arAuth["basic"]["password"], "N");
+         }
+     } elseif (isset($arAuth["digest"]) && $arAuth["digest"]["username"] != '' && COption::GetOptionString('main', 'use_digest_auth', 'N') == 'Y') {
+         // Authorize user by http digest authorization
+         if (!$GLOBALS["USER"]->IsAuthorized() || $GLOBALS["USER"]->GetLogin() != $arAuth["digest"]["username"]) {
+             return $GLOBALS["USER"]->LoginByDigest($arAuth["digest"]);
+         }
+     }
+     return null;
+ }

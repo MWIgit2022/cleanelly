@@ -78,6 +78,9 @@ else{
 			0 => "P",
 			1 => "F",
 		),
+		'SHOW_PROPS'=>array(
+			'',
+		),
 		"ORDER_DEFAULT_SORT" => "STATUS",
 		"ORDER_REFRESH_PRICES" => "N",
 		"ORDERS_PER_PAGE" => "20",

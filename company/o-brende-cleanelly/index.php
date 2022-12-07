@@ -5,11 +5,11 @@ $APPLICATION->SetTitle("О бренде Cleanelly");
 	 Под торговыми марками Cleanelly, Cleanelly Collection, Cleanelly Perfetto, «ДМ-люкс», «ДМ» ТПК «ДМ Текстиль Менеджмент» производит и продает:
 </p>
 <ul>
-	<li><a href="/catalog/khalaty_1/" target="_blank"><u>махровые и вафельные халаты</u></a> — мужские, женские, подростковые, детские;</li>
-	<li><a href="/catalog/polotentsa_1/" target="_blank"><u>махровые и вафельные полотенца</u></a> — банные, пляжные, кухонные, детские;</li>
+	<li><a href="/catalog/khalaty/" target="_blank"><u>махровые и вафельные халаты</u></a> — мужские, женские, подростковые, детские;</li>
+	<li><a href="/catalog/polotentsa/" target="_blank"><u>махровые и вафельные полотенца</u></a> — банные, пляжные, кухонные, детские;</li>
 	<li><a href="/catalog/tekstil_dlya_spalni/pokryvala_vafelnye/" target="_blank">вафельные</a> и <a href="/catalog/tekstil_dlya_spalni/pokryvala_makhrovye/">махровые покрывала</a></li>
-	<li><u><a href="https://www.cleanelly.ru/catalog/tekstil_dlya_detey/ugolki_posle_kupaniya/">детские уголки для купания</a></u>;</li>
-	<li><a target="_blank" href="/catalog/polotentsa_1/komplekty_polotenets_dlya_bani_sauny/"><u>махровые и вафельные комплекты для сауны</u></a>;</li>
+	<li><u><a href="https://www.cleanelly.ru/catalog/tekstil_dlya_detey/polotentse_s_kapyushonom/">детские уголки для купания</a></u>;</li>
+	<li><a target="_blank" href="https://www.cleanelly.ru/catalog/polotentsa/komplekty_polotenets_dlya_bani_sauny/"><u>махровые и вафельные комплекты для сауны</u></a>;</li>
 	<li><a href="/catalog/tekstil_dlya_stolovoy_i_kukhni/"><u>столовое белье</u></a> — скатерти, салфетки, полотенца;</li>
 	<li><a target="_blank" href="/catalog/tekstil_dlya_spalni/komplekty_postelnogo_belya/"><u>комплекты постельного белья</u></a></li>
 </ul>
@@ -30,7 +30,7 @@ $APPLICATION->SetTitle("О бренде Cleanelly");
 	 Визитной карточкой домашнего текстиля Cleanelly являются авторские дизайнерские разработки.
 </p>
 <p>
-	 Под торговой маркой Cleanelly потребителям представлены незаменимые атрибуты домашнего уюта — <a target="_blank" href="/catalog/polotentsa_1/"><u>махровые и вафельные полотенца</u></a> и <u><a target="_blank" href="/catalog/khalaty_1/">халаты</a></u>, <u><a href="/catalog/tekstil_dlya_spalni/">постельное белье</a></u>, <u><a target="_blank" href="/catalog/tekstil_dlya_spalni/pledy_1/">теплые пледы</a></u>, <u><a target="_blank" href="/catalog/polotentsa_1/polotentsa_dlya_nog_kovriki/">интерьерные коврики и коврики для ванной</a></u>.
+	 Под торговой маркой Cleanelly потребителям представлены незаменимые атрибуты домашнего уюта — <a target="_blank" href="/catalog/polotentsa/"><u>махровые и вафельные полотенца</u></a> и <u><a target="_blank" href="/catalog/khalaty/">халаты</a></u>, <u><a href="/catalog/tekstil_dlya_spalni/">постельное белье</a></u>, <u><a target="_blank" href="/catalog/tekstil_dlya_spalni/pledy/">теплые пледы</a></u>, <u><a target="_blank" href="https://www.cleanelly.ru/catalog/polotentsa/polotentsa_dlya_nog_kovriki/">интерьерные коврики и коврики для ванной</a></u>.
 </p>
 <p>
 	 Разнообразие материалов и стилевых решений, высокое европейское качество, функциональность и красота – всё это служит залогом полноценного отдыха и хорошего настроения для тех, кто предпочитает практичные и при этом модные вещи Cleanelly.

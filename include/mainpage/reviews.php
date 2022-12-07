@@ -3,7 +3,7 @@ CModule::IncludeModule("forum");
 $db_res = CForumMessage::GetList(array("ID"=>"DESC"), array('APPROVED'=>'Y'), false, 30);
 while ($ar_res = $db_res->Fetch())
 {
-	if(stristr(strtolower($ar_res['AUTHOR_NAME']),'admin')==false){
+	if(stristr(strtolower($ar_res['AUTHOR_NAME']),'admin')==false && $ar_res['AUTHOR_NAME'] != 'Обмен 1С 1С'){
 		
 		$ar_res['POST_MESSAGE'] = preg_replace('#:f.*:#sUi', '', $ar_res['POST_MESSAGE']);
 		$arResult['REVIEWS'][] = array('NAME'=>$ar_res['AUTHOR_NAME'], 'DATE'=>$ar_res['POST_DATE'], 'REVIEW'=>str_replace(array('[',']'),array('<','>'),strtolower($ar_res['POST_MESSAGE'])), 'PRODUCT'=>$ar_res['PARAM2']);
@@ -15,7 +15,7 @@ while ($ar_res = $db_res->Fetch())
 }
 
 $arSelect = Array("ID", "NAME", "PREVIEW_PICTURE", "DETAIL_PAGE_URL", 'ACTIVE');
-$arFilter = Array("IBLOCK_ID"=>17, 'ID'=>$ids);
+$arFilter = Array("IBLOCK_ID"=>17, 'ID'=>$ids, 'ACTIVE'=>'Y');
 $res = CIBlockElement::GetList(Array(), $arFilter, false, false, $arSelect);
 while($ob = $res->GetNextElement())
 {
@@ -32,7 +32,8 @@ while($ob = $res->GetNextElement())
 <ul class="viewed_navigation slider_navigation top_big custom_flex border"></ul>
 <div class="review_c content_inner tab flexslider loading_state shadow border custom_flex top_right" data-plugin-options='{"animation": "slide", "animationSpeed": 600, "directionNav": true, "controlNav" :false, "animationLoop": true, "slideshow": false, "controlsContainer": ".viewed_navigation", "counts": [2,2,1,1,1]}'>
 <ul class="slides">
-<?foreach($arResult['REVIEWS'] as $val){?>
+<?foreach($arResult['REVIEWS'] as $val){
+	if($arResult['PRODUCTS'][$val['PRODUCT']]){?>
 	<li>
 		<div class="review_container">
 		<div class="product">
@@ -52,7 +53,8 @@ while($ob = $res->GetNextElement())
 		</div>
 		</div>
 	</li>
-<?}?>
+<?}
+}?>
 </ul>
 
 </div>

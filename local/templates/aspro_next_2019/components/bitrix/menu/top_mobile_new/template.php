@@ -3,7 +3,7 @@
 
 
 $arResult[] = array(
-"LINK" => "/skidki.php",
+"LINK" => "/skidki/",
 "TEXT" => "Скидки",
 );
 ?>

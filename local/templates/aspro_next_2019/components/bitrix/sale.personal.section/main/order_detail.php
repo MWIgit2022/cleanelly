@@ -24,7 +24,7 @@ $arDetParams = array(
 		"RESTRICT_CHANGE_PAYSYSTEM" => $arParams["ORDER_RESTRICT_CHANGE_PAYSYSTEM"],
 		"REFRESH_PRICES" => $arParams["ORDER_REFRESH_PRICES"],
 		"HIDE_USER_INFO" => $arParams["ORDER_HIDE_USER_INFO"],
-
+		"SHOW_PROPS" => $arParams['SHOW_PROPS'],
 		"CUSTOM_SELECT_PROPS" => $arParams["CUSTOM_SELECT_PROPS"]
 	);
 foreach($arParams as $key => $val)

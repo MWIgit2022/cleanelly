@@ -4,13 +4,13 @@ $APPLICATION->SetTitle("Информация по дисконтной карт�
 use Bitrix\Main\Application;
 $request = Application::getInstance()->getContext()->getRequest();
 $coupon_post = $request->getPost("coupon");
-?>
-<form method="POST" action="">
-<p><b>Введите номер вашей дисконтной карты</b></p>
-<input type="text" class="form-group" name="coupon" value="<?=$coupon_post?>">
-<input type="submit" class="btn btn-default button is-primary button-default" value="Получить информацию">
+?><form method="POST" action="">
+	<p>
+ <b>Введите номер вашей дисконтной карты</b>
+	</p>
+ <input type="text" class="form-group" name="coupon" value="<?=$coupon_post?>"> <input type="submit" class="btn btn-default button is-primary button-default" value="Получить информацию">
 </form>
-<?
+ <?
 
 
 if($coupon_post){
@@ -36,17 +36,24 @@ if(intval($disc_arr['BALANCE'])>0){
 }
 
 if($disc_arr){?>
-	<p style="margin-top:2em;"><?=$disc_arr['NAME']?></p>
-	<?if($balance){?>
-		<p>Текущий баланс по карте: <?=$balance?> руб.</p>
-		<?if($from_to){?>
-			<p>До перехода на следующий уровень скидки осталось: <?=current($from_to)['TO']+1 - $balance?> руб.</p>
-		<?} else {?>
-			<p>Максимально возможный процент скидки.</p>
-		<?}?>
-	<?}?>
-<?}else {?>
-	<p style="margin-top:2em;">Дисконтная карта не найдена</p>
+<p style="margin-top:2em;">
+	 <?=$disc_arr['NAME']?>
+</p>
+ <?if($balance){?>
+<p>
+	 Текущий баланс по карте: <?=$balance?> руб.
+</p>
+ <?if($from_to){?>
+<p>
+	 До перехода на следующий уровень скидки осталось: <?=current($from_to)['TO']+1 - $balance?> руб.
+</p>
+ <?} else {?>
+<p>
+	 Максимально возможный процент скидки.
+</p>
+ <?}?> <?}?> <?}else {?>
+<p style="margin-top:2em;">
+	 Дисконтная карта не найдена
+</p>
 <?}
-?>
-<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
+?><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

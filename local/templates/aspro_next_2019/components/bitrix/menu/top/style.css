@@ -1,0 +1,11 @@
+.menu-row.middle-block.bglight .mega-menu table .menu-item .dropdown-menu.polotentsa_menu{
+	width: max-content;
+    display: none;
+    flex-wrap: wrap;
+    max-width: 80vw;
+	padding: 1em 0;
+}
+
+.menu-row.middle-block.bglight .mega-menu table .menu-item:hover .dropdown-menu.polotentsa_menu{
+	display: flex;
+}

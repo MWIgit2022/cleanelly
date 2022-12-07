@@ -137,7 +137,7 @@ if(!funcDefined('markProductDelay')){
 if(!funcDefined('markProductSubscribe')){
 	var markProductSubscribe = function markProductSubscribe(id){
 		$('.to-subscribe[data-item='+id+']').hide();
-		$('.in-subscribe[data-item='+id+']').css('display','block');
+		$('.in-subscribe[data-item='+id+']').css('display','inline-block');
 	}
 }
 
@@ -5828,7 +5828,7 @@ if(!funcDefined('orderActions')){
 			if($('.bx-soa-cart-total').length){
 				if(!$('.change_basket').length) {
 					$('.bx-soa-cart-total').prepend('<div class="change_basket">'+BX.message("BASKET_CHANGE_TITLE")+'<a href="'+arNextOptions["SITE_DIR"]+'basket/" class="change_link">'+BX.message("BASKET_CHANGE_LINK")+'</a></div>');
-
+				if(!BX.Sale.OrderAjaxComponent){
 					var $totalLines = $('.change_basket');
 					var promocodeDiv = '<div class="promocodes-elements"><label class="promocode-label">Код промокода:</label><div class="promocodes"><input type="text" size="30" name="promocode" placeholder class="promocode-input"><span class="order-promocode-block-promocode-btn"></span><div class="order-promocode-alert-section"></div></div></div>';
 			
@@ -5840,6 +5840,7 @@ if(!funcDefined('orderActions')){
 					promocodeFieldUpdate();
 					addPromocodeMessages();
 					deletePromocode();
+				}
 				}
 
 				if(typeof (BX.Sale.OrderAjaxComponent) == "object"){

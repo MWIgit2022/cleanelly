@@ -302,7 +302,14 @@ if($isAjaxFilter == "Y")
 				$frame = new \Bitrix\Main\Page\FrameHelper("viewtype-block");
 				$frame->begin();?>
 			<?}?>
-			
+			<?if($section['UF_TAGS']){?>
+				<div class="sale_groups_container">
+					<?foreach($section['UF_TAGS'] as $tag){
+						$tag_arr = explode('-',$tag);?>
+						<a href="<?=$tag_arr[1]?>"><?=$tag_arr[0]?></a>
+					<?}?>
+				</div>
+			<?}?>
 			<?if($arSection['ID'] == 266){?>
 				<div class="sale_groups_container">
 					<a style="<?if(!intval($_SESSION['SECTION_SALE_PREFILTER'])){?>color:#fff;background:#000;<?}?>" href="?section_sale=all">Все разделы</a>

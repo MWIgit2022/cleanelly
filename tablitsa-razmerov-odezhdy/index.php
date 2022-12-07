@@ -22,52 +22,48 @@ background-color:#f1f1f1;
 }
 </style>
 <div>
-	<h4>Таблица соответствия<u> <a href="/catalog/khalaty_1/zhenskie_khalaty/">женских</a></u><a href="https://www.cleanelly.ru/catalog/khalaty_1/po_polu_1/zhenskie_khalaty/%20"> </a>размеров:</h4>
+	<h4>Таблица соответствия<u> <a href="https://www.cleanelly.ru/catalog/khalaty/zhenskie_khalaty/">женских</a></u><a href="https://www.cleanelly.ru/catalog/khalaty/zhenskie_khalaty/"> </a>размеров:</h4>
 </div>
  <b>
-
-<?$APPLICATION->IncludeComponent("bitrix:main.include", ".default",
-	array(
-		"COMPONENT_TEMPLATE" => ".default",
-		"PATH" => SITE_DIR."include/table_sizes/women.php",
+<?$APPLICATION->IncludeComponent(
+	"bitrix:main.include",
+	".default",
+	Array(
+		"AREA_FILE_RECURSIVE" => "Y",
 		"AREA_FILE_SHOW" => "file",
 		"AREA_FILE_SUFFIX" => "",
-		"AREA_FILE_RECURSIVE" => "Y",
-		"EDIT_TEMPLATE" => "include_area.php"
-	),
-	false
-);?>
-
-<h4>Таблица соответствия <u><a href="/catalog/khalaty_1/muzhskie_khalaty/">мужских</a></u> размеров:</h4>
-
-<?$APPLICATION->IncludeComponent("bitrix:main.include", ".default",
-	array(
 		"COMPONENT_TEMPLATE" => ".default",
-		"PATH" => SITE_DIR."include/table_sizes/men.php",
+		"EDIT_TEMPLATE" => "include_area.php",
+		"PATH" => SITE_DIR."include/table_sizes/women.php"
+	)
+);?>
+<h4>Таблица соответствия <u><a href="/catalog/khalaty/muzhskie_khalaty/">мужских</a></u> размеров:</h4>
+ <?$APPLICATION->IncludeComponent(
+	"bitrix:main.include",
+	".default",
+	Array(
+		"AREA_FILE_RECURSIVE" => "Y",
 		"AREA_FILE_SHOW" => "file",
 		"AREA_FILE_SUFFIX" => "",
-		"AREA_FILE_RECURSIVE" => "Y",
-		"EDIT_TEMPLATE" => "include_area.php"
-	),
-	false
+		"COMPONENT_TEMPLATE" => ".default",
+		"EDIT_TEMPLATE" => "include_area.php",
+		"PATH" => SITE_DIR."include/table_sizes/men.php"
+	)
 );?>
-
-<h4>Таблица для определения размера <u><a href="/catalog/khalaty_1/detskie/">детских</a></u> халатов:</h4>
+<h4>Таблица для определения размера <u><a href="/catalog/khalaty/detskie/">детских</a></u> халатов:</h4>
 <p>
 	 Обратите внимание, для некоторых размеров предлагается 2 варианта роста, т.к. детки бывают высокие и невысокого роста, а по сложению могут быть одинаковые.<br>
 	 Найти информацию о росте халата можно в карточке товара после описания в <strong>характеристиках</strong>.
 </p>
-
-<?$APPLICATION->IncludeComponent("bitrix:main.include", ".default",
-	array(
-		"COMPONENT_TEMPLATE" => ".default",
-		"PATH" => SITE_DIR."include/table_sizes/kids.php",
+ <?$APPLICATION->IncludeComponent(
+	"bitrix:main.include",
+	".default",
+	Array(
+		"AREA_FILE_RECURSIVE" => "Y",
 		"AREA_FILE_SHOW" => "file",
 		"AREA_FILE_SUFFIX" => "",
-		"AREA_FILE_RECURSIVE" => "Y",
-		"EDIT_TEMPLATE" => "include_area.php"
-	),
-	false
-);?>
-
- </b><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
+		"COMPONENT_TEMPLATE" => ".default",
+		"EDIT_TEMPLATE" => "include_area.php",
+		"PATH" => SITE_DIR."include/table_sizes/kids.php"
+	)
+);?> </b><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
