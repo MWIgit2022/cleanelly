@@ -138,7 +138,7 @@ foreach($ar['properties'] as $prop){
 $user_id = $order->getUserId();
 $rsUser = CUser::GetByID($user_id); 
 $arUser = $rsUser->Fetch();
-$statuses_n_active = array(20,19,23);
+$statuses_n_active = array(20,19,29);
 if($arUser && $props_arr['DISCOUNT_CARD']['VALUE'][0]== 'Y'){?>
 	<div style="display: none; width: 500px;" id="hidden">
 		<?if(in_array($arUser['UF_DISCOUNT_CARD_STATUS'],$statuses_n_active) || !$arUser['UF_DISCOUNT_CARD_STATUS']){?>
@@ -152,21 +152,30 @@ if($arUser && $props_arr['DISCOUNT_CARD']['VALUE'][0]== 'Y'){?>
 			<input type="text" name="sms_cd" placeholder="Введите код...">
 			<a class="resend disable" href="javascript:void(0)" onclick="reSend(this)">Отправть повторно</a>
 			<button onclick="checkCode(this)" style="margin:1em 0" type="button" class="btn btn-default aprove">Подтвердить</button>
+			
+			<button onclick="notCode(this,'<?=$arUser['PERSONAL_PHONE']?>','<?=$arUser['NAME'].' '.$arUser['LAST_NAME']?>','<?=$arResult['ORDER']['ID']?>')" style="margin:1em 0; display:none;" type="button" class="btn not_code btn-default aprove">Мне не приходит код</button>
+			
+			<p style="display:none;" class="note">Если вам не приходит код, вы можете продолжить оформление, а номер карты Вам пришлет менеджер</p>
 			<div class="rez"></div>
-		<?} else {?>
+		<?} elseif($arUser['UF_DISCOUNT_CARD_STATUS'] == 23) {?>
 			<h2>Карта уже присвоена</h2>
 			<p>
-				Вы хотели получить дисконтную карту 
-			</p>
-			<p>
-				За пользователем уже закреплена дисконтная карта <?=$arUser['UF_DISCOUNT_CARD_ID']?>
+				Ранее на указанный Вами номер телефона уже была создана виртуальная дисконтная карта. Ее номер будет повторно отправлен Вам в смс.
 			</p>
 		<?}?>
 	</div>
 	
 <script>
 $(window).load(function(){
-	$.fancybox.open($('#hidden').html());	
+	$.fancybox.open({
+		href: '#hidden',
+		type: 'inline',
+		clickSlide : false,
+		helpers: {
+            overlay: { closeClick: false } 
+        },
+		touch: false,
+	  });
 	$('.fancybox-inner input[name="sms_cd"]').focus();
 	setTimeout(function(){
 		$('.resend.disable').removeClass('disable');
@@ -179,6 +188,19 @@ function checkCode(th){
             data: 'code='+$(th).parent().find('input').val()+'&phone=<?=$arUser['PERSONAL_PHONE']?>',
             success: function (data) {
 				$(th).parent().find('.rez').html(data);
+				if($(data).hasClass('success')){
+					$('#hidden').html('Код введен верно данные карты будут отправлены Вам в смс по указанному номеру телефона');
+				}
+			}
+	 })
+}
+function notCode(th,phone,name,order){
+	 $.ajax({
+            type: "POST",
+            url: '/local/dc/not_code.php',
+            data: 'name='+name+'&phone='+phone+'&order='+order,
+            success: function (data) {
+				$.fancybox.close();
 			}
 	 })
 }
@@ -189,6 +211,11 @@ function reSend(th){
             data: 'phone=<?=$arUser['PERSONAL_PHONE']?>',
             success: function (data) {
 				$(th).parent().find('.rez').html(data);
+				$(th).hide();
+				setTimeout(function(){
+					$('.not_code').show();
+					$('.note').show();
+				}, 30000)
 			}
 	 })
 }

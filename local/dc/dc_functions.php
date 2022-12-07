@@ -39,7 +39,7 @@ function getUserByPhone( $arData ) {
 		$data = json_decode($arRes['UF_DISCOUNT_JSON'],true);
 		
 		if(getStandartPhone($arRes['PERSONAL_PHONE']) == getStandartPhone($arData['cellnum'])){
-			return $arRes['ID'];
+			return $arRes;
 			break;
 		}
 	}

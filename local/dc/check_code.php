@@ -5,7 +5,7 @@ if (file_exists($_SERVER["DOCUMENT_ROOT"].'/local/dc/dc_functions.php')) {
 }
 $res = Bitrix\Main\UserTable::getList([
     "select" => ["ID", "ACTIVE", "UF_SMS_DISCOUNT_CARD"],
-    "filter" => array('PERSONAL_PHONE'=>getStandartPhone($_POST['phone']),
+    "filter" => array('PERSONAL_PHONE'=>'+'.trim($_POST['phone'])),
 ]);
 if($_POST['code']){
 	while ($arRes = $res->fetch()) {

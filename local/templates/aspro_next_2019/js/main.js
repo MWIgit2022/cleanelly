@@ -137,7 +137,7 @@ if(!funcDefined('markProductDelay')){
 if(!funcDefined('markProductSubscribe')){
 	var markProductSubscribe = function markProductSubscribe(id){
 		$('.to-subscribe[data-item='+id+']').hide();
-		$('.in-subscribe[data-item='+id+']').css('display','block');
+		$('.in-subscribe[data-item='+id+']').css('display','inline-block');
 	}
 }
 

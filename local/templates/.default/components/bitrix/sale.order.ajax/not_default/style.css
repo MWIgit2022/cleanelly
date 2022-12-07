@@ -1855,3 +1855,11 @@ div[data-property-id-row="5"],div[data-property-id-row="37"]{
 .appendig_adress a:hover, .appendig_find_city a:hover{
   background: #ccc;
 }
+div[data-property-id-row="24"], div[data-property-id-row="25"], div[data-property-id-row="26"]{
+	display:none;
+}
+.dadata_loc_error{
+	color:red;
+	background: #f5d4d4;
+    padding: 5px 10px;
+}

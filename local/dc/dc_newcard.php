@@ -23,7 +23,7 @@ if($USER->isAdmin()){
 			'UF_SMS_DISCOUNT_CARD' => $data['smscode'],
 		);
 		$user_upd = new CUser;
-		if($user_upd->Update($user, $fildz)){
+		if($user_upd->Update($user['ID'], $fildz)){
 			echo $json_answer = '{"dc_status":"OK", "dcid": "'.$data['dcid'].'"}';
 			$update = true;
 		} else {

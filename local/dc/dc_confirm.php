@@ -12,7 +12,17 @@ if ($user) {
 		'UF_DISCOUNT_CARD_STATUS'=> 21,
 	);
 	$user_upd = new CUser;
-	if($user_upd->Update($user, $fildz)){
-		echo $json_answer = '{"dc_status":"OK"}';
+	if($user_upd->Update($user['ID'], $fildz)){
+		echo $json_answer = '{"dc_status":"OK", "dcid":"'.$user['UF_DISCOUNT_CARD_ID'].'", "message":""}';
+	} else {
+		$err = true;
+		$mess = 'Пользователь найден, но обновление не удалось';
 	}
+} else {
+	$err = true;
+	$mess = 'Пользователь не найден';
+}
+
+if($err){
+	echo $json_answer = '{"dc_status":"error", "dcid":"'.$user['UF_DISCOUNT_CARD_ID'].'", "message":"'.$mess.'"}';
 }

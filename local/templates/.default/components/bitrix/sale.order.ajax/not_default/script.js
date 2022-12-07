@@ -494,7 +494,19 @@ $(document).ready(function(){
 				$('div[data-property-id-row="7"]').append('<div class="appendig_adress"></div>');
 			}
 		 }, 200);
+		 
+		 $('#ID_DELIVERY_ID_54').closest('.bx-soa-pp-company').hide();
+		  if(window.SDEK_CUSTOM){
+			  IPOLSDEK_pvz.selectPVZ(window.SDEK_CUSTOM[1],window.SDEK_CUSTOM[0]); 
+			 $('#ID_DELIVERY_ID_53').closest('.bx-soa-pp-company').addClass('bx-selected');
+			 window.SDEK_CUSTOM = false;
+		  }
      });
+	 $('#ID_DELIVERY_ID_54').closest('.bx-soa-pp-company').hide();
+	 if(!$('.appendig_adress').length){
+		$('div[data-property-id-row="7"]').append('<div class="appendig_adress"></div>');
+	}
+	  
 })
 
 $(document).on('click', '.order-promocode-block-promocode-btn', function(){
@@ -504,64 +516,81 @@ $(document).on('click', '.order-promocode-block-promocode-btn', function(){
 function numberWithCommas(x) {return x.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} 
 
 $(document).on('focus','[name="ORDER_PROP_7"]', function(){
-	var token = "e01ad93c1cc25a045b3aefcdfee5a8e8aef8070d"; //dadata
 	if($('div[data-property-id-row="5"] input').val()) {
-						//$.ajax({
-						//	type: 'POST',
-						//	url: '/local/ajax/getCityName.php',
-						//	data: {code: $('div[data-property-id-row="5"] input').val()},
-							//success: function(city){
-							var city = $('div[data-property-id-row="5"] input').val();
-							console.log(city);
-								if(city){
-									$(document).on('keyup', '[name=ORDER_PROP_7]', function () {
-
-										let addressField = $(this);
-										let url = "https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address";
-
-										let queryCity = $(this).val();
-										var options = {
-											method: "POST",
-											mode: "cors",
-											headers: {
-												"Content-Type": "application/json",
-												"Accept": "application/json",
-												"Authorization": "Token " + token
-											},
-											body: JSON.stringify({
-												"query": queryCity,
-												"locations": [{
-													"city": city
-												}]
-											})
-										}
-
-										fetch(url, options)
-											.then(response => response.text())
-											.then(result => {
-												let res = JSON.parse(result);
-												$('.appendig_adress').html('');
-												if (res.suggestions.length != 0) {
-													res.suggestions.forEach(function(item, i, arr) {
-														$('.appendig_adress').append('<a href="javascript:void(0)">'+ item.value +'</a>');
-														$('.appendig_adress').show();
-													});
-
-													$(document).on('click', '.appendig_adress a', function(){
-														$('[name=ORDER_PROP_7]').val($(this).text()).focus();
-														$('.address_variants').hide();
-													})
-													$(document).on('click', 'body', function(){
-														$('.appendig_adress').hide();
-													})
-												} else {
-													$('.appendig_adress').hide();
-												}
-											})
-											.catch(error => console.log("error", error));
-									});
-								}
-							//}
-						//});
-					}
+		window.city = $('div[data-property-id-row="5"] input').val();
+	}
+								
 })
+$(document).on('focusout','[name="ORDER_PROP_7"]', function(){
+	$th = $(this);
+	setTimeout(function(){
+		if(window.locations_dadata && $th.val() != window.location_found_dadata){
+			if($th.parent().find('.dadata_loc_error').length>0){
+				$th.parent().find('.dadata_loc_error').text('Пожалуйста, выбирете из списка!').css('display','block');
+			} else {
+				$th.parent().prepend('<span class="dadata_loc_error">Пожалуйста, выбирете из списка!</span>');
+			}
+			$th.css('color', 'red').css('border', '1px solid').trigger('keyup');
+		}
+	},200);
+})
+$(document).on('keyup', '[name=ORDER_PROP_7]', function () {
+	var token = "e01ad93c1cc25a045b3aefcdfee5a8e8aef8070d"; //dadata
+	let addressField = $(this);
+	let url = "https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address";
+	if(window.city){
+		var city = window.city;
+		let queryCity = $(this).val();
+		var options = {
+			method: "POST",
+			mode: "cors",
+			headers: {
+				"Content-Type": "application/json",
+				"Accept": "application/json",
+				"Authorization": "Token " + token
+			},
+			body: JSON.stringify({
+				"query": queryCity,
+				"locations": [{
+				"city": city
+				}]
+			})
+		}
+
+		fetch(url, options)
+		.then(response => response.text())
+		.then(result => {
+			let res = JSON.parse(result);
+			$('.appendig_adress').html('');
+			if (res.suggestions.length != 0) {
+				window.locations_dadata = true;
+				res.suggestions.forEach(function(item, i, arr) {
+					var house = item.data.house;
+					if(item.data.block){
+						house += ' стр. '+item.data.block;
+					}
+					$('.appendig_adress').append('<a href="javascript:void(0)" data-street="'+item.data.street_with_type+'" data-house="'+house+'"  data-flat="'+item.data.flat+'">'+ item.value +'</a>');
+					$('.appendig_adress').show();
+				});
+
+				$(document).on('click', '.appendig_adress a', function(){
+					$('[name=ORDER_PROP_7]').val($(this).text()).focus();
+					$('[name=ORDER_PROP_7]').removeAttr('style');
+					window.location_found_dadata = $(this).text();
+					$('.dadata_loc_error').hide();
+					$('#soa-property-25').val($(this).data('house'));
+					$('#soa-property-24').val($(this).data('street'));
+					$('#soa-property-26').val($(this).data('flat'));
+					$('.address_variants').hide();
+				})
+				$(document).on('click', 'body', function(){
+					$('.appendig_adress').hide();
+				})
+			} else {
+				$('.appendig_adress').hide();
+				window.locations_dadata = false;
+			}
+		})
+		.catch(error => console.log("error", error));
+	}
+});

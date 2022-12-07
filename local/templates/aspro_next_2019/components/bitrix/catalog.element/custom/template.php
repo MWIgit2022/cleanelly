@@ -581,13 +581,21 @@ $arViewedData = array(
 							} ?>
 						</div>
 					<?}?>
+					
 					<?if($arResult["SIZE_PATH"]):?>
 						<? //deb($arResult["SIZE_PATH"], false)?>
 
 						<div class="table_sizes">
-							<span><span class="animate-load link" data-event="jqm" data-param-form_id="TABLES_SIZE" data-param-url="<?=$arResult["SIZE_PATH"];?>" data-name="TABLES_SIZE"><?=GetMessage("TABLES_SIZE");?></span></span>
+							<span>
+								<span class="animate-load link" data-event="jqm" data-param-form_id="TABLES_SIZE" data-param-url="<?=$arResult["SIZE_PATH"];?>" data-name="TABLES_SIZE"><?=GetMessage("TABLES_SIZE");?></span>
+								
+								<span class="show_calculator_sizes">Рассчитать размер</span>
+							</span>
+							
 						</div>
+						
 					<?endif;?>
+					
 					<?if(!$arResult["OFFERS"]):?>
 						<script>
 							$(document).ready(function() {
@@ -644,9 +652,24 @@ $arViewedData = array(
 					<?elseif($arResult["OFFERS"] && $arParams['TYPE_SKU'] != 'TYPE_1'):?>
 						<span class="btn btn-default btn-lg slide_offer transition_bg type_block"><i></i><span><?=\Bitrix\Main\Config\Option::get("aspro.next", "EXPRESSION_READ_MORE_OFFERS_DEFAULT", GetMessage("MORE_TEXT_BOTTOM"));?></span></span>
 					<?endif;?>
-					
-					
 				</div>
+				<div class="subscribe"> 
+						<span class="btn-lg ss to-subscribe auth nsubsc btn btn-default transition_bg has-ripple" 
+							data-name="subscribe"
+							data-param-form_id="subscribe" 
+							rel="nofollow"
+							data-props="CML2_ARTICLE;SIZES" 
+							data-item="<?=$arResult["ID"]?>">
+								<span>Уведомить о поступлении</span>
+							</span>
+						<span 
+							class="btn-lg ss in-subscribe  auth nsubsc btn btn-default transition_bg has-ripple" rel="nofollow" style="display:none;" 
+							data-props="CML2_ARTICLE;SIZES;"
+							data-item="<?=$arResult["ID"]?>">
+								<span>Отписаться</span>
+						</span>
+				</div>
+				
 				<div class="halva_container">
 					<div class="halva">
 						<div>рассрочка 0%</div>
@@ -1991,4 +2014,18 @@ if ($arResult['CATALOG'] && $arParams['USE_GIFTS_MAIN_PR_SECTION_LIST'] == 'Y' &
 		    </iframe>
 	    </div>
 	</div>
+</div>
+
+<div class="calculator" style="display:none;">
+	<p class="сalc_header">Узнать свой размер</p>
+	<div class="calculator_tabs">
+		<span data-arr="men" data-fields='{"GRUD":"Обхват груди (см)","TALIA":"Обхват талии (см)","BEDRA":"Обхват бедер (см)","NECK":" Обхват шеи (см)"}' class="active">Мужчины</span>
+		<span data-arr="women" data-fields='{"GRUD":"Обхват груди (см)","TALIA":"Обхват талии (см)","BEDRA":"Обхват бедер (см)"}'>Женщины</span>
+		<span data-arr="children" data-fields='{"ROST":"Рост ребенка (см)","AGE":"Возраст","GRUD":"Обхват груди (см)","TALIA":"Обхват талии (см)","SPINKA":"Ширина спинки на уровне глубины проймы (см)","DLINA":"Длина изделия по спинке (см)","RUKAV":"Длина рукава от плеча (см)"}'>Дети</span>
+	</div>
+	<form class="calculator_form">
+		<div class="inputs"> </div>
+		<div class="result"></div>
+		<button class="btn btn-default aprove">Рассчитать</button>
+	</form>
 </div>

@@ -5515,6 +5515,14 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
                         {
                             title = '<div class="bx-soa-pp-company-block"><div id="choose_pvz"></div></div>';
                         }
+						if (currentDelivery.ID == 53)
+                        {
+                            title = '<div class="bx-soa-pp-company-block"><div id="choose_pvz"></div></div>';
+                        }
+							if (currentDelivery.ID == 54)
+                        {
+                            title = '<div class="bx-soa-pp-company-block"><div id="choose_postamat"></div></div>';
+                        }
 
 			if (currentDelivery.PRICE >= 0)
 			{
