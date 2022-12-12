@@ -1071,6 +1071,11 @@ $arViewedData = array(
 					<a href="#review" data-toggle="tab"><span><?=($arParams["TAB_REVIEW_NAME"] ? $arParams["TAB_REVIEW_NAME"] : GetMessage("REVIEW_TAB"))?></span><span class="count empty"></span></a>
 				</li>
 			<?endif;?>
+			<?if($arResult["HOW_ORDER_TAB_TEXT"]):?>
+				<li class="<?=(!($iTab++) ? ' active' : '')?>">
+					<a href="#how_order_tab_text" data-toggle="tab"><span>Как оформить заказ</span></a>
+				</li>
+			<?endif;?>
 			<?if(($arParams["SHOW_ASK_BLOCK"] == "Y") && (intVal($arParams["ASK_FORM_ID"]))):?>
 				<li class="product_ask_tab <?=(!($iTab++) ? ' active' : '')?>">
 					<a href="#ask" data-toggle="tab"><span><?=($arParams["TAB_FAQ_NAME"] ? $arParams["TAB_FAQ_NAME"] : GetMessage('ASK_TAB'))?></span></a>
@@ -1748,6 +1753,18 @@ $arViewedData = array(
 					
 				</div>
 			<?endif;?>
+			
+			<?if($arResult['HOW_ORDER_TAB_TEXT']){?>
+			
+				<div class="tab-pane product_uhod_tab<?=(!($iTab++) ? ' active' : '')?>" id="how_order_tab_text">
+				<div class="title-tab-heading visible-xs">Как оформить заказ</div>
+					<div>
+						<?=$arResult['HOW_ORDER_TAB_TEXT']?>
+					</div>
+				</div>
+				
+			<?}?>
+			
 			<?if(($arParams["SHOW_ASK_BLOCK"] == "Y") && (intVal($arParams["ASK_FORM_ID"]))):?>
 				<div class="tab-pane<?=(!($iTab++) ? ' acive' : '')?>" id="ask">
 					<div class="title-tab-heading visible-xs"><?=($arParams["TAB_FAQ_NAME"] ? $arParams["TAB_FAQ_NAME"] : GetMessage('ASK_TAB'))?></div>
