@@ -1863,3 +1863,17 @@ div[data-property-id-row="24"], div[data-property-id-row="25"], div[data-propert
 	background: #f5d4d4;
     padding: 5px 10px;
 }
+#bx-soa-order .bx-soa-pp-item-container .bx-soa-pp-company.bx-selected-fake .bx-soa-pp-company-graf-container:before{
+	border:none;
+	background-color:#313131;
+}
+#bx-soa-order .bx-soa-pp-item-container .bx-soa-pp-company.bx-selected-fake .bx-soa-pp-company-graf-container:after{
+	content: "";
+    position: absolute;
+    left: 12px;
+    top: 6px;
+    width: 10px;
+    height: 8px;
+    background: url(/local/templates/aspro_next_2019/images/order_ext.png) -64px -9px no-repeat;
+    z-index: 2;
+}

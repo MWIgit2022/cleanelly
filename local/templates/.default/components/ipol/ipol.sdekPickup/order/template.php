@@ -244,7 +244,7 @@ if(!$linkNamePOSTAMAT) $linkNamePOSTAMAT = GetMessage("IPOLSDEK_FRNT_CHOOSEPOSTA
             }
             //??????? ????????
             var curDelivery = IPOLSDEK_pvz.curDelivery;
-            if (curDelivery == 52)
+            if (curDelivery == 51)
             {
                 $('input[name=ORDER_PROP_24], input[name=ORDER_PROP_25]').each( function( index, el) {
                     if ($(el).val() == "-") $(el).val("");
@@ -262,14 +262,15 @@ if(!$linkNamePOSTAMAT) $linkNamePOSTAMAT = GetMessage("IPOLSDEK_FRNT_CHOOSEPOSTA
                 $('input[name=ORDER_PROP_27]').val("");
                 $('input[name=ORDER_PROP_29]').val("");
             }
-            else if (curDelivery == 53 || curDelivery == 2)
+            else if (curDelivery == 53 || curDelivery == 52 ||curDelivery == 2)
             {
                 $('input[name=ORDER_PROP_24]').val("-");
                 $('input[name=ORDER_PROP_25]').val("-");
                 $('input[name=ORDER_PROP_26]').val("");
-                if (curDelivery == 53)
+                if (curDelivery == 52 || curDelivery == 53){
                     $('input[name=ORDER_PROP_29]').val("");
-
+					$("input[name=ORDER_PROP_27]").val(IPOLSDEK_pvz.pvzId);
+				}
                 $('input[name=ORDER_PROP_24], input[name=ORDER_PROP_25], input[name=ORDER_PROP_26], input[name=ORDER_PROP_29]').each( function( index, el) {
                     if ($(el).parents(".bx-soa-customer-field").is(":visible"))
                         $(el).parents(".bx-soa-customer-field").hide();
@@ -1174,13 +1175,13 @@ if(!$linkNamePOSTAMAT) $linkNamePOSTAMAT = GetMessage("IPOLSDEK_FRNT_CHOOSEPOSTA
 		IPOLSDEK_pvz.close();
 		window.SDEK_CUSTOM = ['POSTAMAT', 53];
 		$('#ID_DELIVERY_ID_53').click();
-		return false;
+		//return false;
 	}
 	function customIpolPvz(){
 		IPOLSDEK_pvz.close();
 		window.SDEK_CUSTOM = ['PVZ', 52];
 		$('#ID_DELIVERY_ID_52').click();
-		return false;
+		//return false;
 	}
 </script>
 <?php /* HTML of the vidjet */?>

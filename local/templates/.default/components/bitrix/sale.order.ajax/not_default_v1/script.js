@@ -497,11 +497,11 @@ $(document).ready(function(){
 		 $('#ID_DELIVERY_ID_53').closest('.bx-soa-pp-company').hide();
 		  if(window.SDEK_CUSTOM){
 			  IPOLSDEK_pvz.selectPVZ(window.SDEK_CUSTOM[1],window.SDEK_CUSTOM[0]); 
-			 $('#ID_DELIVERY_ID_52').closest('.bx-soa-pp-company').addClass('bx-selected');
+			 $('#ID_DELIVERY_ID_52').closest('.bx-soa-pp-company').addClass('bx-selected-fake');
 			 window.SDEK_CUSTOM = false;
 		  }
 		  if( $('#ID_DELIVERY_ID_53').closest('.bx-soa-pp-company').hasClass('bx-selected')){
-			 $('#ID_DELIVERY_ID_52').closest('.bx-soa-pp-company').addClass('bx-selected'); 
+			 $('#ID_DELIVERY_ID_52').closest('.bx-soa-pp-company').addClass('bx-selected-fake'); 
 		  }
      });
 	 $('#ID_DELIVERY_ID_53').closest('.bx-soa-pp-company').hide();
