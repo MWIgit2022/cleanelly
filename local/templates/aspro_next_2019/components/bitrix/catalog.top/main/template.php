@@ -30,6 +30,11 @@ $arNotify = unserialize($notifyOption);
 	<li id="<?=$this->GetEditAreaId($arItem['ID']);?>" class="catalog_item visible">
 		<div class="inner_wrap">
 			<div class="image_wrapper_block">
+				<?if($arItem['EGIPET_HLOPOK']){?>
+					<div class="detali_sostava_label">
+						<?=$arItem['EGIPET_HLOPOK']?>
+					</div>
+				<?}?>
 				<?if($arItem["PROPERTIES"]["HIT"]["VALUE"] || ($arParams["SALE_STIKER"] && $arItem["PROPERTIES"][$arParams["SALE_STIKER"]]["VALUE"])){?>
 					<div class="stickers">
 						<?if($arItem["PROPERTIES"]["HIT"]["VALUE"]):?>

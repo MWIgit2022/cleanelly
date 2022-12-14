@@ -170,9 +170,14 @@ $APPLICATION->SetAdditionalCSS("//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slic
 							<div><div class="sticker_sale_text"><?=$arItem["PROPERTIES"][$arParams["SALE_STIKER"]]["VALUE"];?></div></div>
 						<? } ?>
 					</div>
+					
 						<div>
 							<div class="image_wrapper_block">
-								
+								<?if($arItem['EGIPET_HLOPOK']){?>
+									<div class="detali_sostava_label">
+										<?=$arItem['EGIPET_HLOPOK']?>
+									</div>
+								<?}?>
 								<?if($arParams["DISPLAY_WISH_BUTTONS"] != "N" || $arParams["DISPLAY_COMPARE"] == "Y"):?>
 									<div class="like_icons">
 										<?if($arParams["DISPLAY_WISH_BUTTONS"] != "N"):?>

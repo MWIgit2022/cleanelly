@@ -4016,3 +4016,16 @@ width:100%;
 	.calculator_form .result .table{
 		text-decoration:underline;
 	}
+	.detali_sostava_label{
+		position: absolute;
+		bottom: 0;
+		background: #333333b0;
+		z-index: 3;
+		color: #fff;
+		font-size: 14px;
+		padding: 0.5em;
+		text-transform: uppercase;
+		letter-spacing: .5px;
+		line-height: 1.5em;
+		width: 100%;
+	}
