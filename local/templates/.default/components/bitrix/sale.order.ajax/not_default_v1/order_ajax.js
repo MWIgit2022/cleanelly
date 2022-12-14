@@ -8696,7 +8696,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 														<span class="close-link-promocode" data-entity="order-promocode-delete" data-promocode="`+currentCopon.COUPON+`">Удалить</span> </div>`); 
 							} else if (currentCopon.JS_STATUS == "ENTERED") {
 								couponAlertInner.append(`<div class="order-coupon-alert order-text-danger">
-														<span class="order-coupon-text"><strong>`+currentCopon.COUPON+` - `+currentCopon.JS_CHECK_CODE+' '+currentCopon.DISCOUNT_NAME+`</span>
+														<span class="order-coupon-text"><strong>`+currentCopon.COUPON+` -  промокод не применён, т.к. не выполнены все условия, либо активирован другой. По вопросам применения промокода можно обратиться на горячую линию интернет-магазина(`+currentCopon.DISCOUNT_NAME+`)</span>
 														<span class="close-link" data-entity="order-coupon-delete" data-coupon="`+currentCopon.COUPON+`">Удалить</span> </div>`);
 							
 							} else if (currentCopon.DISCOUNT_ACTIVE == "Y") {

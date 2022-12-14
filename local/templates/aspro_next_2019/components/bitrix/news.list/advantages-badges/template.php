@@ -18,7 +18,7 @@
                 </a>
             </div>
         <?php }?>
-        <div class="advantages-badges-item">
+        <!--div class="advantages-badges-item">
             <a href="/mezhdunarodnyy-sertifikat-kachestva/">
                 <div class="teasers-main-desc_img">
                     <img class="lazy" data-src="/images/main-teaser-photo.jpg" alt="main-teaser-photo">
@@ -28,6 +28,6 @@
                     <div class="teasers-main-gr">100% хлопок</div>
                 </div>
             </a>
-        </div>
+        </div-->
     </div>
 <?php }
