@@ -52,7 +52,11 @@
 			</div>	
 					<div class="inner_wrap">
 						<div class="image_wrapper_block shine">
-							
+							<?if($arItem['EGIPET_HLOPOK']){?>
+									<div class="detali_sostava_label">
+										<?=$arItem['EGIPET_HLOPOK']?>
+									</div>
+								<?}?>
 							<?if($arParams["DISPLAY_WISH_BUTTONS"] != "N" || $arParams["DISPLAY_COMPARE"] == "Y"):?>
 								<div class="like_icons">
 									<?if($arParams["DISPLAY_WISH_BUTTONS"] == "Y" && !$arItem["OFFERS"]):?>
