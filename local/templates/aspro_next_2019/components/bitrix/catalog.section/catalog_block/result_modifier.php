@@ -375,6 +375,9 @@ if (!empty($arResult['ITEMS'])){
 							$arItem['MIN_PRICE'] = (isset($arOffer['RATIO_PRICE']) ? $arOffer['RATIO_PRICE'] : $arOffer['MIN_PRICE']);
 							$arItem['MIN_BASIS_PRICE'] = $arOffer['MIN_PRICE'];
 						}
+						if($arOffer['PROPERTIES']['DETALI_SOSTAVA']['VALUE'] == 'Египетский хлопок'){ 
+							$arItem['EGIPET_HLOPOK'] = $arOffer['PROPERTIES']['DETALI_SOSTAVA']['VALUE'];
+						}
 						unset($foundOffer);
 					//}
 					$arSKUProps =$arSKUArticle = false;

@@ -172,6 +172,10 @@ if (!empty($arResult['ITEMS'])){
 						$arOffer["PRICE_MATRIX"] = CatalogGetPriceTableEx($arOffer["ID"], 0, $arPriceTypeID, 'Y', $arConvertParams);
 					}
 					$arItem['OFFERS'][$keyOffer] = array_merge($arOffer, CNext::formatPriceMatrix($arOffer));
+					
+					if($arOffer['PROPERTIES']['DETALI_SOSTAVA']['VALUE'] == 'Египетский хлопок'){ 
+						$arItem['EGIPET_HLOPOK'] = $arOffer['PROPERTIES']['DETALI_SOSTAVA']['VALUE'];
+					}
 				}
 			}
 			$arItem['MIN_PRICE'] = CNext::getMinPriceFromOffersExt(

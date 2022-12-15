@@ -1290,5 +1290,7 @@ if($settings['DELIV_TAB_TEXT']['VALUE']){
 if($settings['RETURN_TAB_TEXT']['VALUE']){
 	$arResult['RETURN_TAB_TEXT'] = html_entity_decode($settings['RETURN_TAB_TEXT']['VALUE']['TEXT']);
 } 
-
+if($settings['HOW_ORDER_TAB_TEXT']['VALUE']){
+	$arResult['HOW_ORDER_TAB_TEXT'] = html_entity_decode($settings['HOW_ORDER_TAB_TEXT']['VALUE']['TEXT']);
+}
 ?>

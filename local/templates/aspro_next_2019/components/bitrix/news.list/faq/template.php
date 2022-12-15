@@ -22,7 +22,7 @@
 							?>
 							<div class="item" id="<?=$this->GetEditAreaId($arItem['ID']);?>">
 								<div class="q"><a href="javascript:;" rel="nofollow"><?=$arItem["NAME"]?></a><span class="slide opener_icon no_bg"><i></i></span></div>
-								<div class="a"><?=$arItem["DETAIL_TEXT"]?></div>						
+								<div class="a"><?=$arItem["PREVIEW_TEXT"]?></div>						
 							</div>
 						<?endforeach;?>
 					</div>
