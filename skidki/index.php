@@ -7,6 +7,9 @@ $APPLICATION->SetTitle("Скидки");
 	font-style:italic;
 	margin:0;
 }
+.alert{
+	display:none;
+}
 </style>
 <?$APPLICATION->IncludeComponent(
 	"bitrix:news", 
