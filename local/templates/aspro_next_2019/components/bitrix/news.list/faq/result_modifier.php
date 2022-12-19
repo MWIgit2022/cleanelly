@@ -9,7 +9,7 @@ if($arResult['ITEMS']){
 	
 	if($arSectionIDs){
 		CModule::IncludeModule('iblock');
-		$dbRes = CIBlockSection::GetList(array(), array('ID' => $arSectionIDs, 'ACTIVE' => 'Y', 'LEVEL_DEPTH' => 0), false, array('ID', 'NAME'));
+		$dbRes = CIBlockSection::GetList(array('sort'=>'asc'), array('ID' => $arSectionIDs, 'ACTIVE' => 'Y', 'LEVEL_DEPTH' => 0), false, array('ID', 'NAME'));
 		while($arSection = $dbRes->Fetch()){
 			$arResult['SECTIONS'][$arSection['ID']] = $arSection['NAME'];
 		}
