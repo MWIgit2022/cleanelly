@@ -310,10 +310,11 @@
 			}
                         
                         $('.basket-checkout_free-delivery').remove();
-                        if (this.result.allSum < 5000)
+						var freeDeliveryPrice = parseInt(BX.Sale.BasketComponent.params.SETTINGZ.FREE_DELIVERY_THRESHOLD.VALUE);
+                        if (this.result.allSum < freeDeliveryPrice)
                         {
 							
-                            var $html = $('<div class="basket-checkout_free-delivery"><div class="basket-checkout_free-delivery_title">До бесплатной доставки осталось:</div><div class="basket-checkout_free-delivery_text">'+Math.ceil(5000-this.result.allSum)+' руб.</div></div>');
+                            var $html = $('<div class="basket-checkout_free-delivery"><div class="basket-checkout_free-delivery_title">До бесплатной доставки осталось:</div><div class="basket-checkout_free-delivery_text">'+Math.ceil(freeDeliveryPrice-this.result.allSum)+' руб.</div></div>');
                             $html.insertAfter($('.basket-checkout-container'));
                         }
 

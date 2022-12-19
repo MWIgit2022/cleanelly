@@ -402,7 +402,7 @@ if (empty($arResult['ERROR_MESSAGE']))
 			});
 		</script>
 	<?}
-	
+	$arParams['SETTINGZ'] = $settings;
 	$signer = new \Bitrix\Main\Security\Sign\Signer;
 	$signedTemplate = $signer->sign($templateName, 'sale.basket.basket');
 	$signedParams = $signer->sign(base64_encode(serialize($arParams)), 'sale.basket.basket');
