@@ -660,6 +660,9 @@ $arViewedData = array(
 					
 					
 				</div>
+				<div class="gift_btn_block"> 
+					<span class="btn-lg ss nsubsc btn btn-default transition_bg has-ripple">Оформить как подарок</span>
+				</div>
 				<div class="subscribe"> 
 						<span class="btn-lg ss to-subscribe auth nsubsc btn btn-default transition_bg has-ripple" 
 							data-name="subscribe"

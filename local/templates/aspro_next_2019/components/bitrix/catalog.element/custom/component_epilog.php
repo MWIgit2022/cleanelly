@@ -192,3 +192,83 @@ while($ar_fields = $res->GetNext())
 	<?}
 }
 //$this->__template->EndViewTarget();
+?>
+<form style="display: none; width: 500px;" id="giftorder_form">
+			<h2>Заказ на подарок</h2>
+			<p>
+				Сделайте близким приятный сюрприз с продукцией Cleanelly
+			</p>
+			<div class="gift_form_line topest">
+				<label>Ваше имя</label>
+				<input type="text" required name="NAME_1">
+			</div>
+			<div class="gift_form_line">
+				<label>Ваш телефон</label>
+				<input class="phone" required type="tel" name="PHONE_1">
+			</div>
+			<div class="gift_form_line">
+				<label>Имя получателя</label>
+				<input type="text" required name="NAME_2">
+			</div>
+			<div class="gift_form_line">
+				<label>Телефон получателя</label>
+				<input class="phone" required type="text" name="PHONE_2">
+			</div>
+			<input id="prod_gift_id" type="hidden" name="PRODUCT_ID">
+			<div>
+				<label>Способ доставки</label>
+				<div class="gift_delivery_block">
+					<span><input type="radio" value="ПВЗ" name="DELIVERY">ПВЗ</span>
+					<span><input type="radio" checked value="Курьер" name="DELIVERY">Курьер</span>
+				</div>
+			</div>
+			<div  class="gift_form_line">
+				<label>Адрес доставки</label>
+				<input type="text" required name="ADRESS">
+			</div>
+			<div class="gift_order">
+				<span>Состав заказа: </span><p id="prod_gift_title"></p>
+				<span>Стоимость заказа: </span><p id="prod_gift_price"></p>
+			</div>
+			<p><b>После подтверждения заказа вам будет добавлена скидка 5%</b></p>
+			<div class="oferta_line">
+				<input type="checkbox" name="OFERTA" required>
+				<label style="margin:0;">Я согласен на обработку персональных данных и с условиями публичной оферты</label>
+			</div>
+			
+			<div class="whatsapp_line">
+				<input style="margin:0;" type="checkbox" name="WHATSAPP">
+				<label style="margin:0;">Согласовать заказ через WhatsApp</label>
+			</div>
+			<button style="margin:1em 0;width:100%;" type="submit" class="btn btn-default aprove">Оформить</button>
+	</form>
+	<div style="display: none; width: 500px;" id="gift_success">
+			<h2>Заказ оформлен</h2>
+			<p>Номер заказа - <span id="gift_order_id"></span></p>
+			<p>
+				Мы с вами свяжемся в ближайшее врему и обсудим детали
+			</p>
+		</div>
+	<script>
+		$(document).on('submit', '#giftorder_form', function(e){
+			e.preventDefault();
+			  $.ajax({
+				type: "POST",
+				url: "/local/ajax/gift_order.php",
+				data: $(this).serialize(),
+				success: function(html){
+					$('#gift_order_id').text(html);
+					$.fancybox.close();
+					$.fancybox.open({
+						href: '#gift_success',
+						type: 'inline',
+						clickSlide : false,
+						helpers: {
+							overlay: { closeClick: false } 
+						},
+						touch: false,
+					  });
+				}
+			 }) 
+		})
+	</script>

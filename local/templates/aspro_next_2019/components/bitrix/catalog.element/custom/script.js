@@ -3057,6 +3057,7 @@ $('.set_block').ready(function () {
             }
             $('.offer_quantity_block').html('<div class="price_txt price_txt_delivery">В наличии только ' + obj.CONFIG.MAX_QUANTITY_BUY + "&nbsp;" + declOfNum(obj.CONFIG.MAX_QUANTITY_BUY, ['товар', 'товара', 'товаров']) + ' на складе</div>');
 			$('.subscribe').hide();
+			$('.gift_btn_block').show();
         } else {
             if (buyBlock.find('.counter_wrapp .counter_block').length) {
                 buyBlock.find('.counter_wrapp .counter_block').hide();
@@ -3067,6 +3068,7 @@ $('.set_block').ready(function () {
 				$('.subscribe .to-subscribe').attr('data-item', obj.ID);
 				$('.subscribe .to-subscribe').attr('data-param-id', obj.ID);
 				$('.subscribe').show();
+				$('.gift_btn_block').hide();
 			}
             $('.offer_quantity_block').html('<div class="price_txt price_txt_delivery">Товара нет на складе</div>');
         }
@@ -3117,6 +3119,11 @@ $('.set_block').ready(function () {
                 }
             }
 			console.log(obj);
+			$('#prod_gift_id').val(obj.ID);
+			var size_prop = obj.TREE.PROP_264;
+			var size_text = $('select[data-prop-code="264"] option[data-onevalue="'+size_prop+'"]').text();
+			$('#prod_gift_title').text(obj.NAME+'. Размер: '+size_text);
+			$('#prod_gift_price').text(obj.ITEM_PRICES[obj.ITEM_PRICE_SELECTED].PRINT_PRICE);
         } else {
             if (buyBlock.find('.wrapp_one_click').length) {
                 buyBlock.find('.wrapp_one_click').remove();
@@ -3809,3 +3816,14 @@ $(document).mouseup(function (e) {
 			div.hide(); 
 		}
 });
+$(document).on('click', '.gift_btn_block', function(){
+	$.fancybox.open({
+		href: '#giftorder_form',
+		type: 'inline',
+		clickSlide : false,
+		helpers: {
+            overlay: { closeClick: false } 
+        },
+		touch: false,
+	  });
+})
