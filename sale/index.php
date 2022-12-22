@@ -1,8 +1,8 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetPageProperty("description", "Новости и акции – интернет-магазин Cleanelly");
-$APPLICATION->SetPageProperty("title", "Новости и акции 2021");
-$APPLICATION->SetTitle("Новости и акции 2021");
+$APPLICATION->SetPageProperty("title", "Новости и акции");
+$APPLICATION->SetTitle("Новости и акции");
 ?>
 <?$APPLICATION->IncludeComponent(
 	"bitrix:news", 
