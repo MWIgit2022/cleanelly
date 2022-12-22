@@ -368,3 +368,31 @@ html {
 	display:none;
 	margin-bottom:1em;
 }
+.gift_btn_block{
+	margin: 1em 0;
+	display:none;
+}
+.gift_form_line{
+	margin-top:0.5em;
+}
+.gift_form_line.topest{
+	padding-top: 0.5em;border-top: 1px dotted;
+}
+.gift_delivery_block{
+	display:flex;gap:1em;
+}
+.gift_delivery_block input{
+	margin-right:0.5em!important;
+}
+.gift_order{
+	margin:1em 0;
+}
+.gift_order span {
+	font-weight:600
+}
+.oferta_line{
+	margin-top:0.5em;display: flex;gap: 0.5em;align-items: flex-start;
+}
+.whatsapp_line{
+	margin-top:0.5em;display: flex;gap: 0.5em;align-items: center;
+}
