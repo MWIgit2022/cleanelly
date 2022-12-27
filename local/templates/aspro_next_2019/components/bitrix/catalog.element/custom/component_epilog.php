@@ -207,6 +207,10 @@ while($ar_fields = $res->GetNext())
 				<input class="phone" required type="tel" name="PHONE_1">
 			</div>
 			<div class="gift_form_line">
+				<label>E-mail для уведомлений</label>
+				<input required type="text" name="EMAIL">
+			</div>
+			<div class="gift_form_line">
 				<label>Имя получателя</label>
 				<input type="text" required name="NAME_2">
 			</div>

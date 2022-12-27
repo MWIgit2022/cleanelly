@@ -19,6 +19,7 @@ $name1 = $request["NAME_1"];
 $phone2 = $request["PHONE_2"];
 $name2 = $request["NAME_2"];
 $adress = $request["ADRESS"];
+$email = $request["EMAIL"];
 $delivery = $request["DELIVERY"];
 
 $whatsapp = $request["WHATSAPP"] ? 'Да' : 'Нет';
@@ -73,7 +74,7 @@ $shipmentItem->setQuantity($item->getQuantity());
 
 $paymentCollection = $order->getPaymentCollection();
 $payment = $paymentCollection->createItem();
-$paySystemService = PaySystem\Manager::getObjectById(3);
+$paySystemService = PaySystem\Manager::getObjectById(1);
 $payment->setFields(array(
     'PAY_SYSTEM_ID' => $paySystemService->getField("PAY_SYSTEM_ID"),
     'PAY_SYSTEM_NAME' => $paySystemService->getField("NAME"),
@@ -81,10 +82,14 @@ $payment->setFields(array(
 
 // Устанавливаем свойства
 $propertyCollection = $order->getPropertyCollection();
-$phoneProp = $propertyCollection->getPhone();
+$phoneProp = $propertyCollection->getItemByOrderPropertyId(3);
+//$phoneProp = $propertyCollection->getPhone();
 $phoneProp->setValue($phone1);
-$nameProp = $propertyCollection->getPayerName();
+//$nameProp = $propertyCollection->getPayerName();
+$nameProp = $propertyCollection->getItemByOrderPropertyId(1);
 $nameProp->setValue($name1);
+$emailProp = $propertyCollection->getItemByOrderPropertyId(2);
+$emailProp->setValue($email);
 
 // Сохраняем
 $order->doFinalAction(true);
