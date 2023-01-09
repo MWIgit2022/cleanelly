@@ -65,17 +65,17 @@
 		</footer>
 		<?$settings = HBUtils::GetSettings("settings");?>
 		<?global $USER;
-		$begin_action = strtotime('20.08.2022 00:00:00');
-		if($settings['ACTION_BANNER']['VALUE']&& strtotime(date('d.m.Y H:i:s')) > $begin_action  && $_COOKIE['action_banner_show']==false){ ?>
+		if($settings['ACTION_BANNER']['VALUE']  && $_COOKIE['action_banner_show']==false){ ?>
 			<div class="overl_action_banner" style="display:none;"> 
 				<div class="closdiv">
 					<span class="clos">✖</span>
 					<a href="<?=$settings['ACTION_BANNER']['DESCRIPTION']?>" onclick="ym(22769200,'reachGoal','clikck-popup_banner')">
-						<img src="<?=CFile::getPath($settings['ACTION_BANNER']['VALUE'])?>">
+						<img src="<?=$settings['ACTION_BANNER']['VALUE']?>">
 					</a>
 				</div>
 			</div>
 		<?}?>
+		
 		<div class="bx_areas">
 			<?CNext::ShowPageType('bottom_counter');?>
 		</div>

@@ -40,6 +40,13 @@ class HBUtils
 					unset($prop['GIFTS_LOGIC']);
 				}
 			}
+			
+			if($prop['ACTION_BANNER']['VALUE']){
+				$banner = HBUtils::activePopupBanner();
+				$prop['ACTION_BANNER']['VALUE'] = $banner['IMG'];
+				$prop['ACTION_BANNER']['DESCRIPTION'] = $banner['HREF'];
+			}
+			
             $result = $f + $prop;
         }
         return $result;
@@ -79,5 +86,18 @@ class HBUtils
 		return $action;
 	 }
 	 
+	  public static function activePopupBanner(){
+		$arSelect = Array("ID", "IBLOCK_ID", "NAME", "DATE_ACTIVE_FROM");
+		$arFilter = Array("IBLOCK_ID"=>37, "ACTIVE_DATE"=>"Y", "ACTIVE"=>"Y");
+		$res = CIBlockElement::GetList(Array('SORT'=>'DESC'), $arFilter, false, false, $arSelect);
+		if($ob = $res->GetNextElement())
+		{
+			$arFields = $ob->GetFields();
+			$arProps = $ob->GetProperties();
+			
+			$banner = array('IMG'=>Cfile::getPath($arProps['BANNER']['VALUE']), 'HREF'=>$arProps['HREF']['VALUE']);
+		}
+		return $banner;
+	 }
 }
 ?>
