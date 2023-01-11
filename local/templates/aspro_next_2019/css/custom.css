@@ -4029,3 +4029,6 @@ width:100%;
 		line-height: 1.5em;
 		width: 100%;
 	}
+	.flexslider .dark .banner_title, .flexslider .dark .banner_title a{
+		font-family: 'BODONIC_2';
+	}
