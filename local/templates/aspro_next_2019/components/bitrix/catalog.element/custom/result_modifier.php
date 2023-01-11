@@ -1252,7 +1252,7 @@ foreach ($arResult['PROPERTIES']['VIDEO_YOUTUBE']['VALUE'] as $key => $videoCode
 foreach ($arResult['PROPERTIES']['ZEN_VIDEO']['VALUE'] as $key => $videoCode) {
 	$new_key = count($arResult['VIDEO_PREVIEWS'])+$key;
 	$videoCode = preg_split('/;/', $videoCode);
-	$arResult['VIDEO_URLS'][$new_key] = 'https://frontend.vh.yandex.ru/player/'.$videoCode[0].'?from_block=partner&from=zen&mute=1&autoplay=1&branding=0';
+	$arResult['VIDEO_URLS'][$new_key] = 'https://dzen.ru/embed/'.$videoCode[0].'?from_block=partner&from=zen&backoffice=1&mute=1&autoplay=1&tv=0';
 	if(!is_file($_SERVER['DOCUMENT_ROOT'].'/upload/zen_thumbs/'.$videoCode.'.jpeg')){
 		getScreenShot($videoCode[0]);
 	}
@@ -1262,7 +1262,7 @@ foreach ($arResult['PROPERTIES']['ZEN_VIDEO']['VALUE'] as $key => $videoCode) {
 }
 	
 function getScreenShot($code){
-	$url = 'https://frontend.vh.yandex.ru/player/'.$code.'?from_block=partner&from=zen&mute=1&autoplay=1&branding=0';
+	$url = 'https://dzen.ru/embed/'.$code.'?from_block=partner&from=zen&backoffice=1&mute=1&autoplay=1&tv=0';
     $result = "https://mini.s-shot.ru/1280x720/JPEG/1280/Z100/?".$url; // делаем запрос к сайту, который делает скрины
     $pic = file_get_contents($result); // получаем данные. Ответ от сайта
     file_put_contents($_SERVER['DOCUMENT_ROOT']."/upload/zen_thumbs/".$code.".jpeg", $pic); // сохраняем полученную картинку

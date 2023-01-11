@@ -3782,7 +3782,7 @@ function declOfNum(number, words) {
         $('.main_slider_video').on('click', function (e) {
             var title = $(this).attr('title');
             if (title) {
-                 if (title.includes('youtube') || title.includes('yandex')) {
+                 if (title.includes('youtube') || title.includes('dzen')) {
                     $('html').addClass('html_transform_none')
                     $('body').css({'overflow': 'hidden'});
                     document.getElementById('iframe-popup').setAttribute('src', title);
