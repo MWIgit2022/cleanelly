@@ -11,7 +11,16 @@ if(!$USER->isAuthorized()){
 }
 else{
 	//LocalRedirect(SITE_DIR.'personal/personal-data');?>
-	<?$APPLICATION->IncludeComponent(
+	<?
+	
+	$customPagesList[] = array(
+		"/personal/loyalty-program/",
+		"Программа лояльности",
+		'<i class="contact"></i>'
+	);
+	$customPages = CUtil::PhpToJSObject($customPagesList);
+	
+	$APPLICATION->IncludeComponent(
 	"bitrix:sale.personal.section", 
 	"main", 
 	array(
@@ -35,7 +44,7 @@ else{
 		"CACHE_TYPE" => "A",
 		"CHECK_RIGHTS_PRIVATE" => "N",
 		"COMPATIBLE_LOCATION_MODE_PROFILE" => "N",
-		"CUSTOM_PAGES" => "",
+		"CUSTOM_PAGES" => $customPages,
 		"CUSTOM_SELECT_PROPS" => array(
 		),
 		"NAV_TEMPLATE" => "",

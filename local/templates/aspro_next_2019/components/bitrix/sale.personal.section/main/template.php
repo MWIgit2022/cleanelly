@@ -83,6 +83,8 @@ if ($arParams['SHOW_CONTACT_PAGE'] === 'Y')
 	);
 }
 
+ 
+
 $customPagesList = CUtil::JsObjectToPhp($arParams['~CUSTOM_PAGES']);
 if ($customPagesList)
 {
@@ -103,7 +105,7 @@ if (empty($availablePages))
 else
 {
 	?>
-	
+
 	<div class="personal_wrapper">
 		<div class="row sale-personal-section-row-flex">
 			<?
