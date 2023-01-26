@@ -88,7 +88,7 @@ class HBUtils
 	 
 	  public static function activePopupBanner(){
 		$arSelect = Array("ID", "IBLOCK_ID", "NAME", "DATE_ACTIVE_FROM");
-		$arFilter = Array("IBLOCK_ID"=>37, "ACTIVE_DATE"=>"Y", "ACTIVE"=>"Y");
+		$arFilter = Array("IBLOCK_ID"=>36, "ACTIVE_DATE"=>"Y", "ACTIVE"=>"Y");
 		$res = CIBlockElement::GetList(Array('SORT'=>'DESC'), $arFilter, false, false, $arSelect);
 		if($ob = $res->GetNextElement())
 		{

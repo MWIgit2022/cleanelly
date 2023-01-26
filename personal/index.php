@@ -12,14 +12,14 @@ if(!$USER->isAuthorized()){
 else{
 	//LocalRedirect(SITE_DIR.'personal/personal-data');?>
 	<?
-	
+	/*
 	$customPagesList[] = array(
 		"/personal/loyalty-program/",
 		"Программа лояльности",
 		'<i class="contact"></i>'
 	);
 	$customPages = CUtil::PhpToJSObject($customPagesList);
-	
+	*/
 	$APPLICATION->IncludeComponent(
 	"bitrix:sale.personal.section", 
 	"main", 
