@@ -3,13 +3,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetPageProperty("description", "Доставка и оплата – интернет-магазин Cleanelly");
 $APPLICATION->SetPageProperty("title", "Доставка и оплата. Махровые полотенца и простыни, махровые халаты, домашний текстиль Cleanelly");
 $APPLICATION->SetTitle("Доставка и оплата");
-?><span style="font-size: 18pt;"><b>Возможна оплата наличными курьеру или в пункте выдачи ТК СДЕК\фирменном магазине Cleanelly</b></span><b><span style="font-size: 18pt;">.</span><br>
- <br>
- </b>В случае оплаты наличными курьеру, необходимо подготовить сумму к оплате без сдачи, или сообщить курьеру о необходимости сдачи во время его звонка&nbsp; с подтверждением времени приезда.<b><br>
- </b><br>
-<p>
- <span style="color: #383838; font-size: 1.6em; font-weight: bold;">Безналичная оплата товара осуществляется одним из следующих способов:</span><br>
-</p>
+?><span style="color: #383838; font-size: 1.6em; font-weight: bold;">Безналичная оплата товара осуществляется одним из следующих способов:</span><br>
 <p>
 </p>
 <ul>
@@ -20,15 +14,8 @@ $APPLICATION->SetTitle("Доставка и оплата");
  </li>
 	<li>
 	<p>
-		<b><u><a href="https://www.cleanelly.ru/rassrochka-halva/">оплата картой рассрочки Халва</a></u></b>
+ <b><u><a href="https://www.cleanelly.ru/rassrochka-halva/">оплата картой рассрочки Халва</a></u></b>
 	</p>
-	</li>
-	<li>
-	<p>
-		 платежный терминал при курьерской доставке
-	</p>
- </li>
-	<li>платежный терминал в фирменных магазинах Cleanelly и пунктах выдачи ТК СДЕК<br>
  </li>
 </ul>
 <p>
@@ -45,7 +32,7 @@ $APPLICATION->SetTitle("Доставка и оплата");
 		 МИР <br>
 	</td>
 	<td style="text-align: center;">
-		 &nbsp; &nbsp;&nbsp;<img alt="mir.png" src="/upload/medialibrary/a9f/mir.png" height="24" title="mir.png">
+		 &nbsp; &nbsp;&nbsp;<img alt="mir.png" src="/upload/medialibrary/a9f/mir.png" title="mir.png" height="24">
 	</td>
 </tr>
 <tr>
@@ -53,7 +40,7 @@ $APPLICATION->SetTitle("Доставка и оплата");
 		 VISA International&nbsp; <br>
 	</td>
 	<td style="text-align: center;">
-		 &nbsp; &nbsp;&nbsp;<img width="66" alt="visa.png" src="/upload/medialibrary/cc7/visa.png" height="21" title="visa.png">
+		 &nbsp; &nbsp;&nbsp;<img alt="visa.png" src="/upload/medialibrary/cc7/visa.png" title="visa.png" width="66" height="21">
 	</td>
 </tr>
 <tr>
@@ -61,7 +48,7 @@ $APPLICATION->SetTitle("Доставка и оплата");
 		 Mastercard Worldwide<br>
 	</td>
 	<td style="text-align: center;">
-		 &nbsp; &nbsp;&nbsp;<img width="49" alt="master.png" src="/upload/medialibrary/a58/master.png" height="35" title="master.png">
+		 &nbsp; &nbsp;&nbsp;<img alt="master.png" src="/upload/medialibrary/a58/master.png" title="master.png" width="49" height="35">
 	</td>
 </tr>
 </tbody>
@@ -90,9 +77,6 @@ $APPLICATION->SetTitle("Доставка и оплата");
  <br>
 </p>
 <p>
-	 Безналичным расчётом можно воспользоваться при курьерской доставке или самовывозе из магазина\пункта выдачи ТК СДЕК.
+	 Подробнее об оплате картой рассрочки Халва <b><u><a href="https://www.cleanelly.ru/rassrochka-halva/">здесь.</a></u></b>
 </p>
-<p>
-	Подробнее об оплате картой рассрочки Халва <b><u><a href="https://www.cleanelly.ru/rassrochka-halva/">здесь.</a></u></b>
-</p>
-<b><u><a href="https://www.cleanelly.ru/rassrochka-halva/"> </a></u></b><br><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
+ <b><u><a href="https://www.cleanelly.ru/rassrochka-halva/"> </a></u></b><br><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

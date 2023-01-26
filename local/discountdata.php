@@ -91,6 +91,11 @@ while ($ar_sales = $db_sales->Fetch())
 			$actions[$d['ID']] = $d['NAME'];
 		//}
 	}
+	if($USER->getId() == '1' && $order->getID() == 8766){
+		echo '<pre>';
+			print_r($discountData);
+		echo '</pre>';
+	}
 	foreach($discountData['RESULT']['BASKET'] as $bid=>$prod){
 		foreach($prod as $desc){
 			if($actions[$desc['DISCOUNT_ID']]){

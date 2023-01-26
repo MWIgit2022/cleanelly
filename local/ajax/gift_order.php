@@ -22,13 +22,14 @@ $adress = $request["ADRESS"];
 $email = $request["EMAIL"];
 $delivery = $request["DELIVERY"];
 
+
 $whatsapp = $request["WHATSAPP"] ? 'Да' : 'Нет';
 
 $siteId = Context::getCurrent()->getSite();
 $currencyCode = CurrencyManager::getBaseCurrency();
 
 // Создаёт новый заказ
-$order = Order::create($siteId, $USER->isAuthorized() ? $USER->GetID() : 13571);
+$order = Order::create($siteId, $USER->isAuthorized() ? $USER->GetID() : 17549);
 $order->setPersonTypeId(1);
 $order->setField('CURRENCY', $currencyCode);
 
@@ -53,8 +54,8 @@ $item->setFields(array(
 ));
 $order->setBasket($basket);
 
-$courier_delivery_id = 52;
-$pvz_delivery_id = 53;
+$courier_delivery_id = 51;
+$pvz_delivery_id = 52;
 
 $delivery_id = $courier_delivery_id;
 if($delivery == 'ПВЗ'){

@@ -62,7 +62,20 @@ $log_mess .= '--Ответ: '.$lm. PHP_EOL .'<br>';
 
 if($LOG_WRITE == true){
 	$file = 'log.php';
-	$current = file_get_contents($file);
-	$current .=$log_mess;
-	file_put_contents($file, $current);
+	$current = explode('------',file_get_contents($file));
+	$arr = explode(PHP_EOL,str_replace('<br>','',$current[1]));
+	foreach($arr as $str){
+		if(stristr($str,'--')){
+			$str_arr = explode('--',$str);
+			if(strtotime($str_arr[0])-strtotime(date('r', strtotime('-14 day'))) >0){
+				$string_to_log = implode('--',$str_arr);
+				$new_arr[] = $string_to_log.'<br>'.PHP_EOL;
+			}
+		}
+	}
+	
+			
+	$new_arr_to_str = $current[0].'------<br>'.implode(PHP_EOL, $new_arr);
+	$new_arr_to_str .=$log_mess;
+	file_put_contents($file, $new_arr_to_str);
 }
