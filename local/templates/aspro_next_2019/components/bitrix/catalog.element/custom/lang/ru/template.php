@@ -94,5 +94,5 @@ $MESS["PRICE_MATRIX_COUNT_TO"] = "до";
 
 $MESS['S_ASK_QUESTION'] = 'Задать вопрос';
 $MESS['S_ORDER_SERVISE'] = 'Заказать услугу';
-$MESS['SEND_IT'] = 'Соберем и передадим в транспортную компанию - #DATE_SEND#'
+$MESS['SEND_IT'] = 'ДОСТАВКА'
 ?>
