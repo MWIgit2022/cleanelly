@@ -770,9 +770,11 @@ $arViewedData = array(
 			<!-- noindex -->			
 			<div class="element_detail_text wrap_md">
 				<?if($arResult['CERTIFICATE']){?>
+					<?/*?>
 					<a onclick="$.fancybox.open('<?=CFile::getPath($arResult['CERTIFICATE'])?>')">
+					<?*/?>	
 						<img style="margin-bottom:1em;max-height:200px" src="<?=$arResult['CERTIFICATE_PREVIEW']?>">
-					</a>
+					<?/*?></a><?*/?>
 				<?}?>
 				<div class="price_txt price_txt_delivery">
 					<a href="/help/delivery/" target="_blank" class="price_txt_addarr">
