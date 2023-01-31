@@ -6,6 +6,21 @@ use Bitrix\Main\Loader;
 
 Loc::loadMessages(__FILE__);
 
+$cacert = array(
+	"SBERBANK_API_ENABLE_CACERT" => array(
+		"NAME" => Loc::getMessage("SBERBANK_PAYMENT_API_CERT_NAME"),
+		"DESCRIPTION" => Loc::getMessage("SBERBANK_PAYMENT_API_CERT_DESCR"),
+		'SORT' => 135,
+		'GROUP' => Loc::getMessage("SBERBANK_PAYMENT_GROUP_GATE"),
+		"INPUT" => array(
+			'TYPE' => 'Y/N'
+		),
+		'DEFAULT' => array(
+			"PROVIDER_VALUE" => "N",
+        	"PROVIDER_KEY" => "INPUT"
+		)
+	)
+);
 
 $data = array(
 	'NAME' => Loc::getMessage("SBERBANK_PAYMENT_MODULE_TITLE"),
@@ -36,6 +51,19 @@ $data = array(
             	"PROVIDER_KEY" => "INPUT"
 			)
 		),
+        "SBERBANK_HANDLER_TWO_STAGE" => array(
+            "NAME" => Loc::getMessage("SBERBANK_PAYMENT_HANDLER_TWO_STAGE_NAME"),
+            "DESCRIPTION" => Loc::getMessage("SBERBANK_PAYMENT_HANDLER_TWO_STAGE_DESCR"),
+            'SORT' => 140,
+            'GROUP' => Loc::getMessage("SBERBANK_PAYMENT_GROUP_GATE"),
+            "INPUT" => array(
+                'TYPE' => 'Y/N'
+            ),
+            'DEFAULT' => array(
+                "PROVIDER_VALUE" => "N",
+                "PROVIDER_KEY" => "INPUT"
+            )
+        ),
 		"SBERBANK_HANDLER_AUTO_REDIRECT" => array(
 			"NAME" => Loc::getMessage("SBERBANK_PAYMENT_HANDLER_AUTO_REDIRECT_NAME"),
 			"DESCRIPTION" => Loc::getMessage("SBERBANK_PAYMENT_HANDLER_AUTO_REDIRECT_DESCR"),
@@ -49,32 +77,7 @@ $data = array(
             	"PROVIDER_KEY" => "INPUT"
 			)
 		),
-		"SBERBANK_HANDLER_LOGGING" => array(
-			"NAME" => Loc::getMessage("SBERBANK_PAYMENT_HANDLER_LOGGING_NAME"),
-			"DESCRIPTION" => Loc::getMessage("SBERBANK_PAYMENT_HANDLER_LOGGING_DESCR"),
-			'SORT' => 210,
-			'GROUP' => Loc::getMessage("SBERBANK_PAYMENT_GROUP_HANDLER"),
-			"INPUT" => array(
-				'TYPE' => 'Y/N'
-			),
-			'DEFAULT' => array(
-				"PROVIDER_VALUE" => "Y",
-            	"PROVIDER_KEY" => "INPUT"
-			)
-		),
-		"SBERBANK_HANDLER_TWO_STAGE" => array(
-			"NAME" => Loc::getMessage("SBERBANK_PAYMENT_HANDLER_TWO_STAGE_NAME"),
-			"DESCRIPTION" => Loc::getMessage("SBERBANK_PAYMENT_HANDLER_TWO_STAGE_DESCR"),
-			'SORT' => 220,
-			'GROUP' => Loc::getMessage("SBERBANK_PAYMENT_GROUP_HANDLER"),
-			"INPUT" => array(
-				'TYPE' => 'Y/N'
-			),
-			'DEFAULT' => array(
-				"PROVIDER_VALUE" => "N",
-            	"PROVIDER_KEY" => "INPUT"
-			)
-		),
+
 		"SBERBANK_HANDLER_SHIPMENT" => array(
 			"NAME" => Loc::getMessage("SBERBANK_PAYMENT_HANDLER_SHIPMENT_NAME"),
 			"DESCRIPTION" => Loc::getMessage("SBERBANK_PAYMENT_HANDLER_SHIPMENT_DESCR"),
@@ -100,29 +103,79 @@ $data = array(
 			'SORT' => 340,
 			'GROUP' => Loc::getMessage("SBERBANK_PAYMENT_GROUP_HANDLER"),
 		),
+        "SBERBANK_HANDLER_LOGGING" => array(
+            "NAME" => Loc::getMessage("SBERBANK_PAYMENT_HANDLER_LOGGING_NAME"),
+            "DESCRIPTION" => Loc::getMessage("SBERBANK_PAYMENT_HANDLER_LOGGING_DESCR"),
+            'SORT' => 360,
+            'GROUP' => Loc::getMessage("SBERBANK_PAYMENT_GROUP_HANDLER"),
+            "INPUT" => array(
+                'TYPE' => 'Y/N'
+            ),
+            'DEFAULT' => array(
+                "PROVIDER_VALUE" => "Y",
+                "PROVIDER_KEY" => "INPUT"
+            )
+        ),
 		"SBERBANK_FFD_VERSION" => array(
 			"NAME" => Loc::getMessage("SBERBANK_PAYMENT_FFD_VERSION_NAME"),
 			"DESCRIPTION" => Loc::getMessage("SBERBANK_PAYMENT_FFD_VERSION_DESCR"),
 			'SORT' => 400,
-			'GROUP' => Loc::getMessage("SBERBANK_PAYMENT_GROUP_FFD"),
+			'GROUP' => Loc::getMessage("SBERBANK_PAYMENT_GROUP_OFD"),
 			'TYPE' => 'SELECT',
 			'INPUT' => array(
 				'TYPE' => 'ENUM',
 				'OPTIONS' => array(
-					'1.00' => '1.00',
 					'1.05' => '1.05',
+					'1.2' => '1.2',
 				)
 			),
 			'DEFAULT' => array(
 				"PROVIDER_VALUE" => "1.05",
-            	"PROVIDER_KEY" => "INPUT"
+           		"PROVIDER_KEY" => "INPUT"
 			)
 		),
+
+        "SBERBANK_OFD_RECIEPT" => array(
+            "NAME" => Loc::getMessage("SBERBANK_PAYMENT_OFD_RECIEPT_NAME"),
+            "DESCRIPTION" => Loc::getMessage("SBERBANK_PAYMENT_OFD_RECIEPT_DESCR"),
+            'SORT' => 420,
+            'GROUP' => Loc::getMessage("SBERBANK_PAYMENT_GROUP_OFD"),
+            "INPUT" => array(
+                'TYPE' => 'Y/N'
+            ),
+            'DEFAULT' => array(
+                "PROVIDER_VALUE" => "N",
+                "PROVIDER_KEY" => "INPUT"
+            )
+        ),
+        "SBERBANK_OFD_TAX_SYSTEM" => array(
+            "NAME" => Loc::getMessage("SBERBANK_PAYMENT_OFD_TAX_SYSTEM_NAME"),
+            "DESCRIPTION" => Loc::getMessage("SBERBANK_PAYMENT_OFD_TAX_SYSTEM_DESCR"),
+            'SORT' => 430,
+            'GROUP' => Loc::getMessage("SBERBANK_PAYMENT_GROUP_OFD"),
+            'TYPE' => 'SELECT',
+            'INPUT' => array(
+                'TYPE' => 'ENUM',
+                'OPTIONS' => array(
+                    "0"  =>  GetMessage('SBERBANK_PAYMENT_OFD_RECIEPT_VALUE_0'),
+                    "1"  =>  GetMessage('SBERBANK_PAYMENT_OFD_RECIEPT_VALUE_1'),
+                    "2"  =>  GetMessage('SBERBANK_PAYMENT_OFD_RECIEPT_VALUE_2'),
+                    "3"  =>  GetMessage('SBERBANK_PAYMENT_OFD_RECIEPT_VALUE_3'),
+                    "4"  =>  GetMessage('SBERBANK_PAYMENT_OFD_RECIEPT_VALUE_4'),
+                    "5"  =>  GetMessage('SBERBANK_PAYMENT_OFD_RECIEPT_VALUE_5'),
+                )
+            ),
+            'DEFAULT' => array(
+                "PROVIDER_VALUE" => "1",
+                "PROVIDER_KEY" => "INPUT"
+            )
+        ),
+
 		"SBERBANK_FFD_PAYMENT_METHOD" => array(
 			"NAME" => Loc::getMessage("SBERBANK_PAYMENT_FFD_PAYMENT_METHOD_NAME"),
 			"DESCRIPTION" => Loc::getMessage("SBERBANK_PAYMENT_FFD_PAYMENT_METHOD_DESCR"),
-			'SORT' => 410,
-			'GROUP' => Loc::getMessage("SBERBANK_PAYMENT_GROUP_FFD"),
+			'SORT' => 440,
+			'GROUP' => Loc::getMessage("SBERBANK_PAYMENT_GROUP_OFD"),
 			'TYPE' => 'SELECT',
 			'INPUT' => array(
 				'TYPE' => 'ENUM',
@@ -144,8 +197,8 @@ $data = array(
 		"SBERBANK_FFD_PAYMENT_OBJECT" => array(
 			"NAME" => Loc::getMessage("SBERBANK_PAYMENT_FFD_PAYMENT_OBJECT_NAME"),
 			"DESCRIPTION" => Loc::getMessage("SBERBANK_PAYMENT_FFD_PAYMENT_OBJECT_DESCR"),
-			'SORT' => 420,
-			'GROUP' => Loc::getMessage("SBERBANK_PAYMENT_GROUP_FFD"),
+			'SORT' => 450,
+			'GROUP' => Loc::getMessage("SBERBANK_PAYMENT_GROUP_OFD"),
 			'TYPE' => 'SELECT',
 			'INPUT' => array(
 				'TYPE' => 'ENUM',
@@ -173,8 +226,8 @@ $data = array(
 		"SBERBANK_FFD_PAYMENT_OBJECT_DELIVERY" => array(
 			"NAME" => Loc::getMessage("SBERBANK_PAYMENT_FFD_PAYMENT_OBJECT_DELIVERY_NAME"),
 			"DESCRIPTION" => Loc::getMessage("SBERBANK_PAYMENT_FFD_PAYMENT_OBJECT_DESCR"),
-			'SORT' => 421,
-			'GROUP' => Loc::getMessage("SBERBANK_PAYMENT_GROUP_FFD"),
+			'SORT' => 451,
+			'GROUP' => Loc::getMessage("SBERBANK_PAYMENT_GROUP_OFD"),
 			'TYPE' => 'SELECT',
 			'INPUT' => array(
 				'TYPE' => 'ENUM',
@@ -202,8 +255,8 @@ $data = array(
 		"SBERBANK_FFD_PAYMENT_METHOD_DELIVERY" => array(
 			"NAME" => Loc::getMessage("SBERBANK_PAYMENT_FFD_PAYMENT_DELIVERY_METHOD_NAME"),
 			"DESCRIPTION" => Loc::getMessage("SBERBANK_PAYMENT_FFD_PAYMENT_DELIVERY_METHOD_DESCR"),
-			'SORT' => 421,
-			'GROUP' => Loc::getMessage("SBERBANK_PAYMENT_GROUP_FFD"),
+			'SORT' => 452,
+			'GROUP' => Loc::getMessage("SBERBANK_PAYMENT_GROUP_OFD"),
 			'TYPE' => 'SELECT',
 			'INPUT' => array(
 				'TYPE' => 'ENUM',
@@ -215,41 +268,6 @@ $data = array(
 	                "5" => GetMessage('SBERBANK_PAYMENT_FFD_PAYMENT_METHOD_VALUE_5'),
 	                "6" => GetMessage('SBERBANK_PAYMENT_FFD_PAYMENT_METHOD_VALUE_6'),
 	                "7" => GetMessage('SBERBANK_PAYMENT_FFD_PAYMENT_METHOD_VALUE_7'),
-				)
-			),
-			'DEFAULT' => array(
-				"PROVIDER_VALUE" => "1",
-            	"PROVIDER_KEY" => "INPUT"
-			)
-		),
-		"SBERBANK_OFD_RECIEPT" => array(
-			"NAME" => Loc::getMessage("SBERBANK_PAYMENT_OFD_RECIEPT_NAME"),
-			"DESCRIPTION" => Loc::getMessage("SBERBANK_PAYMENT_OFD_RECIEPT_DESCR"),
-			'SORT' => 520,
-			'GROUP' => Loc::getMessage("SBERBANK_PAYMENT_GROUP_OFD"),
-			"INPUT" => array(
-				'TYPE' => 'Y/N'
-			),
-			'DEFAULT' => array(
-				"PROVIDER_VALUE" => "N",
-            	"PROVIDER_KEY" => "INPUT"
-			)
-		),
-		"SBERBANK_OFD_TAX_SYSTEM" => array(
-			"NAME" => Loc::getMessage("SBERBANK_PAYMENT_OFD_TAX_SYSTEM_NAME"),
-			"DESCRIPTION" => Loc::getMessage("SBERBANK_PAYMENT_OFD_TAX_SYSTEM_DESCR"),
-			'SORT' => 530,
-			'GROUP' => Loc::getMessage("SBERBANK_PAYMENT_GROUP_OFD"),
-			'TYPE' => 'SELECT',
-			'INPUT' => array(
-				'TYPE' => 'ENUM',
-				'OPTIONS' => array(
-	                "0"  =>  GetMessage('SBERBANK_PAYMENT_OFD_RECIEPT_VALUE_0'),
-	                "1"  =>  GetMessage('SBERBANK_PAYMENT_OFD_RECIEPT_VALUE_1'),
-	                "2"  =>  GetMessage('SBERBANK_PAYMENT_OFD_RECIEPT_VALUE_2'),
-	                "3"  =>  GetMessage('SBERBANK_PAYMENT_OFD_RECIEPT_VALUE_3'),
-	                "4"  =>  GetMessage('SBERBANK_PAYMENT_OFD_RECIEPT_VALUE_4'),
-	                "5"  =>  GetMessage('SBERBANK_PAYMENT_OFD_RECIEPT_VALUE_5'),
 				)
 			),
 			'DEFAULT' => array(
@@ -292,3 +310,7 @@ $data = array(
 
 	)
 );
+
+if(file_exists(dirname(dirname(__FILE__)) . "/cacert.cer")) {
+	$data['CODES'] = array_merge($data['CODES'], $cacert);
+}

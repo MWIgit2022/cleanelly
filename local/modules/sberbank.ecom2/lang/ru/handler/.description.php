@@ -3,15 +3,21 @@ $MESS["SBERBANK_PAYMENT_MODULE_TITLE"] = 'Интернет-эквайринг С
 $MESS["SBERBANK_PAYMENT_GROUP_GATE"] = 'Параметры подключения платежного шлюза';
 $MESS["SBERBANK_PAYMENT_GROUP_HANDLER"] = 'Параметры платежного обработчика';
 $MESS["SBERBANK_PAYMENT_GROUP_ORDER"] = 'Параметры заказа';
-$MESS["SBERBANK_PAYMENT_GROUP_FFD"] = 'Настройки ФФД';
-$MESS["SBERBANK_PAYMENT_GROUP_OFD"] = "Фискализация";
+//$MESS["SBERBANK_PAYMENT_GROUP_FFD"] = 'Настройки ФФД';
+$MESS["SBERBANK_PAYMENT_GROUP_OFD"] = "Отправка чеков";
 
 $MESS["SBERBANK_PAYMENT_API_LOGIN_NAME"] = 'Логин';
 $MESS["SBERBANK_PAYMENT_API_LOGIN_DESCR"] = '';
+
 $MESS["SBERBANK_PAYMENT_API_PASSWORD_NAME"] = 'Пароль';
 $MESS["SBERBANK_PAYMENT_API_PASSWORD_DESCR"] = '';
+
 $MESS["SBERBANK_PAYMENT_API_TEST_MODE_NAME"] = 'Тестовый режим';
 $MESS["SBERBANK_PAYMENT_API_TEST_MODE_DESCR"] = 'Если отмечено, плагин будет работать в тестовом режиме. При пустом значении будет стандартный режим работы.';
+
+$MESS["SBERBANK_PAYMENT_API_CERT_NAME"] = 'Проверять SSL сертификат';
+$MESS["SBERBANK_PAYMENT_API_CERT_DESCR"] = 'Отключение проверки делает подключение небезопасным. Простого шифрования при передаче недостаточно, поскольку вы не можете быть уверены, что общаетесь с доверенной конечной точкой.';
+
 
 $MESS["SBERBANK_PAYMENT_HANDLER_AUTO_REDIRECT_NAME"] = 'Автоматический редирект на форму оплаты';
 $MESS["SBERBANK_PAYMENT_HANDLER_AUTO_REDIRECT_DESCR"] = 'Если отмечено, после оформления заказа, покупатель будет автоматически перенаправлен на страницу платежной формы.';
@@ -27,14 +33,14 @@ $MESS["SBERBANK_PAYMENT_ORDER_NUMBER_DESCR"] = '';
 $MESS["SBERBANK_PAYMENT_ORDER_AMOUNT_NAME"] = 'Сумма заказа';
 $MESS["SBERBANK_PAYMENT_ORDER_AMOUNT_DESCR"] = '';
 $MESS["SBERBANK_PAYMENT_ORDER_DESCRIPTION_NAME"] = 'Описание заказа';
-$MESS["SBERBANK_PAYMENT_ORDER_DESCRIPTION_DESCR"] = 'Передаются только первые 24 символа этого поля.Текст может содержать метки: #PAYMENT_ID# - ID оплаты, #ORDER_ID# - ID заказа, #PAYMENT_NUMBER# - номер оплаты, #ORDER_NUMBER# - номер заказа, #USER_EMAIL# - Email покупателя';
+$MESS["SBERBANK_PAYMENT_ORDER_DESCRIPTION_DESCR"] = "Поле может содержать метки: #PAYMENT_ID# - ID оплаты, #ORDER_ID# - ID заказа, #PAYMENT_NUMBER# - номер оплаты, \n#ORDER_NUMBER# - номер заказа, #USER_EMAIL# - Email покупателя. (не более 24 символов, запрещены к использованию %, +, конец строки '\\r' и перенос строки '\\n').";
 
 
 $MESS["SBERBANK_PAYMENT_FFD_VERSION_NAME"] = 'Формат фискальных документов';
 $MESS["SBERBANK_PAYMENT_FFD_VERSION_DESCR"] = 'Формат версии требуется указать в личном кабинете банка и в кабинете сервиса фискализации';
 $MESS["SBERBANK_PAYMENT_FFD_PAYMENT_DELIVERY_METHOD_NAME"] = 'Тип оплаты для доставки';
 $MESS["SBERBANK_PAYMENT_FFD_PAYMENT_METHOD_NAME"] = 'Тип оплаты';
-$MESS["SBERBANK_PAYMENT_FFD_PAYMENT_METHOD_DESCR"] = 'Для ФФД версии 1.05 и выше';
+$MESS["SBERBANK_PAYMENT_FFD_PAYMENT_METHOD_DESCR"] = '';
 $MESS['SBERBANK_PAYMENT_FFD_PAYMENT_METHOD_VALUE_1'] = "Полная предварительная оплата до момента передачи предмета расчёта";
 $MESS['SBERBANK_PAYMENT_FFD_PAYMENT_METHOD_VALUE_2'] = "Частичная предварительная оплата до момента передачи предмета расчёта";
 $MESS['SBERBANK_PAYMENT_FFD_PAYMENT_METHOD_VALUE_3'] = "Аванс";
@@ -45,7 +51,7 @@ $MESS['SBERBANK_PAYMENT_FFD_PAYMENT_METHOD_VALUE_7'] = "Оплата предм�
 
 $MESS["SBERBANK_PAYMENT_FFD_PAYMENT_OBJECT_NAME"] = 'Тип оплачиваемой позиции';
 $MESS["SBERBANK_PAYMENT_FFD_PAYMENT_OBJECT_DELIVERY_NAME"] = 'Тип оплачиваемой позиции для доставки';
-$MESS["SBERBANK_PAYMENT_FFD_PAYMENT_OBJECT_DESCR"] = 'Для ФФД версии 1.05 и выше';
+$MESS["SBERBANK_PAYMENT_FFD_PAYMENT_OBJECT_DESCR"] = '';
 $MESS["SBERBANK_PAYMENT_FFD_PAYMENT_OBJECT_VALUE_1"]  = "Товар";
 $MESS["SBERBANK_PAYMENT_FFD_PAYMENT_OBJECT_VALUE_2"]  = "Подакцизный товар";
 $MESS["SBERBANK_PAYMENT_FFD_PAYMENT_OBJECT_VALUE_3"]  = "Работа";
@@ -75,7 +81,7 @@ $MESS["SBERBANK_PAYMENT_OFD_RECIEPT_VALUE_5"] = "Патентная систем
 $MESS["SBERBANK_PAYMENT_OFD_TAX_SYSTEM_NAME"] = "Система налогообложения";
 $MESS["SBERBANK_PAYMENT_OFD_TAX_SYSTEM_DESCR"] = "";
 
-$MESS["SBERBANK_PAYMENT_RETURN_URL_NAME"] = "Адрес, на который требуется перенаправить пользователя в случае успешной оплаты";
-$MESS["SBERBANK_PAYMENT_RETURN_URL_DESCR"] = "Не обязательно для заполнения. Адрес должен быть указан полностью, включая используемый протокол";
-$MESS["SBERBANK_PAYMENT_FAIL_URL_NAME"] = "Адрес, на который требуется перенаправить пользователя в случае неуспешной оплаты";
-$MESS["SBERBANK_PAYMENT_FAIL_URL_DESCR"] = "Не обязательно для заполнения. Адрес должен быть указан полностью, включая используемый протокол";
+$MESS["SBERBANK_PAYMENT_RETURN_URL_NAME"] = "Страница, на которую необходимо перенаправить пользователя в случае успешной оплаты";
+$MESS["SBERBANK_PAYMENT_RETURN_URL_DESCR"] = "Оставьте это поле пустым, если хотите использовать настройки по умолчанию.";
+$MESS["SBERBANK_PAYMENT_FAIL_URL_NAME"] = "Страница, на которую требуется перенаправить пользователя в случае неуспешной оплатыa";
+$MESS["SBERBANK_PAYMENT_FAIL_URL_DESCR"] = "Оставьте это поле пустым, если хотите использовать настройки по умолчанию.";

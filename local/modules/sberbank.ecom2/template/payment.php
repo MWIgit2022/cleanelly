@@ -17,7 +17,7 @@
 			<? if($params['SBERBANK_HANDLER_AUTO_REDIRECT'] == 'Y') {?>
 				<script>
 					var needRedirect = true;
-					var currentPage = window.location.pathname
+					var currentPage = window.location.pathname;
 					var auto_redirect_exceptions = JSON.parse('<?=json_encode($params['auto_redirect_exceptions']);?>');
 					auto_redirect_exceptions.forEach((element) => {
 					  if(currentPage.match(element)) {
@@ -50,6 +50,7 @@
 		text-align: left;
 		margin-bottom: 20px;
 		margin-top: 20px;
+		width: 100%;
 	}
 	body .sberbank__price-block {
 		font-family: arial;
@@ -67,18 +68,21 @@
 	}
 	body .sberbank__content {
 		font-family: arial;
-	    width: 400px;
-	    max-width: 100%;
+	    max-width: 400px;
+	    width: 100%;
 	    padding: 10px 10px 13px;
 	    border: 1px solid #e5e5e5;
 	    text-align: center;
 	    margin-bottom: 12px;
+	    display: flex;
+	    flex-direction: column;
+	    align-items: center;
 	}
 	body .sberbank__payment-link {
 		font-family: arial;
 		display: inline-block;
-		width: 320px;
-		max-width: 100%;
+		max-width: 320px;
+		width: 100%;
 		margin: 8px 0 5px;
 		background-color: #1eb42f !important;
 		color: #fff !important;
@@ -124,5 +128,12 @@
 		color:#000;
 		font-size: 14px;
 		display: block;
+	}
+	@media(max-width: 500px) {
+		body .sberbank__price-string b {
+			display:block;
+			text-align:center;
+		}
+
 	}
 </style>

@@ -6,3 +6,4 @@ $MESS['SBERBANK_PAYMENT_FIELD_MEASURE'] = 'шт';
 $MESS['SBERBANK_PAYMENT_FIRLD_DELIVERY'] = 'Доставка';
 $MESS['SBERBANK_MESSAGE_PAYMENT_ERROR'] = 'Ошибка, платеж не был проведен ';
 $MESS['SBERBANK_RETURN_LINK'] = 'Вернуться на главную';
+$MESS['SBERBANK_CANCEL_ORDER_MESSAGE'] = 'Истекло время ожидания оплаты заказа.';

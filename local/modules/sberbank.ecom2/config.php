@@ -15,6 +15,12 @@ $SBERBANK_CONFIG = array(
 	    'BYN' => 933
 	),
 	'MODULE_VERSION' => $arModuleVersion['VERSION'],
-	'CALLBACK_BROADCAST' => false
+	'CALLBACK_BROADCAST' => false,
+	'DISCOUNT_HELPER' => false,
+	'IGNORE_PRODUCT_TAX' => false,
+	"MEASUREMENT_NAME" => 'шт', //FFD v.1.05
+	"MEASUREMENT_CODE" => 0, //FFD v.1.2
+	"RBS_ENABLE_CALLBACK" => true,
+	'CANCEL_ORDER_BY_TIMEOUT' => false,
 );
 

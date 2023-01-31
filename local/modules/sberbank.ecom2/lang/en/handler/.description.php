@@ -31,10 +31,9 @@ $MESS["SBERBANK_PAYMENT_ORDER_DESCRIPTION_DESCR"] = '';
 
 
 $MESS["SBERBANK_PAYMENT_FFD_VERSION_NAME"] = 'Fiscal Document Format';
-
 $MESS["SBERBANK_PAYMENT_FFD_VERSION_DESCR"] = 'The format of the version is required to be indicated in the personal account of the bank and in the office of the fiscalization service';
 $MESS["SBERBANK_PAYMENT_FFD_PAYMENT_METHOD_NAME"] = 'Payment type';
-$MESS["SBERBANK_PAYMENT_FFD_PAYMENT_METHOD_DESCR"] = 'For FFD version 1.05 and higher';
+$MESS["SBERBANK_PAYMENT_FFD_PAYMENT_METHOD_DESCR"] = '';
 $MESS['SBERBANK_PAYMENT_FFD_PAYMENT_METHOD_VALUE_1'] = "Full advance payment before the transfer of the subject of calculation";
 $MESS['SBERBANK_PAYMENT_FFD_PAYMENT_METHOD_VALUE_2'] = "Partial prepayment until the transfer of the subject of calculation";
 $MESS['SBERBANK_PAYMENT_FFD_PAYMENT_METHOD_VALUE_3'] = "Prepaid expense";
@@ -45,7 +44,7 @@ $MESS['SBERBANK_PAYMENT_FFD_PAYMENT_METHOD_VALUE_7'] = "Payment of the subject o
 
 $MESS["SBERBANK_PAYMENT_FFD_PAYMENT_OBJECT_NAME"] = "Type of goods and services";
 $MESS["SBERBANK_PAYMENT_FFD_PAYMENT_OBJECT_DELIVERY_NAME"] = 'Type of goods and services from delivery';
-$MESS["SBERBANK_PAYMENT_FFD_PAYMENT_OBJECT_DESCR"] = 'Used in FFD starting from 1.05';
+$MESS["SBERBANK_PAYMENT_FFD_PAYMENT_OBJECT_DESCR"] = '';
 $MESS["SBERBANK_PAYMENT_FFD_PAYMENT_OBJECT_VALUE_1"]  = "Goods";
 $MESS["SBERBANK_PAYMENT_FFD_PAYMENT_OBJECT_VALUE_2"]  = "Excised goods";
 $MESS["SBERBANK_PAYMENT_FFD_PAYMENT_OBJECT_VALUE_3"]  = "Job";

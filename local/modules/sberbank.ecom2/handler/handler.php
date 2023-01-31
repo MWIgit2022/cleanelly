@@ -48,6 +48,26 @@ class sberbank_ecom2Handler extends PaySystem\ServiceHandler implements PaySyste
 			'cms_version' => 'Bitrix ' . SM_VERSION,
 			'language' => 'ru',
 			'default_cartItem_tax' => Option::get($moduleId, 'TAX_DEFAULT'),
+			'ignore_product_tax' => Option::get($moduleId, 'IGNORE_PRODUCT_TAX'),
+			'callback_mode' => Option::get($moduleId, 'RBS_ENABLE_CALLBACK'),
+			'measurement_code' => Option::get($moduleId, 'MEASUREMENT_CODE'),
+			// 'additionalOfdParams' => array(
+				// 'agent_info.type' => 6,
+				// 'agent_info.paying.operation' => '',
+				// 'agent_info.paying.phones' => '',
+				// 'agent_info.paymentsOperator.phones' => '',
+				// 'agent_info.MTOperator.address' => '',
+				// 'agent_info.MTOperator.inn' => '',
+				// 'agent_info.MTOperator.name' => '',
+				// 'agent_info.MTOperator.phones' => '',
+				// 'supplier_info.inn' => '',
+				// 'supplier_info.name' => '',
+				// 'supplier_info.phones' => '',
+				// 'cashier' => '',
+				// 'additional_check_props' => '',
+				// 'additional_user_props.name' => '',
+				// 'additional_user_props.value' => '',
+			// ),
 		));
 
 		// handler settings
@@ -60,8 +80,9 @@ class sberbank_ecom2Handler extends PaySystem\ServiceHandler implements PaySyste
 			'ffd_payment_method' => $this->getBusinessValue($payment, 'SBERBANK_FFD_PAYMENT_METHOD'),
 			'ffd_payment_method_delivery' => $this->getBusinessValue($payment, 'SBERBANK_FFD_PAYMENT_METHOD_DELIVERY'),
 			'test_mode' => $this->getBusinessValue($payment, 'SBERBANK_GATE_TEST_MODE') == 'Y' ? 1 : 0,
-			'handler_logging' => $this->getBusinessValue($payment, 'SBERBANK_HANDLER_LOGGING') == 'Y' ? 1 : 0,
 			'handler_two_stage' => $this->getBusinessValue($payment, 'SBERBANK_HANDLER_TWO_STAGE') == 'Y' ? 1 : 0,
+            'handler_logging' => $this->getBusinessValue($payment, 'SBERBANK_HANDLER_LOGGING') == 'Y' ? 1 : 0,
+            'enable_cacert' => $this->getBusinessValue($payment, 'SBERBANK_API_ENABLE_CACERT')  == 'Y' ? true : false,
 		));
 
 		$RBS_Gateway->buildData(array(
@@ -85,7 +106,7 @@ class sberbank_ecom2Handler extends PaySystem\ServiceHandler implements PaySyste
 		if(strlen($domain_name) > 3) {
 			$RBS_Gateway->setOptions(
 				array(
-					'domain_finded' => true,
+					'domain_found' => true,
 					'callback_url' => html_entity_decode($protocol . $domain_name . '/bitrix/tools/sale_ps_result.php?PAYMENT=SBERBANK&OPERATION_CALLBACK=SBER')
 				)
 			);
@@ -123,8 +144,7 @@ class sberbank_ecom2Handler extends PaySystem\ServiceHandler implements PaySyste
 			
 			$Basket = $Order->getBasket();
 			$basketItems = $Basket->getBasketItems();
-
-
+			$positions = [];
 			$lastIndex = 0;
 			foreach ($basketItems as $key => $BasketItem) {
 				$lastIndex = $key + 1;
@@ -144,13 +164,15 @@ class sberbank_ecom2Handler extends PaySystem\ServiceHandler implements PaySyste
 		        );
 
 				// If need support suplier_info
-				// $position['supplier_info'] = array(
-				// 	'name' => 'value_sup_name',
-				// 	'inn' => '9998887771',
+				// $position['agent_info'] = array(
+				// 	'agent_info.type' => '6',
+				// 	'agent_info.MTOperator.phones' => '+79169998877',
 				// );
+				
+				$positions[] = $position;
 
 
-				$RBS_Gateway->setPosition($position);
+				// $RBS_Gateway->setPosition($position);
 			}
 
 			if($Order->getField('PRICE_DELIVERY') > 0) {
@@ -162,7 +184,7 @@ class sberbank_ecom2Handler extends PaySystem\ServiceHandler implements PaySyste
 				$RBS_Gateway->setOptions(array(
 				    'delivery' => true,
 				));
-				$RBS_Gateway->setPosition(array(
+				$positions[] = array(
 		            'positionId' => $lastIndex + 1,
 		            'itemCode' => 'DELIVERY_' . $Order->getField('DELIVERY_ID'),
 		            'name' => Loc::getMessage('SBERBANK_PAYMENT_FIRLD_DELIVERY'),
@@ -175,7 +197,25 @@ class sberbank_ecom2Handler extends PaySystem\ServiceHandler implements PaySyste
 		            'tax' => array(
 		                'taxType' => $RBS_Gateway->getTaxCodeDelivery($deliveryVatItem['RATE']),
 		            ),
-		        ));	
+		        );
+			}
+
+			if(Option::get($moduleId, 'DISCOUNT_HELPER')) {
+		     // DISCOUNT CALCULATE
+			    $RBS_Discount = new \Sberbank\Payments\Discount;
+				$result_order_sum = $Order->getPrice() - $Order->getSumPaid();
+	            $discount = $RBS_Discount->discoverDiscount($result_order_sum,$positions);
+	            if($discount > 0) { 
+	                $RBS_Discount->setOrderDiscount($discount);
+	                $recalculatedPositions = $RBS_Discount->normalizeItems($positions);
+	                $recalculatedAmount = $RBS_Discount->getResultAmount();
+	                $positions = $recalculatedPositions;
+	            }
+            }
+
+            
+            foreach ($positions as $key => $position) {
+				$RBS_Gateway->setPosition($position);
 			}
 		}
 
@@ -201,14 +241,17 @@ class sberbank_ecom2Handler extends PaySystem\ServiceHandler implements PaySyste
 		global $APPLICATION;
 		$moduleId = 'sberbank.ecom2';
 		$result = new PaySystem\ServiceResult();
-		// echo Option::get($moduleId, 'CALLBACKS_ENABLE');
+		
+		$handler_logging =  $this->getBusinessValue($payment, 'SBERBANK_HANDLER_LOGGING') == 'Y' ? 1 : 0;
+
 		$RBS_Gateway = new \Sberbank\Payments\Gateway;
 		$RBS_Gateway->setOptions(array(
 			// module settings
 			'gate_url_prod' => Option::get($moduleId, 'SBERBANK_PROD_URL'),
 			'gate_url_test' => Option::get($moduleId, 'SBERBANK_TEST_URL'),
 			'test_mode' => $this->getBusinessValue($payment, 'SBERBANK_GATE_TEST_MODE') == 'Y' ? 1 : 0,
-			'callback_redirect' => $request->get('CALLBACK_REDIRECT') == 1 ? 1 : 0
+			'callback_redirect' => $request->get('CALLBACK_REDIRECT') == 1 ? 1 : 0,
+			'handler_logging' => $request->get('operation') === 'declinedByTimeout' ? false : $handler_logging
 		));
 
 		$RBS_Gateway->buildData(array(
@@ -234,22 +277,17 @@ class sberbank_ecom2Handler extends PaySystem\ServiceHandler implements PaySyste
         if($gateResponse['errorCode'] != 0 || ($gateResponse['orderStatus'] != 1 && $gateResponse['orderStatus'] != 2)) {
         	$successPayment = false;
         }
-
-	  	// $saved_callbacks_full = unserialize(Option::get($moduleId, 'CALLBACK_ENABLED'));
-
-	  	// if($this->getBusinessValue($payment, 'SBERBANK_GATE_TEST_MODE') == 'Y') {
-		// $callback_key_login = 'test-' . $this->getBusinessValue($payment, 'SBERBANK_GATE_LOGIN');
-		// } else {
-		// 	$callback_key_login = 'prod-' . $this->getBusinessValue($payment, 'SBERBANK_GATE_LOGIN');
-		// }
-
-        // if(array_key_exists($callback_key_login, $saved_callbacks_full) && $request->get('CALLBACK_REDIRECT') != 1) {
-        // 	if($saved_callbacks_full[$callback_key_login]['password'] == $this->getBusinessValue($payment, 'SBERBANK_GATE_PASSWORD')) {
-        // 		$change_order_status_logic = false;
-        // 	}
-        // } 
-
-        if($successPayment && !$payment->isPaid() && $request->get('CALLBACK_REDIRECT') == 1) {
+        
+        if($request->get('operation') === 'declinedByTimeout' 
+        	&& Option::get($moduleId, 'CANCEL_ORDER_BY_TIMEOUT')
+        	&& $request->get('CALLBACK_REDIRECT') == 1 
+        	&& !$payment->isPaid()
+        ) {
+        	$this->cancelOrder($payment->getOrderId());
+        	return $result;
+        }
+        
+        if($successPayment && !$payment->isPaid() && ($request->get('CALLBACK_REDIRECT') == 1 || !Option::get($moduleId, 'RBS_ENABLE_CALLBACK')) ) {
 			$inputJson = self::encode($request->toArray());
 			
 			$fields = array(
@@ -263,8 +301,6 @@ class sberbank_ecom2Handler extends PaySystem\ServiceHandler implements PaySyste
 			);
 
 			$result->setOperationType(PaySystem\ServiceResult::MONEY_COMING);
-			// if ($this->getBusinessValue($payment, 'PS_CHANGE_STATUS_PAY') === 'Y') {}
-
 			$result->setPsData($fields);
 
         	$order = Order::load($payment->getOrderId());
@@ -295,19 +331,10 @@ class sberbank_ecom2Handler extends PaySystem\ServiceHandler implements PaySyste
 				    }
 		    	}
 	    	}
-			
-			//CUSTOM устанавливаем флаг оплаты
-			$payments = $order->getPaymentCollection();
-			$payments[0]->setPaid('Y');
-			$payments[0]->save();
-			
-			
+
 		    $order->save();
         } 
-	   	// else if(!$successPayment) {
-	   	//	$error = Loc::getMessage('SBERBANK_MESSAGE_PAYMENT_ERROR').': '.$gateResponse['orderStatus'];
-		//  $result->addError(new Main\Error($error));
-	   	// }
+
 
         if($request->get('CALLBACK_REDIRECT') == 1) {
         	require dirname(dirname(__FILE__)) . '/config.php';
@@ -381,7 +408,7 @@ class sberbank_ecom2Handler extends PaySystem\ServiceHandler implements PaySyste
 				$paymentCollection = $order->getPaymentCollection();
 				foreach ($paymentCollection as $payment) {
 					if($R_PAYMENT_ID == $payment->getId()) {
-						LocalRedirect($APPLICATION->GetCurUri("ORDER_ID=" . $payment->getOrderId() . "&PAYMENT_ID=" . $R_PAYMENT_ID . "&CALLBACK_REDIRECT=1"));
+						LocalRedirect($APPLICATION->GetCurUri("ORDER_ID=" . $payment->getOrderId() . "&PAYMENT_ID=" . $R_PAYMENT_ID . "&CALLBACK_REDIRECT=1" . "&operation=" . $request->get('operation') ));
 					}
 				}
 			}
@@ -391,7 +418,7 @@ class sberbank_ecom2Handler extends PaySystem\ServiceHandler implements PaySyste
 				$paymentCollection = $order->getPaymentCollection();
 				foreach ($paymentCollection as $payment) {
 					if($R_PAYMENT_ID == $payment->getId()) {
-						LocalRedirect($APPLICATION->GetCurUri("ORDER_ID=" . $payment->getOrderId() . "&PAYMENT_ID=" . $R_PAYMENT_ID . "&CALLBACK_REDIRECT=1"));
+						LocalRedirect($APPLICATION->GetCurUri("ORDER_ID=" . $payment->getOrderId() . "&PAYMENT_ID=" . $R_PAYMENT_ID . "&CALLBACK_REDIRECT=1" . "&operation=" . $request->get('operation')));
 					}
 				}
 			} 
@@ -430,7 +457,6 @@ class sberbank_ecom2Handler extends PaySystem\ServiceHandler implements PaySyste
 	    }
 	}
 
-
 	/**
 	 * @return array
 	 */
@@ -440,6 +466,7 @@ class sberbank_ecom2Handler extends PaySystem\ServiceHandler implements PaySyste
 
 		);
 	}
+
 	/**
 	 * @return array
 	 */
@@ -449,6 +476,7 @@ class sberbank_ecom2Handler extends PaySystem\ServiceHandler implements PaySyste
 
 		return $data;
 	}
+
 	/**
 	 * @param Payment $payment
 	 * @param Request $request
@@ -458,6 +486,7 @@ class sberbank_ecom2Handler extends PaySystem\ServiceHandler implements PaySyste
 	{
 		return true;
 	}
+
 	/**
 	 * @param array $orderData
 	 */
@@ -465,6 +494,7 @@ class sberbank_ecom2Handler extends PaySystem\ServiceHandler implements PaySyste
 	{
 
 	}
+
 	/**
 	 * @param array $orderData
 	 * @return bool|string
@@ -473,6 +503,7 @@ class sberbank_ecom2Handler extends PaySystem\ServiceHandler implements PaySyste
 	{
 		return true;
 	}
+
 	/**
 	 * @param array $orderData
 	 */
@@ -509,10 +540,12 @@ class sberbank_ecom2Handler extends PaySystem\ServiceHandler implements PaySyste
 
 		return $description;
 	}
+
 	private static function encode(array $data)
 	{
 		return Main\Web\Json::encode($data, JSON_UNESCAPED_UNICODE);
 	}
+
 	protected function printResultText($payment,$successPayment)
 	{
 		global $APPLICATION;
@@ -530,6 +563,16 @@ class sberbank_ecom2Handler extends PaySystem\ServiceHandler implements PaySyste
 	        echo "</span></div>";
 		echo "</div></div>";
 	}
+
+	private function cancelOrder($orderId) 
+	{
+		$order = Order::load($orderId);
+        $order->setField("CANCELED", "Y");
+        $order->setField("REASON_CANCELED", Loc::getMessage('SBERBANK_CANCEL_ORDER_MESSAGE'));
+        $order->save();
+	}
+
+
 	public function isRefundableExtended(){}
 	public function confirm(Payment $payment){}
 	public function cancel(Payment $payment){}
@@ -537,103 +580,3 @@ class sberbank_ecom2Handler extends PaySystem\ServiceHandler implements PaySyste
 	public function sendResponse(PaySystem\ServiceResult $result, Request $request){}
 
 }
-
-
-
-// $app = \Bitrix\Main\Application::getInstance();
-// $request = $app->getContext()->getRequest();
-
-
-// if( $request->isPost() && 
-// 	$request->getPost('ACTION_FILE') == 'sberbank_ecom2' && 
-// 	isset($_POST['PAYSYSTEMBizVal']) && 
-// 	function_exists('curl_version') &&
-// 	($request->get('save') !== null || $request->get('apply') !== null)) {
-
-
-// 	if (!class_exists('\Sberbank\Payments\Gateway')) {
-// 		Loader::registerAutoLoadClasses('sberbank.ecom2',array('\Sberbank\Payments\Gateway' => 'lib/rbs/Gateway.php'));
-// 	}
-
-// 	$saved_callbacks_full = unserialize(Option::get('sberbank.ecom2', 'CALLBACK_ENABLED'));
-
-// 	$paySystemParams = $request->getPost('PAYSYSTEMBizVal')['MAP']['PAYSYSTEM_'. $request->getPost('ID')];
-
-
-// 	$service = \Bitrix\Sale\PaySystem\Manager::getObjectById($request->getPost('ID'));
-// 	$request_data = array();
-	
-
-// 	foreach ($paySystemParams['SBERBANK_GATE_LOGIN'] as $key => $item) {
-// 		if(isset($item['DELETE'])) {
-// 			$request_data[$key]['login'] = \Bitrix\Sale\BusinessValue::get('SBERBANK_GATE_LOGIN',$service->getConsumerName());
-// 		} else {
-// 			$request_data[$key]['login'] = $item['PROVIDER_VALUE'];
-// 		}
-// 	}
-// 	foreach ($paySystemParams['SBERBANK_GATE_PASSWORD'] as $key => $item) {
-// 		if(isset($item['DELETE'])) {
-// 			$request_data[$key]['password'] = \Bitrix\Sale\BusinessValue::get('SBERBANK_GATE_PASSWORD',$service->getConsumerName());
-// 		} else {
-// 			$request_data[$key]['password'] = $item['PROVIDER_VALUE'];
-// 		}
-// 	}
-// 	foreach ($paySystemParams['SBERBANK_GATE_TEST_MODE'] as $key => $item) {
-// 		if(isset($item['DELETE'])) {
-// 			$request_data[$key]['test_mode'] = \Bitrix\Sale\BusinessValue::get('SBERBANK_GATE_TEST_MODE',$service->getConsumerName());
-// 		} else {
-// 			$request_data[$key]['test_mode'] = $item['PROVIDER_VALUE'];
-// 		}
-// 	}
-
-
-// 	$protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== "off" ? 'https://' : 'http://';
-// 	$domain_name = $_SERVER['HTTP_HOST'];
-
-// 	$options = array(
-// 		'callbacks_enabled' => true,
-// 		'callback_addresses' => $protocol . $domain_name . '/bitrix/tools/sale_ps_result.php?PAYMENT=SBERBANK&OPERATION_CALLBACK=SBER',
-// 		'callback_operations' => 'approved,deposited'
-// 	);
-
-// 	$sber_gateway = new \Sberbank\Payments\Gateway;
-
-// 	if(strlen($domain_name) > 3) {
-		
-// 		$arr_check_double = array();
-		
-// 		foreach ($request_data as $key => $item) {
-			
-// 			if($request_data[$key]['test_mode'] == 'Y') {
-// 				$presave_key_login = 'test-' . $item['login'];
-// 			} else {
-// 				$presave_key_login = 'prod-' . $item['login'];
-// 			}
-
-// 			$hash = md5(serialize($item));
-
-// 			if(in_array($hash, $arr_check_double)) {
-// 				continue;
-// 			}
-
-// 			array_push($arr_check_double, $hash);
-// 			// if(array_key_exists($presave_key_login, $saved_callbacks_full)) {
-// 			// 	if($saved_callbacks_full[$presave_key_login]['password'] == $item['password']) {
-// 			// 		continue;
-// 			// 	}
-// 			// }
-			
-// 			$result =  $sber_gateway->updateCallback(array_merge($item, $options));
-			
-// 			if($result) {
-// 				$item['status'] = $result;
-// 				$item['date_update'] = date('Y-m-d H:i:s');
-// 				$saved_callbacks_full[$presave_key_login] = $item;
-// 			}
-// 		}
-
-
-// 		Option::set('sberbank.ecom2', "CALLBACK_ENABLED", serialize($saved_callbacks_full));
-// 	}
-
-// }
